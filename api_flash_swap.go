@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -79,7 +78,7 @@ func (a *FlashSwapApiService) ListFlashSwapCurrencies(ctx context.Context) ([]Fl
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -112,7 +111,7 @@ func (a *FlashSwapApiService) ListFlashSwapCurrencies(ctx context.Context) ([]Fl
 
 // ListFlashSwapCurrencyPairOpts Optional parameters for the method 'ListFlashSwapCurrencyPair'
 type ListFlashSwapCurrencyPairOpts struct {
-	Currency optional.String
+	Currency Optional[string]
 }
 
 /*
@@ -120,7 +119,7 @@ ListFlashSwapCurrencyPair List All Supported Currency Pairs In Flash Swap
 &#x60;BTC_GT&#x60; represents selling BTC and buying GT. The limits for each currency may vary across different currency pairs.  It is not necessary that two currencies that can be swapped instantaneously can be exchanged with each other. For example, it is possible to sell BTC and buy GT, but it does not necessarily mean that GT can be sold to buy BTC.
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListFlashSwapCurrencyPairOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
 
 @return []FlashSwapCurrencyPair
 */
@@ -174,7 +173,7 @@ func (a *FlashSwapApiService) ListFlashSwapCurrencyPair(ctx context.Context, loc
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -207,24 +206,24 @@ func (a *FlashSwapApiService) ListFlashSwapCurrencyPair(ctx context.Context, loc
 
 // ListFlashSwapOrdersOpts Optional parameters for the method 'ListFlashSwapOrders'
 type ListFlashSwapOrdersOpts struct {
-	Status       optional.Int32
-	SellCurrency optional.String
-	BuyCurrency  optional.String
-	Reverse      optional.Bool
-	Limit        optional.Int32
-	Page         optional.Int32
+	Status       Optional[int32]
+	SellCurrency Optional[string]
+	BuyCurrency  Optional[string]
+	Reverse      Optional[bool]
+	Limit        Optional[int32]
+	Page         Optional[int32]
 }
 
 /*
 ListFlashSwapOrders List all flash swap orders
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListFlashSwapOrdersOpts - Optional Parameters:
-  - @param "Status" (optional.Int32) -  Flash swap order status  `1` - success `2` - failure
-  - @param "SellCurrency" (optional.String) -  Currency to sell which can be retrieved from supported currency list API `GET /flash_swap/currencies`
-  - @param "BuyCurrency" (optional.String) -  Currency to buy which can be retrieved from supported currency list API `GET /flash_swap/currencies`
-  - @param "Reverse" (optional.Bool) -  If results are sorted by id in reverse order. Default to `true`  - `true`: sort by id in descending order(recent first) - `false`: sort by id in ascending order(oldest first)
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Page" (optional.Int32) -  Page number
+  - @param "Status" (Optional[int32]) -  Flash swap order status  `1` - success `2` - failure
+  - @param "SellCurrency" (Optional[string]) -  Currency to sell which can be retrieved from supported currency list API `GET /flash_swap/currencies`
+  - @param "BuyCurrency" (Optional[string]) -  Currency to buy which can be retrieved from supported currency list API `GET /flash_swap/currencies`
+  - @param "Reverse" (Optional[bool]) -  If results are sorted by id in reverse order. Default to `true`  - `true`: sort by id in descending order(recent first) - `false`: sort by id in ascending order(oldest first)
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Page" (Optional[int32]) -  Page number
 
 @return []FlashSwapOrder
 */
@@ -299,7 +298,7 @@ func (a *FlashSwapApiService) ListFlashSwapOrders(ctx context.Context, localVarO
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -393,7 +392,7 @@ func (a *FlashSwapApiService) CreateFlashSwapOrder(ctx context.Context, flashSwa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -486,7 +485,7 @@ func (a *FlashSwapApiService) GetFlashSwapOrder(ctx context.Context, orderId int
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -579,7 +578,7 @@ func (a *FlashSwapApiService) PreviewFlashSwapOrder(ctx context.Context, flashSw
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

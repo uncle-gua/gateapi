@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -28,20 +27,20 @@ type CollateralLoanApiService service
 
 // ListCollateralLoanOrdersOpts Optional parameters for the method 'ListCollateralLoanOrders'
 type ListCollateralLoanOrdersOpts struct {
-	Page               optional.Int32
-	Limit              optional.Int32
-	CollateralCurrency optional.String
-	BorrowCurrency     optional.String
+	Page               Optional[int32]
+	Limit              Optional[int32]
+	CollateralCurrency Optional[string]
+	BorrowCurrency     Optional[string]
 }
 
 /*
 ListCollateralLoanOrders List Orders
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListCollateralLoanOrdersOpts - Optional Parameters:
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "CollateralCurrency" (optional.String) -  Collateral
-  - @param "BorrowCurrency" (optional.String) -  Borrowed currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "CollateralCurrency" (Optional[string]) -  Collateral
+  - @param "BorrowCurrency" (Optional[string]) -  Borrowed currency
 
 @return []CollateralOrder
 */
@@ -110,7 +109,7 @@ func (a *CollateralLoanApiService) ListCollateralLoanOrders(ctx context.Context,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -203,7 +202,7 @@ func (a *CollateralLoanApiService) CreateCollateralLoan(ctx context.Context, cre
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -296,7 +295,7 @@ func (a *CollateralLoanApiService) GetCollateralLoanOrderDetail(ctx context.Cont
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -389,7 +388,7 @@ func (a *CollateralLoanApiService) RepayCollateralLoan(ctx context.Context, repa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -422,12 +421,12 @@ func (a *CollateralLoanApiService) RepayCollateralLoan(ctx context.Context, repa
 
 // ListRepayRecordsOpts Optional parameters for the method 'ListRepayRecords'
 type ListRepayRecordsOpts struct {
-	BorrowCurrency     optional.String
-	CollateralCurrency optional.String
-	Page               optional.Int32
-	Limit              optional.Int32
-	From               optional.Int64
-	To                 optional.Int64
+	BorrowCurrency     Optional[string]
+	CollateralCurrency Optional[string]
+	Page               Optional[int32]
+	Limit              Optional[int32]
+	From               Optional[int64]
+	To                 Optional[int64]
 }
 
 /*
@@ -435,12 +434,12 @@ ListRepayRecords Repayment history
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param source Operation type: repay - Regular repayment, liquidate - Liquidation
   - @param optional nil or *ListRepayRecordsOpts - Optional Parameters:
-  - @param "BorrowCurrency" (optional.String) -  Borrowed currency
-  - @param "CollateralCurrency" (optional.String) -  Collateral
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "From" (optional.Int64) -  Start timestamp of the query
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
+  - @param "BorrowCurrency" (Optional[string]) -  Borrowed currency
+  - @param "CollateralCurrency" (Optional[string]) -  Collateral
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "From" (Optional[int64]) -  Start timestamp of the query
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
 
 @return []RepayRecord
 */
@@ -516,7 +515,7 @@ func (a *CollateralLoanApiService) ListRepayRecords(ctx context.Context, source 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -549,24 +548,24 @@ func (a *CollateralLoanApiService) ListRepayRecords(ctx context.Context, source 
 
 // ListCollateralRecordsOpts Optional parameters for the method 'ListCollateralRecords'
 type ListCollateralRecordsOpts struct {
-	Page               optional.Int32
-	Limit              optional.Int32
-	From               optional.Int64
-	To                 optional.Int64
-	BorrowCurrency     optional.String
-	CollateralCurrency optional.String
+	Page               Optional[int32]
+	Limit              Optional[int32]
+	From               Optional[int64]
+	To                 Optional[int64]
+	BorrowCurrency     Optional[string]
+	CollateralCurrency Optional[string]
 }
 
 /*
 ListCollateralRecords Query collateral adjustment records
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListCollateralRecordsOpts - Optional Parameters:
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "From" (optional.Int64) -  Start timestamp of the query
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
-  - @param "BorrowCurrency" (optional.String) -  Borrowed currency
-  - @param "CollateralCurrency" (optional.String) -  Collateral
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "From" (Optional[int64]) -  Start timestamp of the query
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
+  - @param "BorrowCurrency" (Optional[string]) -  Borrowed currency
+  - @param "CollateralCurrency" (Optional[string]) -  Collateral
 
 @return []CollateralRecord
 */
@@ -641,7 +640,7 @@ func (a *CollateralLoanApiService) ListCollateralRecords(ctx context.Context, lo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -731,7 +730,7 @@ func (a *CollateralLoanApiService) OperateCollateral(ctx context.Context, collat
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -812,7 +811,7 @@ func (a *CollateralLoanApiService) GetUserTotalAmount(ctx context.Context) (User
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -906,7 +905,7 @@ func (a *CollateralLoanApiService) GetUserLtvInfo(ctx context.Context, collatera
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -939,14 +938,14 @@ func (a *CollateralLoanApiService) GetUserLtvInfo(ctx context.Context, collatera
 
 // ListCollateralCurrenciesOpts Optional parameters for the method 'ListCollateralCurrencies'
 type ListCollateralCurrenciesOpts struct {
-	LoanCurrency optional.String
+	LoanCurrency Optional[string]
 }
 
 /*
 ListCollateralCurrencies Query supported borrowing and collateral currencies
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListCollateralCurrenciesOpts - Optional Parameters:
-  - @param "LoanCurrency" (optional.String) -  The parameter loan_currency is used to specify the borrowing currency. If loan_currency is not provided, the API will return all supported borrowing currencies. If loan_currency is provided, the API will return an array of collateral currencies supported for the specified borrowing currency.
+  - @param "LoanCurrency" (Optional[string]) -  The parameter loan_currency is used to specify the borrowing currency. If loan_currency is not provided, the API will return all supported borrowing currencies. If loan_currency is provided, the API will return an array of collateral currencies supported for the specified borrowing currency.
 
 @return []CollateralLoanCurrency
 */
@@ -1000,7 +999,7 @@ func (a *CollateralLoanApiService) ListCollateralCurrencies(ctx context.Context,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

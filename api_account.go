@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -85,7 +84,7 @@ func (a *AccountApiService) GetAccountDetail(ctx context.Context) (AccountDetail
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -118,7 +117,7 @@ func (a *AccountApiService) GetAccountDetail(ctx context.Context) (AccountDetail
 
 // ListSTPGroupsOpts Optional parameters for the method 'ListSTPGroups'
 type ListSTPGroupsOpts struct {
-	Name optional.String
+	Name Optional[string]
 }
 
 /*
@@ -126,7 +125,7 @@ ListSTPGroups List STP Groups
 Retrieve the list of STP groups created by the main account user only
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListSTPGroupsOpts - Optional Parameters:
-  - @param "Name" (optional.String) -  Perform a fuzzy search based on the name
+  - @param "Name" (Optional[string]) -  Perform a fuzzy search based on the name
 
 @return []StpGroup
 */
@@ -186,7 +185,7 @@ func (a *AccountApiService) ListSTPGroups(ctx context.Context, localVarOptionals
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -280,7 +279,7 @@ func (a *AccountApiService) CreateSTPGroup(ctx context.Context, stpGroup StpGrou
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -374,7 +373,7 @@ func (a *AccountApiService) ListSTPGroupsUsers(ctx context.Context, stpId int64)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -471,7 +470,7 @@ func (a *AccountApiService) AddSTPGroupUsers(ctx context.Context, stpId int64, r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -567,7 +566,7 @@ func (a *AccountApiService) DeleteSTPGroupUsers(ctx context.Context, stpId int64
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

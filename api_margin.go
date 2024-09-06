@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -29,14 +28,14 @@ type MarginApiService service
 
 // ListMarginAccountsOpts Optional parameters for the method 'ListMarginAccounts'
 type ListMarginAccountsOpts struct {
-	CurrencyPair optional.String
+	CurrencyPair Optional[string]
 }
 
 /*
 ListMarginAccounts Margin account list
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListMarginAccountsOpts - Optional Parameters:
-  - @param "CurrencyPair" (optional.String) -  Currency pair
+  - @param "CurrencyPair" (Optional[string]) -  Currency pair
 
 @return []MarginAccount
 */
@@ -96,7 +95,7 @@ func (a *MarginApiService) ListMarginAccounts(ctx context.Context, localVarOptio
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -129,13 +128,13 @@ func (a *MarginApiService) ListMarginAccounts(ctx context.Context, localVarOptio
 
 // ListMarginAccountBookOpts Optional parameters for the method 'ListMarginAccountBook'
 type ListMarginAccountBookOpts struct {
-	Currency     optional.String
-	CurrencyPair optional.String
-	Type_        optional.String
-	From         optional.Int64
-	To           optional.Int64
-	Page         optional.Int32
-	Limit        optional.Int32
+	Currency     Optional[string]
+	CurrencyPair Optional[string]
+	Type_        Optional[string]
+	From         Optional[int64]
+	To           Optional[int64]
+	Page         Optional[int32]
+	Limit        Optional[int32]
 }
 
 /*
@@ -143,13 +142,13 @@ ListMarginAccountBook List margin account balance change history
 Only transferals from and to margin account are provided for now. Time range allows 30 days at most
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListMarginAccountBookOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  List records related to specified currency only. If specified, `currency_pair` is also required.
-  - @param "CurrencyPair" (optional.String) -  List records related to specified currency pair. Used in combination with `currency`. Ignored if `currency` is not provided
-  - @param "Type_" (optional.String) -  Only retrieve changes of the specified type. All types will be returned if not specified.
-  - @param "From" (optional.Int64) -  Start timestamp of the query
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
+  - @param "Currency" (Optional[string]) -  List records related to specified currency only. If specified, `currency_pair` is also required.
+  - @param "CurrencyPair" (Optional[string]) -  List records related to specified currency pair. Used in combination with `currency`. Ignored if `currency` is not provided
+  - @param "Type_" (Optional[string]) -  Only retrieve changes of the specified type. All types will be returned if not specified.
+  - @param "From" (Optional[int64]) -  Start timestamp of the query
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
 
 @return []MarginAccountBook
 */
@@ -227,7 +226,7 @@ func (a *MarginApiService) ListMarginAccountBook(ctx context.Context, localVarOp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -260,14 +259,14 @@ func (a *MarginApiService) ListMarginAccountBook(ctx context.Context, localVarOp
 
 // ListFundingAccountsOpts Optional parameters for the method 'ListFundingAccounts'
 type ListFundingAccountsOpts struct {
-	Currency optional.String
+	Currency Optional[string]
 }
 
 /*
 ListFundingAccounts Funding account list
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListFundingAccountsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
 
 @return []FundingAccount
 */
@@ -327,7 +326,7 @@ func (a *MarginApiService) ListFundingAccounts(ctx context.Context, localVarOpti
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -417,7 +416,7 @@ func (a *MarginApiService) GetAutoRepayStatus(ctx context.Context) (AutoRepaySet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -509,7 +508,7 @@ func (a *MarginApiService) SetAutoRepay(ctx context.Context, status string) (Aut
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -542,7 +541,7 @@ func (a *MarginApiService) SetAutoRepay(ctx context.Context, status string) (Aut
 
 // GetMarginTransferableOpts Optional parameters for the method 'GetMarginTransferable'
 type GetMarginTransferableOpts struct {
-	CurrencyPair optional.String
+	CurrencyPair Optional[string]
 }
 
 /*
@@ -550,7 +549,7 @@ GetMarginTransferable Get the max transferable amount for a specific margin curr
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param currency Retrieve data of the specified currency
   - @param optional nil or *GetMarginTransferableOpts - Optional Parameters:
-  - @param "CurrencyPair" (optional.String) -  Currency pair
+  - @param "CurrencyPair" (Optional[string]) -  Currency pair
 
 @return MarginTransferable
 */
@@ -611,7 +610,7 @@ func (a *MarginApiService) GetMarginTransferable(ctx context.Context, currency s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -695,7 +694,7 @@ func (a *MarginApiService) ListMarginCurrencyPairs(ctx context.Context) ([]Margi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -782,7 +781,7 @@ func (a *MarginApiService) GetMarginCurrencyPair(ctx context.Context, currencyPa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -868,7 +867,7 @@ func (a *MarginApiService) ListFundingBook(ctx context.Context, currency string)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -901,12 +900,12 @@ func (a *MarginApiService) ListFundingBook(ctx context.Context, currency string)
 
 // ListLoansOpts Optional parameters for the method 'ListLoans'
 type ListLoansOpts struct {
-	Currency     optional.String
-	CurrencyPair optional.String
-	SortBy       optional.String
-	ReverseSort  optional.Bool
-	Page         optional.Int32
-	Limit        optional.Int32
+	Currency     Optional[string]
+	CurrencyPair Optional[string]
+	SortBy       Optional[string]
+	ReverseSort  Optional[bool]
+	Page         Optional[int32]
+	Limit        Optional[int32]
 }
 
 /*
@@ -915,12 +914,12 @@ ListLoans List all loans(Deprecated)
   - @param status Loan status
   - @param side Lend or borrow
   - @param optional nil or *ListLoansOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "CurrencyPair" (optional.String) -  Currency pair
-  - @param "SortBy" (optional.String) -  Specify which field is used to sort. `create_time` or `rate` is supported. Default to `create_time`
-  - @param "ReverseSort" (optional.Bool) -  Whether to sort in descending order. Default to `true`
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "CurrencyPair" (Optional[string]) -  Currency pair
+  - @param "SortBy" (Optional[string]) -  Specify which field is used to sort. `create_time` or `rate` is supported. Default to `create_time`
+  - @param "ReverseSort" (Optional[bool]) -  Whether to sort in descending order. Default to `true`
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
 
 @return []Loan
 */
@@ -997,7 +996,7 @@ func (a *MarginApiService) ListLoans(ctx context.Context, status string, side st
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1090,7 +1089,7 @@ func (a *MarginApiService) CreateLoan(ctx context.Context, loan Loan) (Loan, *ht
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1184,7 +1183,7 @@ func (a *MarginApiService) MergeLoans(ctx context.Context, currency string, ids 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1279,7 +1278,7 @@ func (a *MarginApiService) GetLoan(ctx context.Context, loanId string, side stri
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1375,7 +1374,7 @@ func (a *MarginApiService) CancelLoan(ctx context.Context, loanId string, curren
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1472,7 +1471,7 @@ func (a *MarginApiService) UpdateLoan(ctx context.Context, loanId string, loanPa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1565,7 +1564,7 @@ func (a *MarginApiService) ListLoanRepayments(ctx context.Context, loanId string
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1661,7 +1660,7 @@ func (a *MarginApiService) RepayLoan(ctx context.Context, loanId string, repayRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1694,9 +1693,9 @@ func (a *MarginApiService) RepayLoan(ctx context.Context, loanId string, repayRe
 
 // ListLoanRecordsOpts Optional parameters for the method 'ListLoanRecords'
 type ListLoanRecordsOpts struct {
-	Status optional.String
-	Page   optional.Int32
-	Limit  optional.Int32
+	Status Optional[string]
+	Page   Optional[int32]
+	Limit  Optional[int32]
 }
 
 /*
@@ -1704,9 +1703,9 @@ ListLoanRecords List repayment records of a specific loan(Deprecated)
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param loanId Loan ID
   - @param optional nil or *ListLoanRecordsOpts - Optional Parameters:
-  - @param "Status" (optional.String) -  Loan record status
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
+  - @param "Status" (Optional[string]) -  Loan record status
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
 
 @return []LoanRecord
 */
@@ -1773,7 +1772,7 @@ func (a *MarginApiService) ListLoanRecords(ctx context.Context, loanId string, l
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1868,7 +1867,7 @@ func (a *MarginApiService) GetLoanRecord(ctx context.Context, loanRecordId strin
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1965,7 +1964,7 @@ func (a *MarginApiService) UpdateLoanRecord(ctx context.Context, loanRecordId st
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1998,7 +1997,7 @@ func (a *MarginApiService) UpdateLoanRecord(ctx context.Context, loanRecordId st
 
 // GetMarginBorrowableOpts Optional parameters for the method 'GetMarginBorrowable'
 type GetMarginBorrowableOpts struct {
-	CurrencyPair optional.String
+	CurrencyPair Optional[string]
 }
 
 /*
@@ -2006,7 +2005,7 @@ GetMarginBorrowable Get the max borrowable amount for a specific margin currency
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param currency Retrieve data of the specified currency
   - @param optional nil or *GetMarginBorrowableOpts - Optional Parameters:
-  - @param "CurrencyPair" (optional.String) -  Currency pair
+  - @param "CurrencyPair" (Optional[string]) -  Currency pair
 
 @return MarginBorrowable
 */
@@ -2067,7 +2066,7 @@ func (a *MarginApiService) GetMarginBorrowable(ctx context.Context, currency str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2151,7 +2150,7 @@ func (a *MarginApiService) ListCrossMarginCurrencies(ctx context.Context) ([]Cro
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2238,7 +2237,7 @@ func (a *MarginApiService) GetCrossMarginCurrency(ctx context.Context, currency 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2328,7 +2327,7 @@ func (a *MarginApiService) GetCrossMarginAccount(ctx context.Context) (CrossMarg
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2361,12 +2360,12 @@ func (a *MarginApiService) GetCrossMarginAccount(ctx context.Context) (CrossMarg
 
 // ListCrossMarginAccountBookOpts Optional parameters for the method 'ListCrossMarginAccountBook'
 type ListCrossMarginAccountBookOpts struct {
-	Currency optional.String
-	From     optional.Int64
-	To       optional.Int64
-	Page     optional.Int32
-	Limit    optional.Int32
-	Type_    optional.String
+	Currency Optional[string]
+	From     Optional[int64]
+	To       Optional[int64]
+	Page     Optional[int32]
+	Limit    Optional[int32]
+	Type_    Optional[string]
 }
 
 /*
@@ -2374,12 +2373,12 @@ ListCrossMarginAccountBook Retrieve cross margin account change history
 Record time range cannot exceed 30 days
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListCrossMarginAccountBookOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Filter by currency
-  - @param "From" (optional.Int64) -  Start timestamp of the query
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Type_" (optional.String) -  Only retrieve changes of the specified type. All types will be returned if not specified.
+  - @param "Currency" (Optional[string]) -  Filter by currency
+  - @param "From" (Optional[int64]) -  Start timestamp of the query
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Type_" (Optional[string]) -  Only retrieve changes of the specified type. All types will be returned if not specified.
 
 @return []CrossMarginAccountBook
 */
@@ -2454,7 +2453,7 @@ func (a *MarginApiService) ListCrossMarginAccountBook(ctx context.Context, local
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2487,10 +2486,10 @@ func (a *MarginApiService) ListCrossMarginAccountBook(ctx context.Context, local
 
 // ListCrossMarginLoansOpts Optional parameters for the method 'ListCrossMarginLoans'
 type ListCrossMarginLoansOpts struct {
-	Currency optional.String
-	Limit    optional.Int32
-	Offset   optional.Int32
-	Reverse  optional.Bool
+	Currency Optional[string]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
+	Reverse  Optional[bool]
 }
 
 /*
@@ -2499,10 +2498,10 @@ Sort by creation time in descending order by default. Set &#x60;reverse&#x3D;fal
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param status Filter by status. Supported values are 2 and 3. (deprecated.)
   - @param optional nil or *ListCrossMarginLoansOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Filter by currency
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
-  - @param "Reverse" (optional.Bool) -  Whether to sort in descending order, which is the default. Set `reverse=false` to return ascending results
+  - @param "Currency" (Optional[string]) -  Filter by currency
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
+  - @param "Reverse" (Optional[bool]) -  Whether to sort in descending order, which is the default. Set `reverse=false` to return ascending results
 
 @return []CrossMarginLoan
 */
@@ -2572,7 +2571,7 @@ func (a *MarginApiService) ListCrossMarginLoans(ctx context.Context, status int3
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2666,7 +2665,7 @@ func (a *MarginApiService) CreateCrossMarginLoan(ctx context.Context, crossMargi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2759,7 +2758,7 @@ func (a *MarginApiService) GetCrossMarginLoan(ctx context.Context, loanId string
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2792,11 +2791,11 @@ func (a *MarginApiService) GetCrossMarginLoan(ctx context.Context, loanId string
 
 // ListCrossMarginRepaymentsOpts Optional parameters for the method 'ListCrossMarginRepayments'
 type ListCrossMarginRepaymentsOpts struct {
-	Currency optional.String
-	LoanId   optional.String
-	Limit    optional.Int32
-	Offset   optional.Int32
-	Reverse  optional.Bool
+	Currency Optional[string]
+	LoanId   Optional[string]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
+	Reverse  Optional[bool]
 }
 
 /*
@@ -2804,11 +2803,11 @@ ListCrossMarginRepayments Retrieve cross margin repayments
 Sort by creation time in descending order by default. Set &#x60;reverse&#x3D;false&#x60; to return ascending results.
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListCrossMarginRepaymentsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -
-  - @param "LoanId" (optional.String) -
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
-  - @param "Reverse" (optional.Bool) -  Whether to sort in descending order, which is the default. Set `reverse=false` to return ascending results
+  - @param "Currency" (Optional[string]) -
+  - @param "LoanId" (Optional[string]) -
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
+  - @param "Reverse" (Optional[bool]) -  Whether to sort in descending order, which is the default. Set `reverse=false` to return ascending results
 
 @return []CrossMarginRepayment
 */
@@ -2880,7 +2879,7 @@ func (a *MarginApiService) ListCrossMarginRepayments(ctx context.Context, localV
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2974,7 +2973,7 @@ func (a *MarginApiService) RepayCrossMarginLoan(ctx context.Context, crossMargin
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3007,22 +3006,22 @@ func (a *MarginApiService) RepayCrossMarginLoan(ctx context.Context, crossMargin
 
 // GetCrossMarginInterestRecordsOpts Optional parameters for the method 'GetCrossMarginInterestRecords'
 type GetCrossMarginInterestRecordsOpts struct {
-	Currency optional.String
-	Page     optional.Int32
-	Limit    optional.Int32
-	From     optional.Int64
-	To       optional.Int64
+	Currency Optional[string]
+	Page     Optional[int32]
+	Limit    Optional[int32]
+	From     Optional[int64]
+	To       Optional[int64]
 }
 
 /*
 GetCrossMarginInterestRecords Interest records for the cross margin account
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *GetCrossMarginInterestRecordsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
-  - @param "From" (optional.Int64) -  Start timestamp
-  - @param "To" (optional.Int64) -  End timestamp
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "From" (Optional[int64]) -  Start timestamp
+  - @param "To" (Optional[int64]) -  End timestamp
 
 @return []UniLoanInterestRecord
 */
@@ -3094,7 +3093,7 @@ func (a *MarginApiService) GetCrossMarginInterestRecords(ctx context.Context, lo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3186,7 +3185,7 @@ func (a *MarginApiService) GetCrossMarginTransferable(ctx context.Context, curre
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3295,7 +3294,7 @@ func (a *MarginApiService) GetCrossMarginEstimateRate(ctx context.Context, curre
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3387,7 +3386,7 @@ func (a *MarginApiService) GetCrossMarginBorrowable(ctx context.Context, currenc
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

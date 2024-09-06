@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -28,7 +27,7 @@ type UnifiedApiService service
 
 // ListUnifiedAccountsOpts Optional parameters for the method 'ListUnifiedAccounts'
 type ListUnifiedAccountsOpts struct {
-	Currency optional.String
+	Currency Optional[string]
 }
 
 /*
@@ -36,7 +35,7 @@ ListUnifiedAccounts Get unified account information
 The assets of each currency in the account will be adjusted according to their liquidity, defined by corresponding adjustment coefficients, and then uniformly converted to USD to calculate the total asset value and position value of the account.  You can refer to the [Formula](#portfolio-account) in the documentation
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListUnifiedAccountsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
 
 @return UnifiedAccount
 */
@@ -96,7 +95,7 @@ func (a *UnifiedApiService) ListUnifiedAccounts(ctx context.Context, localVarOpt
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -187,7 +186,7 @@ func (a *UnifiedApiService) ListUnifiedAccountMode(ctx context.Context) (map[str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -280,7 +279,7 @@ func (a *UnifiedApiService) SetUnifiedAccountMode(ctx context.Context, unifiedMo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -372,7 +371,7 @@ func (a *UnifiedApiService) GetUnifiedBorrowable(ctx context.Context, currency s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -464,7 +463,7 @@ func (a *UnifiedApiService) GetUnifiedTransferable(ctx context.Context, currency
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -497,20 +496,20 @@ func (a *UnifiedApiService) GetUnifiedTransferable(ctx context.Context, currency
 
 // ListUnifiedLoansOpts Optional parameters for the method 'ListUnifiedLoans'
 type ListUnifiedLoansOpts struct {
-	Currency optional.String
-	Page     optional.Int32
-	Limit    optional.Int32
-	Type_    optional.String
+	Currency Optional[string]
+	Page     Optional[int32]
+	Limit    Optional[int32]
+	Type_    Optional[string]
 }
 
 /*
 ListUnifiedLoans List loans
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListUnifiedLoansOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
-  - @param "Type_" (optional.String) -  Loan type, platform - platform, margin - margin
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "Type_" (Optional[string]) -  Loan type, platform - platform, margin - margin
 
 @return []UniLoan
 */
@@ -579,7 +578,7 @@ func (a *UnifiedApiService) ListUnifiedLoans(ctx context.Context, localVarOption
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -670,7 +669,7 @@ func (a *UnifiedApiService) CreateUnifiedLoan(ctx context.Context, unifiedLoan U
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -694,20 +693,20 @@ func (a *UnifiedApiService) CreateUnifiedLoan(ctx context.Context, unifiedLoan U
 
 // ListUnifiedLoanRecordsOpts Optional parameters for the method 'ListUnifiedLoanRecords'
 type ListUnifiedLoanRecordsOpts struct {
-	Type_    optional.String
-	Currency optional.String
-	Page     optional.Int32
-	Limit    optional.Int32
+	Type_    Optional[string]
+	Currency Optional[string]
+	Page     Optional[int32]
+	Limit    Optional[int32]
 }
 
 /*
 ListUnifiedLoanRecords Get load records
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListUnifiedLoanRecordsOpts - Optional Parameters:
-  - @param "Type_" (optional.String) -  The types of lending records, borrow - indicates the action of borrowing funds, repay - indicates the action of repaying the borrowed funds
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "Type_" (Optional[string]) -  The types of lending records, borrow - indicates the action of borrowing funds, repay - indicates the action of repaying the borrowed funds
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
 
 @return []UnifiedLoanRecord
 */
@@ -776,7 +775,7 @@ func (a *UnifiedApiService) ListUnifiedLoanRecords(ctx context.Context, localVar
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -809,20 +808,20 @@ func (a *UnifiedApiService) ListUnifiedLoanRecords(ctx context.Context, localVar
 
 // ListUnifiedLoanInterestRecordsOpts Optional parameters for the method 'ListUnifiedLoanInterestRecords'
 type ListUnifiedLoanInterestRecordsOpts struct {
-	Currency optional.String
-	Page     optional.Int32
-	Limit    optional.Int32
-	Type_    optional.String
+	Currency Optional[string]
+	Page     Optional[int32]
+	Limit    Optional[int32]
+	Type_    Optional[string]
 }
 
 /*
 ListUnifiedLoanInterestRecords List interest records
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListUnifiedLoanInterestRecordsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
-  - @param "Type_" (optional.String) -  Loan type, platform - platform, margin - margin
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "Type_" (Optional[string]) -  Loan type, platform - platform, margin - margin
 
 @return []UniLoanInterestRecord
 */
@@ -891,7 +890,7 @@ func (a *UnifiedApiService) ListUnifiedLoanInterestRecords(ctx context.Context, 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -981,7 +980,7 @@ func (a *UnifiedApiService) GetUnifiedRiskUnits(ctx context.Context) (UnifiedRis
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1072,7 +1071,7 @@ func (a *UnifiedApiService) GetUnifiedMode(ctx context.Context) (UnifiedModeSet,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1163,7 +1162,7 @@ func (a *UnifiedApiService) SetUnifiedMode(ctx context.Context, unifiedModeSet U
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -1263,7 +1262,7 @@ func (a *UnifiedApiService) GetUnifiedEstimateRate(ctx context.Context, currenci
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1347,7 +1346,7 @@ func (a *UnifiedApiService) ListCurrencyDiscountTiers(ctx context.Context) ([]Un
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1435,7 +1434,7 @@ func (a *UnifiedApiService) CalculatePortfolioMargin(ctx context.Context, unifie
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

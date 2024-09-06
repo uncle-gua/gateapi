@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -28,8 +27,8 @@ type FuturesApiService service
 
 // ListFuturesContractsOpts Optional parameters for the method 'ListFuturesContracts'
 type ListFuturesContractsOpts struct {
-	Limit  optional.Int32
-	Offset optional.Int32
+	Limit  Optional[int32]
+	Offset Optional[int32]
 }
 
 /*
@@ -37,8 +36,8 @@ ListFuturesContracts List all futures contracts
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListFuturesContractsOpts - Optional Parameters:
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
 
 @return []Contract
 */
@@ -97,7 +96,7 @@ func (a *FuturesApiService) ListFuturesContracts(ctx context.Context, settle str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -187,7 +186,7 @@ func (a *FuturesApiService) GetFuturesContract(ctx context.Context, settle strin
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -220,9 +219,9 @@ func (a *FuturesApiService) GetFuturesContract(ctx context.Context, settle strin
 
 // ListFuturesOrderBookOpts Optional parameters for the method 'ListFuturesOrderBook'
 type ListFuturesOrderBookOpts struct {
-	Interval optional.String
-	Limit    optional.Int32
-	WithId   optional.Bool
+	Interval Optional[string]
+	Limit    Optional[int32]
+	WithId   Optional[bool]
 }
 
 /*
@@ -232,9 +231,9 @@ Bids will be sorted by price from high to low, while asks sorted reversely
   - @param settle Settle currency
   - @param contract Futures contract
   - @param optional nil or *ListFuturesOrderBookOpts - Optional Parameters:
-  - @param "Interval" (optional.String) -  Order depth. 0 means no aggregation is applied. default to 0
-  - @param "Limit" (optional.Int32) -  Maximum number of order depth data in asks or bids
-  - @param "WithId" (optional.Bool) -  Whether the order book update ID will be returned. This ID increases by 1 on every order book update
+  - @param "Interval" (Optional[string]) -  Order depth. 0 means no aggregation is applied. default to 0
+  - @param "Limit" (Optional[int32]) -  Maximum number of order depth data in asks or bids
+  - @param "WithId" (Optional[bool]) -  Whether the order book update ID will be returned. This ID increases by 1 on every order book update
 
 @return FuturesOrderBook
 */
@@ -297,7 +296,7 @@ func (a *FuturesApiService) ListFuturesOrderBook(ctx context.Context, settle str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -330,11 +329,11 @@ func (a *FuturesApiService) ListFuturesOrderBook(ctx context.Context, settle str
 
 // ListFuturesTradesOpts Optional parameters for the method 'ListFuturesTrades'
 type ListFuturesTradesOpts struct {
-	Limit  optional.Int32
-	Offset optional.Int32
-	LastId optional.String
-	From   optional.Int64
-	To     optional.Int64
+	Limit  Optional[int32]
+	Offset Optional[int32]
+	LastId Optional[string]
+	From   Optional[int64]
+	To     Optional[int64]
 }
 
 /*
@@ -343,11 +342,11 @@ ListFuturesTrades Futures trading history
   - @param settle Settle currency
   - @param contract Futures contract
   - @param optional nil or *ListFuturesTradesOpts - Optional Parameters:
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
-  - @param "LastId" (optional.String) -  Specify the starting point for this list based on a previously retrieved id  This parameter is deprecated. Use `from` and `to` instead to limit time range
-  - @param "From" (optional.Int64) -  Specify starting time in Unix seconds. If not specified, `to` and `limit` will be used to limit response items. If items between `from` and `to` are more than `limit`, only `limit` number will be returned.
-  - @param "To" (optional.Int64) -  Specify end time in Unix seconds, default to current time
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
+  - @param "LastId" (Optional[string]) -  Specify the starting point for this list based on a previously retrieved id  This parameter is deprecated. Use `from` and `to` instead to limit time range
+  - @param "From" (Optional[int64]) -  Specify starting time in Unix seconds. If not specified, `to` and `limit` will be used to limit response items. If items between `from` and `to` are more than `limit`, only `limit` number will be returned.
+  - @param "To" (Optional[int64]) -  Specify end time in Unix seconds, default to current time
 
 @return []FuturesTrade
 */
@@ -416,7 +415,7 @@ func (a *FuturesApiService) ListFuturesTrades(ctx context.Context, settle string
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -449,10 +448,10 @@ func (a *FuturesApiService) ListFuturesTrades(ctx context.Context, settle string
 
 // ListFuturesCandlesticksOpts Optional parameters for the method 'ListFuturesCandlesticks'
 type ListFuturesCandlesticksOpts struct {
-	From     optional.Int64
-	To       optional.Int64
-	Limit    optional.Int32
-	Interval optional.String
+	From     Optional[int64]
+	To       Optional[int64]
+	Limit    Optional[int32]
+	Interval Optional[string]
 }
 
 /*
@@ -462,10 +461,10 @@ Return specified contract candlesticks. If prefix &#x60;contract&#x60; with &#x6
   - @param settle Settle currency
   - @param contract Futures contract
   - @param optional nil or *ListFuturesCandlesticksOpts - Optional Parameters:
-  - @param "From" (optional.Int64) -  Start time of candlesticks, formatted in Unix timestamp in seconds. Default to`to - 100 * interval` if not specified
-  - @param "To" (optional.Int64) -  End time of candlesticks, formatted in Unix timestamp in seconds. Default to current time
-  - @param "Limit" (optional.Int32) -  Maximum recent data points to return. `limit` is conflicted with `from` and `to`. If either `from` or `to` is specified, request will be rejected.
-  - @param "Interval" (optional.String) -  Interval time between data points. Note that `1w` means natual week(Mon-Sun), while `7d` means every 7d since unix 0.  Note that 30d means 1 natual month, not 30 days
+  - @param "From" (Optional[int64]) -  Start time of candlesticks, formatted in Unix timestamp in seconds. Default to`to - 100 * interval` if not specified
+  - @param "To" (Optional[int64]) -  End time of candlesticks, formatted in Unix timestamp in seconds. Default to current time
+  - @param "Limit" (Optional[int32]) -  Maximum recent data points to return. `limit` is conflicted with `from` and `to`. If either `from` or `to` is specified, request will be rejected.
+  - @param "Interval" (Optional[string]) -  Interval time between data points. Note that `1w` means natual week(Mon-Sun), while `7d` means every 7d since unix 0.  Note that 30d means 1 natual month, not 30 days
 
 @return []FuturesCandlestick
 */
@@ -531,7 +530,7 @@ func (a *FuturesApiService) ListFuturesCandlesticks(ctx context.Context, settle 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -564,10 +563,10 @@ func (a *FuturesApiService) ListFuturesCandlesticks(ctx context.Context, settle 
 
 // ListFuturesPremiumIndexOpts Optional parameters for the method 'ListFuturesPremiumIndex'
 type ListFuturesPremiumIndexOpts struct {
-	From     optional.Int64
-	To       optional.Int64
-	Limit    optional.Int32
-	Interval optional.String
+	From     Optional[int64]
+	To       Optional[int64]
+	Limit    Optional[int32]
+	Interval Optional[string]
 }
 
 /*
@@ -577,10 +576,10 @@ Maximum of 1000 points can be returned in a query. Be sure not to exceed the lim
   - @param settle Settle currency
   - @param contract Futures contract
   - @param optional nil or *ListFuturesPremiumIndexOpts - Optional Parameters:
-  - @param "From" (optional.Int64) -  Start time of candlesticks, formatted in Unix timestamp in seconds. Default to`to - 100 * interval` if not specified
-  - @param "To" (optional.Int64) -  End time of candlesticks, formatted in Unix timestamp in seconds. Default to current time
-  - @param "Limit" (optional.Int32) -  Maximum recent data points to return. `limit` is conflicted with `from` and `to`. If either `from` or `to` is specified, request will be rejected.
-  - @param "Interval" (optional.String) -  Interval time between data points
+  - @param "From" (Optional[int64]) -  Start time of candlesticks, formatted in Unix timestamp in seconds. Default to`to - 100 * interval` if not specified
+  - @param "To" (Optional[int64]) -  End time of candlesticks, formatted in Unix timestamp in seconds. Default to current time
+  - @param "Limit" (Optional[int32]) -  Maximum recent data points to return. `limit` is conflicted with `from` and `to`. If either `from` or `to` is specified, request will be rejected.
+  - @param "Interval" (Optional[string]) -  Interval time between data points
 
 @return []FuturesPremiumIndex
 */
@@ -646,7 +645,7 @@ func (a *FuturesApiService) ListFuturesPremiumIndex(ctx context.Context, settle 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -679,7 +678,7 @@ func (a *FuturesApiService) ListFuturesPremiumIndex(ctx context.Context, settle 
 
 // ListFuturesTickersOpts Optional parameters for the method 'ListFuturesTickers'
 type ListFuturesTickersOpts struct {
-	Contract optional.String
+	Contract Optional[string]
 }
 
 /*
@@ -687,7 +686,7 @@ ListFuturesTickers List futures tickers
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListFuturesTickersOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
 
 @return []FuturesTicker
 */
@@ -743,7 +742,7 @@ func (a *FuturesApiService) ListFuturesTickers(ctx context.Context, settle strin
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -776,7 +775,7 @@ func (a *FuturesApiService) ListFuturesTickers(ctx context.Context, settle strin
 
 // ListFuturesFundingRateHistoryOpts Optional parameters for the method 'ListFuturesFundingRateHistory'
 type ListFuturesFundingRateHistoryOpts struct {
-	Limit optional.Int32
+	Limit Optional[int32]
 }
 
 /*
@@ -785,7 +784,7 @@ ListFuturesFundingRateHistory Funding rate history
   - @param settle Settle currency
   - @param contract Futures contract
   - @param optional nil or *ListFuturesFundingRateHistoryOpts - Optional Parameters:
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
 
 @return []FundingRateRecord
 */
@@ -842,7 +841,7 @@ func (a *FuturesApiService) ListFuturesFundingRateHistory(ctx context.Context, s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -875,7 +874,7 @@ func (a *FuturesApiService) ListFuturesFundingRateHistory(ctx context.Context, s
 
 // ListFuturesInsuranceLedgerOpts Optional parameters for the method 'ListFuturesInsuranceLedger'
 type ListFuturesInsuranceLedgerOpts struct {
-	Limit optional.Int32
+	Limit Optional[int32]
 }
 
 /*
@@ -883,7 +882,7 @@ ListFuturesInsuranceLedger Futures insurance balance history
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListFuturesInsuranceLedgerOpts - Optional Parameters:
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
 
 @return []InsuranceRecord
 */
@@ -939,7 +938,7 @@ func (a *FuturesApiService) ListFuturesInsuranceLedger(ctx context.Context, sett
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -972,9 +971,9 @@ func (a *FuturesApiService) ListFuturesInsuranceLedger(ctx context.Context, sett
 
 // ListContractStatsOpts Optional parameters for the method 'ListContractStats'
 type ListContractStatsOpts struct {
-	From     optional.Int64
-	Interval optional.String
-	Limit    optional.Int32
+	From     Optional[int64]
+	Interval Optional[string]
+	Limit    Optional[int32]
 }
 
 /*
@@ -983,9 +982,9 @@ ListContractStats Futures stats
   - @param settle Settle currency
   - @param contract Futures contract
   - @param optional nil or *ListContractStatsOpts - Optional Parameters:
-  - @param "From" (optional.Int64) -  Start timestamp
-  - @param "Interval" (optional.String) -
-  - @param "Limit" (optional.Int32) -
+  - @param "From" (Optional[int64]) -  Start timestamp
+  - @param "Interval" (Optional[string]) -
+  - @param "Limit" (Optional[int32]) -
 
 @return []ContractStat
 */
@@ -1048,7 +1047,7 @@ func (a *FuturesApiService) ListContractStats(ctx context.Context, settle string
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1138,7 +1137,7 @@ func (a *FuturesApiService) GetIndexConstituents(ctx context.Context, settle str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1171,10 +1170,10 @@ func (a *FuturesApiService) GetIndexConstituents(ctx context.Context, settle str
 
 // ListLiquidatedOrdersOpts Optional parameters for the method 'ListLiquidatedOrders'
 type ListLiquidatedOrdersOpts struct {
-	Contract optional.String
-	From     optional.Int64
-	To       optional.Int64
-	Limit    optional.Int32
+	Contract Optional[string]
+	From     Optional[int64]
+	To       Optional[int64]
+	Limit    Optional[int32]
 }
 
 /*
@@ -1183,10 +1182,10 @@ Interval between &#x60;from&#x60; and &#x60;to&#x60; cannot exceeds 3600. Some p
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListLiquidatedOrdersOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
-  - @param "From" (optional.Int64) -  Start timestamp
-  - @param "To" (optional.Int64) -  End timestamp
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
+  - @param "From" (Optional[int64]) -  Start timestamp
+  - @param "To" (Optional[int64]) -  End timestamp
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
 
 @return []FuturesLiqOrder
 */
@@ -1251,7 +1250,7 @@ func (a *FuturesApiService) ListLiquidatedOrders(ctx context.Context, settle str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1340,7 +1339,7 @@ func (a *FuturesApiService) ListRiskLimitTiers(ctx context.Context, settle strin
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1433,7 +1432,7 @@ func (a *FuturesApiService) ListFuturesAccounts(ctx context.Context, settle stri
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1466,12 +1465,12 @@ func (a *FuturesApiService) ListFuturesAccounts(ctx context.Context, settle stri
 
 // ListFuturesAccountBookOpts Optional parameters for the method 'ListFuturesAccountBook'
 type ListFuturesAccountBookOpts struct {
-	Contract optional.String
-	Limit    optional.Int32
-	Offset   optional.Int32
-	From     optional.Int64
-	To       optional.Int64
-	Type_    optional.String
+	Contract Optional[string]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
+	From     Optional[int64]
+	To       Optional[int64]
+	Type_    Optional[string]
 }
 
 /*
@@ -1480,12 +1479,12 @@ If the &#x60;contract&#x60; field is provided, it can only filter records that i
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListFuturesAccountBookOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
-  - @param "From" (optional.Int64) -  Start timestamp
-  - @param "To" (optional.Int64) -  End timestamp
-  - @param "Type_" (optional.String) -  Changing Type：  - dnw: Deposit & Withdraw - pnl: Profit & Loss by reducing position - fee: Trading fee - refr: Referrer rebate - fund: Funding - point_dnw: POINT Deposit & Withdraw - point_fee: POINT Trading fee - point_refr: POINT Referrer rebate - bonus_offset: bouns deduction
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
+  - @param "From" (Optional[int64]) -  Start timestamp
+  - @param "To" (Optional[int64]) -  End timestamp
+  - @param "Type_" (Optional[string]) -  Changing Type：  - dnw: Deposit & Withdraw - pnl: Profit & Loss by reducing position - fee: Trading fee - refr: Referrer rebate - fund: Funding - point_dnw: POINT Deposit & Withdraw - point_fee: POINT Trading fee - point_refr: POINT Referrer rebate - bonus_offset: bouns deduction
 
 @return []FuturesAccountBook
 */
@@ -1562,7 +1561,7 @@ func (a *FuturesApiService) ListFuturesAccountBook(ctx context.Context, settle s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1595,9 +1594,9 @@ func (a *FuturesApiService) ListFuturesAccountBook(ctx context.Context, settle s
 
 // ListPositionsOpts Optional parameters for the method 'ListPositions'
 type ListPositionsOpts struct {
-	Holding optional.Bool
-	Limit   optional.Int32
-	Offset  optional.Int32
+	Holding Optional[bool]
+	Limit   Optional[int32]
+	Offset  Optional[int32]
 }
 
 /*
@@ -1605,9 +1604,9 @@ ListPositions List all positions of a user
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListPositionsOpts - Optional Parameters:
-  - @param "Holding" (optional.Bool) -  Return only real positions - true, return all - false.
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
+  - @param "Holding" (Optional[bool]) -  Return only real positions - true, return all - false.
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
 
 @return []Position
 */
@@ -1675,7 +1674,7 @@ func (a *FuturesApiService) ListPositions(ctx context.Context, settle string, lo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1771,7 +1770,7 @@ func (a *FuturesApiService) GetPosition(ctx context.Context, settle string, cont
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1869,7 +1868,7 @@ func (a *FuturesApiService) UpdatePositionMargin(ctx context.Context, settle str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1902,7 +1901,7 @@ func (a *FuturesApiService) UpdatePositionMargin(ctx context.Context, settle str
 
 // UpdatePositionLeverageOpts Optional parameters for the method 'UpdatePositionLeverage'
 type UpdatePositionLeverageOpts struct {
-	CrossLeverageLimit optional.String
+	CrossLeverageLimit Optional[string]
 }
 
 /*
@@ -1912,7 +1911,7 @@ UpdatePositionLeverage Update position leverage
   - @param contract Futures contract
   - @param leverage New position leverage
   - @param optional nil or *UpdatePositionLeverageOpts - Optional Parameters:
-  - @param "CrossLeverageLimit" (optional.String) -  Cross margin leverage(valid only when `leverage` is 0)
+  - @param "CrossLeverageLimit" (Optional[string]) -  Cross margin leverage(valid only when `leverage` is 0)
 
 @return Position
 */
@@ -1977,7 +1976,7 @@ func (a *FuturesApiService) UpdatePositionLeverage(ctx context.Context, settle s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2075,7 +2074,7 @@ func (a *FuturesApiService) UpdatePositionRiskLimit(ctx context.Context, settle 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2171,7 +2170,7 @@ func (a *FuturesApiService) SetDualMode(ctx context.Context, settle string, dual
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2267,7 +2266,7 @@ func (a *FuturesApiService) GetDualModePosition(ctx context.Context, settle stri
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2367,7 +2366,7 @@ func (a *FuturesApiService) UpdateDualModePositionMargin(ctx context.Context, se
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2400,7 +2399,7 @@ func (a *FuturesApiService) UpdateDualModePositionMargin(ctx context.Context, se
 
 // UpdateDualModePositionLeverageOpts Optional parameters for the method 'UpdateDualModePositionLeverage'
 type UpdateDualModePositionLeverageOpts struct {
-	CrossLeverageLimit optional.String
+	CrossLeverageLimit Optional[string]
 }
 
 /*
@@ -2410,7 +2409,7 @@ UpdateDualModePositionLeverage Update position leverage in dual mode
   - @param contract Futures contract
   - @param leverage New position leverage
   - @param optional nil or *UpdateDualModePositionLeverageOpts - Optional Parameters:
-  - @param "CrossLeverageLimit" (optional.String) -  Cross margin leverage(valid only when `leverage` is 0)
+  - @param "CrossLeverageLimit" (Optional[string]) -  Cross margin leverage(valid only when `leverage` is 0)
 
 @return []Position
 */
@@ -2475,7 +2474,7 @@ func (a *FuturesApiService) UpdateDualModePositionLeverage(ctx context.Context, 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2573,7 +2572,7 @@ func (a *FuturesApiService) UpdateDualModePositionRiskLimit(ctx context.Context,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2606,10 +2605,10 @@ func (a *FuturesApiService) UpdateDualModePositionRiskLimit(ctx context.Context,
 
 // ListFuturesOrdersOpts Optional parameters for the method 'ListFuturesOrders'
 type ListFuturesOrdersOpts struct {
-	Contract optional.String
-	Limit    optional.Int32
-	Offset   optional.Int32
-	LastId   optional.String
+	Contract Optional[string]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
+	LastId   Optional[string]
 }
 
 /*
@@ -2619,10 +2618,10 @@ ListFuturesOrders List futures orders
   - @param settle Settle currency
   - @param status Only list the orders with this status
   - @param optional nil or *ListFuturesOrdersOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
-  - @param "LastId" (optional.String) -  Specify list staring point using the `id` of last record in previous list-query results
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
+  - @param "LastId" (Optional[string]) -  Specify list staring point using the `id` of last record in previous list-query results
 
 @return []FuturesOrder
 */
@@ -2694,7 +2693,7 @@ func (a *FuturesApiService) ListFuturesOrders(ctx context.Context, settle string
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2791,7 +2790,7 @@ func (a *FuturesApiService) CreateFuturesOrder(ctx context.Context, settle strin
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2824,7 +2823,7 @@ func (a *FuturesApiService) CreateFuturesOrder(ctx context.Context, settle strin
 
 // CancelFuturesOrdersOpts Optional parameters for the method 'CancelFuturesOrders'
 type CancelFuturesOrdersOpts struct {
-	Side optional.String
+	Side Optional[string]
 }
 
 /*
@@ -2834,7 +2833,7 @@ Zero-filled order cannot be retrieved 10 minutes after order cancellation
   - @param settle Settle currency
   - @param contract Futures contract
   - @param optional nil or *CancelFuturesOrdersOpts - Optional Parameters:
-  - @param "Side" (optional.String) -  All bids or asks. Both included if not specified
+  - @param "Side" (Optional[string]) -  All bids or asks. Both included if not specified
 
 @return []FuturesOrder
 */
@@ -2897,7 +2896,7 @@ func (a *FuturesApiService) CancelFuturesOrders(ctx context.Context, settle stri
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2930,11 +2929,11 @@ func (a *FuturesApiService) CancelFuturesOrders(ctx context.Context, settle stri
 
 // GetOrdersWithTimeRangeOpts Optional parameters for the method 'GetOrdersWithTimeRange'
 type GetOrdersWithTimeRangeOpts struct {
-	Contract optional.String
-	From     optional.Int64
-	To       optional.Int64
-	Limit    optional.Int32
-	Offset   optional.Int32
+	Contract Optional[string]
+	From     Optional[int64]
+	To       Optional[int64]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
 }
 
 /*
@@ -2942,11 +2941,11 @@ GetOrdersWithTimeRange List Futures Orders By Time Range
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *GetOrdersWithTimeRangeOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
-  - @param "From" (optional.Int64) -  Start timestamp
-  - @param "To" (optional.Int64) -  End timestamp
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
+  - @param "From" (Optional[int64]) -  Start timestamp
+  - @param "To" (Optional[int64]) -  End timestamp
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
 
 @return []FuturesOrder
 */
@@ -3020,7 +3019,7 @@ func (a *FuturesApiService) GetOrdersWithTimeRange(ctx context.Context, settle s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3117,7 +3116,7 @@ func (a *FuturesApiService) CreateBatchFuturesOrder(ctx context.Context, settle 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3214,7 +3213,7 @@ func (a *FuturesApiService) GetFuturesOrder(ctx context.Context, settle string, 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3313,7 +3312,7 @@ func (a *FuturesApiService) AmendFuturesOrder(ctx context.Context, settle string
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3409,7 +3408,7 @@ func (a *FuturesApiService) CancelFuturesOrder(ctx context.Context, settle strin
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3442,11 +3441,11 @@ func (a *FuturesApiService) CancelFuturesOrder(ctx context.Context, settle strin
 
 // GetMyTradesOpts Optional parameters for the method 'GetMyTrades'
 type GetMyTradesOpts struct {
-	Contract optional.String
-	Order    optional.Int64
-	Limit    optional.Int32
-	Offset   optional.Int32
-	LastId   optional.String
+	Contract Optional[string]
+	Order    Optional[int64]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
+	LastId   Optional[string]
 }
 
 /*
@@ -3455,11 +3454,11 @@ By default, only data within the past 6 months is supported.  If you need to que
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *GetMyTradesOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
-  - @param "Order" (optional.Int64) -  Futures order ID, return related data only if specified
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
-  - @param "LastId" (optional.String) -  Specify the starting point for this list based on a previously retrieved id  This parameter is deprecated. If you need to iterate through and retrieve more records, we recommend using 'GET /futures/{settle}/my_trades_timerange'.
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
+  - @param "Order" (Optional[int64]) -  Futures order ID, return related data only if specified
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
+  - @param "LastId" (Optional[string]) -  Specify the starting point for this list based on a previously retrieved id  This parameter is deprecated. If you need to iterate through and retrieve more records, we recommend using 'GET /futures/{settle}/my_trades_timerange'.
 
 @return []MyFuturesTrade
 */
@@ -3533,7 +3532,7 @@ func (a *FuturesApiService) GetMyTrades(ctx context.Context, settle string, loca
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3566,12 +3565,12 @@ func (a *FuturesApiService) GetMyTrades(ctx context.Context, settle string, loca
 
 // GetMyTradesWithTimeRangeOpts Optional parameters for the method 'GetMyTradesWithTimeRange'
 type GetMyTradesWithTimeRangeOpts struct {
-	Contract optional.String
-	From     optional.Int64
-	To       optional.Int64
-	Limit    optional.Int32
-	Offset   optional.Int32
-	Role     optional.String
+	Contract Optional[string]
+	From     Optional[int64]
+	To       Optional[int64]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
+	Role     Optional[string]
 }
 
 /*
@@ -3579,12 +3578,12 @@ GetMyTradesWithTimeRange List personal trading history by time range
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *GetMyTradesWithTimeRangeOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
-  - @param "From" (optional.Int64) -  Start timestamp
-  - @param "To" (optional.Int64) -  End timestamp
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
-  - @param "Role" (optional.String) -  Query role, maker or taker.
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
+  - @param "From" (Optional[int64]) -  Start timestamp
+  - @param "To" (Optional[int64]) -  End timestamp
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
+  - @param "Role" (Optional[string]) -  Query role, maker or taker.
 
 @return []MyFuturesTradeTimeRange
 */
@@ -3661,7 +3660,7 @@ func (a *FuturesApiService) GetMyTradesWithTimeRange(ctx context.Context, settle
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3694,13 +3693,13 @@ func (a *FuturesApiService) GetMyTradesWithTimeRange(ctx context.Context, settle
 
 // ListPositionCloseOpts Optional parameters for the method 'ListPositionClose'
 type ListPositionCloseOpts struct {
-	Contract optional.String
-	Limit    optional.Int32
-	Offset   optional.Int32
-	From     optional.Int64
-	To       optional.Int64
-	Side     optional.String
-	Pnl      optional.String
+	Contract Optional[string]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
+	From     Optional[int64]
+	To       Optional[int64]
+	Side     Optional[string]
+	Pnl      Optional[string]
 }
 
 /*
@@ -3708,13 +3707,13 @@ ListPositionClose List position close history
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListPositionCloseOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
-  - @param "From" (optional.Int64) -  Start timestamp
-  - @param "To" (optional.Int64) -  End timestamp
-  - @param "Side" (optional.String) -  Query side.  long or shot
-  - @param "Pnl" (optional.String) -  Query profit or loss
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
+  - @param "From" (Optional[int64]) -  Start timestamp
+  - @param "To" (Optional[int64]) -  End timestamp
+  - @param "Side" (Optional[string]) -  Query side.  long or shot
+  - @param "Pnl" (Optional[string]) -  Query profit or loss
 
 @return []PositionClose
 */
@@ -3794,7 +3793,7 @@ func (a *FuturesApiService) ListPositionClose(ctx context.Context, settle string
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3827,9 +3826,9 @@ func (a *FuturesApiService) ListPositionClose(ctx context.Context, settle string
 
 // ListLiquidatesOpts Optional parameters for the method 'ListLiquidates'
 type ListLiquidatesOpts struct {
-	Contract optional.String
-	Limit    optional.Int32
-	At       optional.Int32
+	Contract Optional[string]
+	Limit    Optional[int32]
+	At       Optional[int32]
 }
 
 /*
@@ -3837,9 +3836,9 @@ ListLiquidates List liquidation history
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListLiquidatesOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "At" (optional.Int32) -  Specify a liquidation timestamp
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "At" (Optional[int32]) -  Specify a liquidation timestamp
 
 @return []FuturesLiquidate
 */
@@ -3907,7 +3906,7 @@ func (a *FuturesApiService) ListLiquidates(ctx context.Context, settle string, l
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3940,9 +3939,9 @@ func (a *FuturesApiService) ListLiquidates(ctx context.Context, settle string, l
 
 // ListAutoDeleveragesOpts Optional parameters for the method 'ListAutoDeleverages'
 type ListAutoDeleveragesOpts struct {
-	Contract optional.String
-	Limit    optional.Int32
-	At       optional.Int32
+	Contract Optional[string]
+	Limit    Optional[int32]
+	At       Optional[int32]
 }
 
 /*
@@ -3950,9 +3949,9 @@ ListAutoDeleverages List Auto-Deleveraging History
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListAutoDeleveragesOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "At" (optional.Int32) -  Specify an auto-deleveraging timestamp
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "At" (Optional[int32]) -  Specify an auto-deleveraging timestamp
 
 @return []FuturesAutoDeleverage
 */
@@ -4020,7 +4019,7 @@ func (a *FuturesApiService) ListAutoDeleverages(ctx context.Context, settle stri
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -4117,7 +4116,7 @@ func (a *FuturesApiService) CountdownCancelAllFutures(ctx context.Context, settl
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -4150,7 +4149,7 @@ func (a *FuturesApiService) CountdownCancelAllFutures(ctx context.Context, settl
 
 // GetFuturesFeeOpts Optional parameters for the method 'GetFuturesFee'
 type GetFuturesFeeOpts struct {
-	Contract optional.String
+	Contract Optional[string]
 }
 
 /*
@@ -4158,7 +4157,7 @@ GetFuturesFee Query user trading fee rates
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *GetFuturesFeeOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
 
 @return map[string]FuturesFee
 */
@@ -4220,7 +4219,7 @@ func (a *FuturesApiService) GetFuturesFee(ctx context.Context, settle string, lo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -4317,7 +4316,7 @@ func (a *FuturesApiService) CancelBatchFutureOrders(ctx context.Context, settle 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -4350,9 +4349,9 @@ func (a *FuturesApiService) CancelBatchFutureOrders(ctx context.Context, settle 
 
 // ListPriceTriggeredOrdersOpts Optional parameters for the method 'ListPriceTriggeredOrders'
 type ListPriceTriggeredOrdersOpts struct {
-	Contract optional.String
-	Limit    optional.Int32
-	Offset   optional.Int32
+	Contract Optional[string]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
 }
 
 /*
@@ -4361,9 +4360,9 @@ ListPriceTriggeredOrders List all auto orders
   - @param settle Settle currency
   - @param status Only list the orders with this status
   - @param optional nil or *ListPriceTriggeredOrdersOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
 
 @return []FuturesPriceTriggeredOrder
 */
@@ -4432,7 +4431,7 @@ func (a *FuturesApiService) ListPriceTriggeredOrders(ctx context.Context, settle
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -4528,7 +4527,7 @@ func (a *FuturesApiService) CreatePriceTriggeredOrder(ctx context.Context, settl
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -4623,7 +4622,7 @@ func (a *FuturesApiService) CancelPriceTriggeredOrderList(ctx context.Context, s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -4719,7 +4718,7 @@ func (a *FuturesApiService) GetPriceTriggeredOrder(ctx context.Context, settle s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -4815,7 +4814,7 @@ func (a *FuturesApiService) CancelPriceTriggeredOrder(ctx context.Context, settl
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -28,20 +27,20 @@ type MultiCollateralLoanApiService service
 
 // ListMultiCollateralOrdersOpts Optional parameters for the method 'ListMultiCollateralOrders'
 type ListMultiCollateralOrdersOpts struct {
-	Page      optional.Int32
-	Limit     optional.Int32
-	Sort      optional.String
-	OrderType optional.String
+	Page      Optional[int32]
+	Limit     Optional[int32]
+	Sort      Optional[string]
+	OrderType Optional[string]
 }
 
 /*
 ListMultiCollateralOrders List Multi-Collateral Orders
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListMultiCollateralOrdersOpts - Optional Parameters:
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Sort" (optional.String) -  Sort types: time_desc - default sorting by creation time in descending order, ltv_asc - ascending order of ltv, ltv_desc - descending order of ltv.
-  - @param "OrderType" (optional.String) -  Order type, current - query current orders, fixed - query fixed orders. If not specified, default to querying current orders
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Sort" (Optional[string]) -  Sort types: time_desc - default sorting by creation time in descending order, ltv_asc - ascending order of ltv, ltv_desc - descending order of ltv.
+  - @param "OrderType" (Optional[string]) -  Order type, current - query current orders, fixed - query fixed orders. If not specified, default to querying current orders
 
 @return []MultiCollateralOrder
 */
@@ -110,7 +109,7 @@ func (a *MultiCollateralLoanApiService) ListMultiCollateralOrders(ctx context.Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -203,7 +202,7 @@ func (a *MultiCollateralLoanApiService) CreateMultiCollateral(ctx context.Contex
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -296,7 +295,7 @@ func (a *MultiCollateralLoanApiService) GetMultiCollateralOrderDetail(ctx contex
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -329,11 +328,11 @@ func (a *MultiCollateralLoanApiService) GetMultiCollateralOrderDetail(ctx contex
 
 // ListMultiRepayRecordsOpts Optional parameters for the method 'ListMultiRepayRecords'
 type ListMultiRepayRecordsOpts struct {
-	BorrowCurrency optional.String
-	Page           optional.Int32
-	Limit          optional.Int32
-	From           optional.Int64
-	To             optional.Int64
+	BorrowCurrency Optional[string]
+	Page           Optional[int32]
+	Limit          Optional[int32]
+	From           Optional[int64]
+	To             Optional[int64]
 }
 
 /*
@@ -341,11 +340,11 @@ ListMultiRepayRecords List Multi-Collateral Repay Records
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param type_ Operation type: repay - Regular repayment, liquidate - Liquidation
   - @param optional nil or *ListMultiRepayRecordsOpts - Optional Parameters:
-  - @param "BorrowCurrency" (optional.String) -  Borrowed currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "From" (optional.Int64) -  Start timestamp of the query
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
+  - @param "BorrowCurrency" (Optional[string]) -  Borrowed currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "From" (Optional[int64]) -  Start timestamp of the query
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
 
 @return []MultiRepayRecord
 */
@@ -418,7 +417,7 @@ func (a *MultiCollateralLoanApiService) ListMultiRepayRecords(ctx context.Contex
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -511,7 +510,7 @@ func (a *MultiCollateralLoanApiService) RepayMultiCollateralLoan(ctx context.Con
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -544,22 +543,22 @@ func (a *MultiCollateralLoanApiService) RepayMultiCollateralLoan(ctx context.Con
 
 // ListMultiCollateralRecordsOpts Optional parameters for the method 'ListMultiCollateralRecords'
 type ListMultiCollateralRecordsOpts struct {
-	Page               optional.Int32
-	Limit              optional.Int32
-	From               optional.Int64
-	To                 optional.Int64
-	CollateralCurrency optional.String
+	Page               Optional[int32]
+	Limit              Optional[int32]
+	From               Optional[int64]
+	To                 Optional[int64]
+	CollateralCurrency Optional[string]
 }
 
 /*
 ListMultiCollateralRecords Query collateral adjustment records
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListMultiCollateralRecordsOpts - Optional Parameters:
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "From" (optional.Int64) -  Start timestamp of the query
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
-  - @param "CollateralCurrency" (optional.String) -  Collateral
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "From" (Optional[int64]) -  Start timestamp of the query
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
+  - @param "CollateralCurrency" (Optional[string]) -  Collateral
 
 @return []MultiCollateralRecord
 */
@@ -631,7 +630,7 @@ func (a *MultiCollateralLoanApiService) ListMultiCollateralRecords(ctx context.C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -724,7 +723,7 @@ func (a *MultiCollateralLoanApiService) OperateMultiCollateral(ctx context.Conte
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -818,7 +817,7 @@ func (a *MultiCollateralLoanApiService) ListUserCurrencyQuota(ctx context.Contex
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -902,7 +901,7 @@ func (a *MultiCollateralLoanApiService) ListMultiCollateralCurrencies(ctx contex
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -987,7 +986,7 @@ func (a *MultiCollateralLoanApiService) GetMultiCollateralLtv(ctx context.Contex
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1071,7 +1070,7 @@ func (a *MultiCollateralLoanApiService) GetMultiCollateralFixRate(ctx context.Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

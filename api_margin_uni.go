@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -80,7 +79,7 @@ func (a *MarginUniApiService) ListUniCurrencyPairs(ctx context.Context) ([]UniCu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -167,7 +166,7 @@ func (a *MarginUniApiService) GetUniCurrencyPair(ctx context.Context, currencyPa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -276,7 +275,7 @@ func (a *MarginUniApiService) GetMarginUniEstimateRate(ctx context.Context, curr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -309,20 +308,20 @@ func (a *MarginUniApiService) GetMarginUniEstimateRate(ctx context.Context, curr
 
 // ListUniLoansOpts Optional parameters for the method 'ListUniLoans'
 type ListUniLoansOpts struct {
-	CurrencyPair optional.String
-	Currency     optional.String
-	Page         optional.Int32
-	Limit        optional.Int32
+	CurrencyPair Optional[string]
+	Currency     Optional[string]
+	Page         Optional[int32]
+	Limit        Optional[int32]
 }
 
 /*
 ListUniLoans List loans
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListUniLoansOpts - Optional Parameters:
-  - @param "CurrencyPair" (optional.String) -  Currency pair
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "CurrencyPair" (Optional[string]) -  Currency pair
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
 
 @return []UniLoan
 */
@@ -391,7 +390,7 @@ func (a *MarginUniApiService) ListUniLoans(ctx context.Context, localVarOptional
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -481,7 +480,7 @@ func (a *MarginUniApiService) CreateUniLoan(ctx context.Context, createUniLoan C
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -505,22 +504,22 @@ func (a *MarginUniApiService) CreateUniLoan(ctx context.Context, createUniLoan C
 
 // ListUniLoanRecordsOpts Optional parameters for the method 'ListUniLoanRecords'
 type ListUniLoanRecordsOpts struct {
-	Type_        optional.String
-	Currency     optional.String
-	CurrencyPair optional.String
-	Page         optional.Int32
-	Limit        optional.Int32
+	Type_        Optional[string]
+	Currency     Optional[string]
+	CurrencyPair Optional[string]
+	Page         Optional[int32]
+	Limit        Optional[int32]
 }
 
 /*
 ListUniLoanRecords Get load records
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListUniLoanRecordsOpts - Optional Parameters:
-  - @param "Type_" (optional.String) -  type: borrow - borrow, repay - repay
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "CurrencyPair" (optional.String) -  Currency pair
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "Type_" (Optional[string]) -  type: borrow - borrow, repay - repay
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "CurrencyPair" (Optional[string]) -  Currency pair
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
 
 @return []UniLoanRecord
 */
@@ -592,7 +591,7 @@ func (a *MarginUniApiService) ListUniLoanRecords(ctx context.Context, localVarOp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -625,24 +624,24 @@ func (a *MarginUniApiService) ListUniLoanRecords(ctx context.Context, localVarOp
 
 // ListUniLoanInterestRecordsOpts Optional parameters for the method 'ListUniLoanInterestRecords'
 type ListUniLoanInterestRecordsOpts struct {
-	CurrencyPair optional.String
-	Currency     optional.String
-	Page         optional.Int32
-	Limit        optional.Int32
-	From         optional.Int64
-	To           optional.Int64
+	CurrencyPair Optional[string]
+	Currency     Optional[string]
+	Page         Optional[int32]
+	Limit        Optional[int32]
+	From         Optional[int64]
+	To           Optional[int64]
 }
 
 /*
 ListUniLoanInterestRecords List interest records
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListUniLoanInterestRecordsOpts - Optional Parameters:
-  - @param "CurrencyPair" (optional.String) -  Currency pair
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "From" (optional.Int64) -  Start timestamp
-  - @param "To" (optional.Int64) -  End timestamp
+  - @param "CurrencyPair" (Optional[string]) -  Currency pair
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "From" (Optional[int64]) -  Start timestamp
+  - @param "To" (Optional[int64]) -  End timestamp
 
 @return []UniLoanInterestRecord
 */
@@ -717,7 +716,7 @@ func (a *MarginUniApiService) ListUniLoanInterestRecords(ctx context.Context, lo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -811,7 +810,7 @@ func (a *MarginUniApiService) GetUniBorrowable(ctx context.Context, currency str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

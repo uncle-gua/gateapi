@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -84,7 +83,7 @@ func (a *EarnApiService) SwapETH2(ctx context.Context, eth2Swap Eth2Swap) (*http
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -159,7 +158,7 @@ func (a *EarnApiService) ListDualInvestmentPlans(ctx context.Context) ([]DualGet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -249,7 +248,7 @@ func (a *EarnApiService) ListDualOrders(ctx context.Context) ([]DualGetOrders, *
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -339,7 +338,7 @@ func (a *EarnApiService) PlaceDualOrder(ctx context.Context, placeDualInvestment
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -363,9 +362,9 @@ func (a *EarnApiService) PlaceDualOrder(ctx context.Context, placeDualInvestment
 
 // ListStructuredProductsOpts Optional parameters for the method 'ListStructuredProducts'
 type ListStructuredProductsOpts struct {
-	Type_ optional.String
-	Page  optional.Int32
-	Limit optional.Int32
+	Type_ Optional[string]
+	Page  Optional[int32]
+	Limit Optional[int32]
 }
 
 /*
@@ -373,9 +372,9 @@ ListStructuredProducts Structured Product List
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param status Status (default: all)  `in_process`-processing  `will_begin`-unstarted  `wait_settlement`-unsettled  `done`-finish
   - @param optional nil or *ListStructuredProductsOpts - Optional Parameters:
-  - @param "Type_" (optional.String) -  Product Type (default all)  `SharkFin2.0`-SharkFin  `BullishSharkFin`-BullishSharkFin  `BearishSharkFin`-BearishSharkFin `DoubleNoTouch`-DoubleNoTouch `RangeAccrual`-RangeAccrual `SnowBall`-SnowBall
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
+  - @param "Type_" (Optional[string]) -  Product Type (default all)  `SharkFin2.0`-SharkFin  `BullishSharkFin`-BullishSharkFin  `BearishSharkFin`-BearishSharkFin `DoubleNoTouch`-DoubleNoTouch `RangeAccrual`-RangeAccrual `SnowBall`-SnowBall
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
 
 @return []StructuredGetProjectList
 */
@@ -436,7 +435,7 @@ func (a *EarnApiService) ListStructuredProducts(ctx context.Context, status stri
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -469,20 +468,20 @@ func (a *EarnApiService) ListStructuredProducts(ctx context.Context, status stri
 
 // ListStructuredOrdersOpts Optional parameters for the method 'ListStructuredOrders'
 type ListStructuredOrdersOpts struct {
-	From  optional.Int64
-	To    optional.Int64
-	Page  optional.Int32
-	Limit optional.Int32
+	From  Optional[int64]
+	To    Optional[int64]
+	Page  Optional[int32]
+	Limit Optional[int32]
 }
 
 /*
 ListStructuredOrders Structured Product Order List
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListStructuredOrdersOpts - Optional Parameters:
-  - @param "From" (optional.Int64) -  Start timestamp
-  - @param "To" (optional.Int64) -  End timestamp
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
+  - @param "From" (Optional[int64]) -  Start timestamp
+  - @param "To" (Optional[int64]) -  End timestamp
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
 
 @return []StructuredOrderList
 */
@@ -551,7 +550,7 @@ func (a *EarnApiService) ListStructuredOrders(ctx context.Context, localVarOptio
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -641,7 +640,7 @@ func (a *EarnApiService) PlaceStructuredOrder(ctx context.Context, structuredBuy
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err

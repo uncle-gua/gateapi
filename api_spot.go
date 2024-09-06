@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -80,7 +79,7 @@ func (a *SpotApiService) ListCurrencies(ctx context.Context) ([]Currency, *http.
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -167,7 +166,7 @@ func (a *SpotApiService) GetCurrency(ctx context.Context, currency string) (Curr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -251,7 +250,7 @@ func (a *SpotApiService) ListCurrencyPairs(ctx context.Context) ([]CurrencyPair,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -338,7 +337,7 @@ func (a *SpotApiService) GetCurrencyPair(ctx context.Context, currencyPair strin
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -371,8 +370,8 @@ func (a *SpotApiService) GetCurrencyPair(ctx context.Context, currencyPair strin
 
 // ListTickersOpts Optional parameters for the method 'ListTickers'
 type ListTickersOpts struct {
-	CurrencyPair optional.String
-	Timezone     optional.String
+	CurrencyPair Optional[string]
+	Timezone     Optional[string]
 }
 
 /*
@@ -380,8 +379,8 @@ ListTickers Retrieve ticker information
 Return only related data if &#x60;currency_pair&#x60; is specified; otherwise return all of them
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListTickersOpts - Optional Parameters:
-  - @param "CurrencyPair" (optional.String) -  Currency pair
-  - @param "Timezone" (optional.String) -  Timezone
+  - @param "CurrencyPair" (Optional[string]) -  Currency pair
+  - @param "Timezone" (Optional[string]) -  Timezone
 
 @return []Ticker
 */
@@ -438,7 +437,7 @@ func (a *SpotApiService) ListTickers(ctx context.Context, localVarOptionals *Lis
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -471,9 +470,9 @@ func (a *SpotApiService) ListTickers(ctx context.Context, localVarOptionals *Lis
 
 // ListOrderBookOpts Optional parameters for the method 'ListOrderBook'
 type ListOrderBookOpts struct {
-	Interval optional.String
-	Limit    optional.Int32
-	WithId   optional.Bool
+	Interval Optional[string]
+	Limit    Optional[int32]
+	WithId   Optional[bool]
 }
 
 /*
@@ -482,9 +481,9 @@ Order book will be sorted by price from high to low on bids; low to high on asks
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param currencyPair Currency pair
   - @param optional nil or *ListOrderBookOpts - Optional Parameters:
-  - @param "Interval" (optional.String) -  Order depth. 0 means no aggregation is applied. default to 0
-  - @param "Limit" (optional.Int32) -  Maximum number of order depth data in asks or bids
-  - @param "WithId" (optional.Bool) -  Return order book ID
+  - @param "Interval" (Optional[string]) -  Order depth. 0 means no aggregation is applied. default to 0
+  - @param "Limit" (Optional[int32]) -  Maximum number of order depth data in asks or bids
+  - @param "WithId" (Optional[bool]) -  Return order book ID
 
 @return OrderBook
 */
@@ -545,7 +544,7 @@ func (a *SpotApiService) ListOrderBook(ctx context.Context, currencyPair string,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -578,12 +577,12 @@ func (a *SpotApiService) ListOrderBook(ctx context.Context, currencyPair string,
 
 // ListTradesOpts Optional parameters for the method 'ListTrades'
 type ListTradesOpts struct {
-	Limit   optional.Int32
-	LastId  optional.String
-	Reverse optional.Bool
-	From    optional.Int64
-	To      optional.Int64
-	Page    optional.Int32
+	Limit   Optional[int32]
+	LastId  Optional[string]
+	Reverse Optional[bool]
+	From    Optional[int64]
+	To      Optional[int64]
+	Page    Optional[int32]
 }
 
 /*
@@ -592,12 +591,12 @@ You can use &#x60;from&#x60; and &#x60;to&#x60; to query by time range, or use &
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param currencyPair Currency pair
   - @param optional nil or *ListTradesOpts - Optional Parameters:
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list.  Default: 100, Minimum: 1, Maximum: 1000
-  - @param "LastId" (optional.String) -  Specify list staring point using the `id` of last record in previous list-query results
-  - @param "Reverse" (optional.Bool) -  Whether the id of records to be retrieved should be less than the last_id specified. Default to false.  When `last_id` is specified. Set `reverse` to `true` to trace back trading history; `false` to retrieve latest tradings.  No effect if `last_id` is not specified.
-  - @param "From" (optional.Int64) -  Start timestamp of the query
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
-  - @param "Page" (optional.Int32) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list.  Default: 100, Minimum: 1, Maximum: 1000
+  - @param "LastId" (Optional[string]) -  Specify list staring point using the `id` of last record in previous list-query results
+  - @param "Reverse" (Optional[bool]) -  Whether the id of records to be retrieved should be less than the last_id specified. Default to false.  When `last_id` is specified. Set `reverse` to `true` to trace back trading history; `false` to retrieve latest tradings.  No effect if `last_id` is not specified.
+  - @param "From" (Optional[int64]) -  Start timestamp of the query
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
+  - @param "Page" (Optional[int32]) -  Page number
 
 @return []Trade
 */
@@ -667,7 +666,7 @@ func (a *SpotApiService) ListTrades(ctx context.Context, currencyPair string, lo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -700,10 +699,10 @@ func (a *SpotApiService) ListTrades(ctx context.Context, currencyPair string, lo
 
 // ListCandlesticksOpts Optional parameters for the method 'ListCandlesticks'
 type ListCandlesticksOpts struct {
-	Limit    optional.Int32
-	From     optional.Int64
-	To       optional.Int64
-	Interval optional.String
+	Limit    Optional[int32]
+	From     Optional[int64]
+	To       Optional[int64]
+	Interval Optional[string]
 }
 
 /*
@@ -712,10 +711,10 @@ Maximum of 1000 points can be returned in a query. Be sure not to exceed the lim
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param currencyPair Currency pair
   - @param optional nil or *ListCandlesticksOpts - Optional Parameters:
-  - @param "Limit" (optional.Int32) -  Maximum recent data points to return. `limit` is conflicted with `from` and `to`. If either `from` or `to` is specified, request will be rejected.
-  - @param "From" (optional.Int64) -  Start time of candlesticks, formatted in Unix timestamp in seconds. Default to`to - 100 * interval` if not specified
-  - @param "To" (optional.Int64) -  End time of candlesticks, formatted in Unix timestamp in seconds. Default to current time
-  - @param "Interval" (optional.String) -  Interval time between data points. Note that `30d` means 1 natual month, not 30 days
+  - @param "Limit" (Optional[int32]) -  Maximum recent data points to return. `limit` is conflicted with `from` and `to`. If either `from` or `to` is specified, request will be rejected.
+  - @param "From" (Optional[int64]) -  Start time of candlesticks, formatted in Unix timestamp in seconds. Default to`to - 100 * interval` if not specified
+  - @param "To" (Optional[int64]) -  End time of candlesticks, formatted in Unix timestamp in seconds. Default to current time
+  - @param "Interval" (Optional[string]) -  Interval time between data points. Note that `30d` means 1 natual month, not 30 days
 
 @return [][]string
 */
@@ -779,7 +778,7 @@ func (a *SpotApiService) ListCandlesticks(ctx context.Context, currencyPair stri
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -812,7 +811,7 @@ func (a *SpotApiService) ListCandlesticks(ctx context.Context, currencyPair stri
 
 // GetFeeOpts Optional parameters for the method 'GetFee'
 type GetFeeOpts struct {
-	CurrencyPair optional.String
+	CurrencyPair Optional[string]
 }
 
 /*
@@ -820,7 +819,7 @@ GetFee Query user trading fee rates
 This API is deprecated in favour of new fee retrieving API &#x60;/wallet/fee&#x60;.
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *GetFeeOpts - Optional Parameters:
-  - @param "CurrencyPair" (optional.String) -  Specify a currency pair to retrieve precise fee rate  This field is optional. In most cases, the fee rate is identical among all currency pairs
+  - @param "CurrencyPair" (Optional[string]) -  Specify a currency pair to retrieve precise fee rate  This field is optional. In most cases, the fee rate is identical among all currency pairs
 
 @return SpotFee
 */
@@ -880,7 +879,7 @@ func (a *SpotApiService) GetFee(ctx context.Context, localVarOptionals *GetFeeOp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -972,7 +971,7 @@ func (a *SpotApiService) GetBatchSpotFee(ctx context.Context, currencyPairs stri
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1005,14 +1004,14 @@ func (a *SpotApiService) GetBatchSpotFee(ctx context.Context, currencyPairs stri
 
 // ListSpotAccountsOpts Optional parameters for the method 'ListSpotAccounts'
 type ListSpotAccountsOpts struct {
-	Currency optional.String
+	Currency Optional[string]
 }
 
 /*
 ListSpotAccounts List spot accounts
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListSpotAccountsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
 
 @return []SpotAccount
 */
@@ -1072,7 +1071,7 @@ func (a *SpotApiService) ListSpotAccounts(ctx context.Context, localVarOptionals
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1105,12 +1104,12 @@ func (a *SpotApiService) ListSpotAccounts(ctx context.Context, localVarOptionals
 
 // ListSpotAccountBookOpts Optional parameters for the method 'ListSpotAccountBook'
 type ListSpotAccountBookOpts struct {
-	Currency optional.String
-	From     optional.Int64
-	To       optional.Int64
-	Page     optional.Int32
-	Limit    optional.Int32
-	Type_    optional.String
+	Currency Optional[string]
+	From     Optional[int64]
+	To       Optional[int64]
+	Page     Optional[int32]
+	Limit    Optional[int32]
+	Type_    Optional[string]
 }
 
 /*
@@ -1118,12 +1117,12 @@ ListSpotAccountBook Query account book
 Record time range cannot exceed 30 days
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListSpotAccountBookOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "From" (optional.Int64) -  Start timestamp of the query
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Type_" (optional.String) -  Only retrieve changes of the specified type. All types will be returned if not specified.
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "From" (Optional[int64]) -  Start timestamp of the query
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Type_" (Optional[string]) -  Only retrieve changes of the specified type. All types will be returned if not specified.
 
 @return []SpotAccountBook
 */
@@ -1198,7 +1197,7 @@ func (a *SpotApiService) ListSpotAccountBook(ctx context.Context, localVarOption
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1292,7 +1291,7 @@ func (a *SpotApiService) CreateBatchOrders(ctx context.Context, order []Order) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1325,9 +1324,9 @@ func (a *SpotApiService) CreateBatchOrders(ctx context.Context, order []Order) (
 
 // ListAllOpenOrdersOpts Optional parameters for the method 'ListAllOpenOrders'
 type ListAllOpenOrdersOpts struct {
-	Page    optional.Int32
-	Limit   optional.Int32
-	Account optional.String
+	Page    Optional[int32]
+	Limit   Optional[int32]
+	Account Optional[string]
 }
 
 /*
@@ -1335,9 +1334,9 @@ ListAllOpenOrders List all open orders
 List open orders in all currency pairs.  Note that pagination parameters affect record number in each currency pair&#39;s open order list. No pagination is applied to the number of currency pairs returned. All currency pairs with open orders will be returned.  Spot,portfolio and margin orders are returned by default. To list cross margin orders, &#x60;account&#x60; must be set to &#x60;cross_margin&#x60;
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListAllOpenOrdersOpts - Optional Parameters:
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records returned in one page in each currency pair
-  - @param "Account" (optional.String) -  Specify operation account. Default to spot ,portfolio and margin account if not specified. Set to `cross_margin` to operate against margin account.  Portfolio margin account must set to `cross_margin` only
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records returned in one page in each currency pair
+  - @param "Account" (Optional[string]) -  Specify operation account. Default to spot ,portfolio and margin account if not specified. Set to `cross_margin` to operate against margin account.  Portfolio margin account must set to `cross_margin` only
 
 @return []OpenOrders
 */
@@ -1403,7 +1402,7 @@ func (a *SpotApiService) ListAllOpenOrders(ctx context.Context, localVarOptional
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1497,7 +1496,7 @@ func (a *SpotApiService) CreateCrossLiquidateOrder(ctx context.Context, liquidat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1530,12 +1529,12 @@ func (a *SpotApiService) CreateCrossLiquidateOrder(ctx context.Context, liquidat
 
 // ListOrdersOpts Optional parameters for the method 'ListOrders'
 type ListOrdersOpts struct {
-	Page    optional.Int32
-	Limit   optional.Int32
-	Account optional.String
-	From    optional.Int64
-	To      optional.Int64
-	Side    optional.String
+	Page    Optional[int32]
+	Limit   Optional[int32]
+	Account Optional[string]
+	From    Optional[int64]
+	To      Optional[int64]
+	Side    Optional[string]
 }
 
 /*
@@ -1545,12 +1544,12 @@ Spot, portfolio and margin orders are returned by default. If cross margin order
   - @param currencyPair Retrieve results with specified currency pair. It is required for open orders, but optional for finished ones.
   - @param status List orders based on status  `open` - order is waiting to be filled `finished` - order has been filled or cancelled
   - @param optional nil or *ListOrdersOpts - Optional Parameters:
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned. If `status` is `open`, maximum of `limit` is 100
-  - @param "Account" (optional.String) -  Specify operation account. Default to spot ,portfolio and margin account if not specified. Set to `cross_margin` to operate against margin account.  Portfolio margin account must set to `cross_margin` only
-  - @param "From" (optional.Int64) -  Start timestamp of the query
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
-  - @param "Side" (optional.String) -  All bids or asks. Both included if not specified
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned. If `status` is `open`, maximum of `limit` is 100
+  - @param "Account" (Optional[string]) -  Specify operation account. Default to spot ,portfolio and margin account if not specified. Set to `cross_margin` to operate against margin account.  Portfolio margin account must set to `cross_margin` only
+  - @param "From" (Optional[int64]) -  Start timestamp of the query
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
+  - @param "Side" (Optional[string]) -  All bids or asks. Both included if not specified
 
 @return []Order
 */
@@ -1627,7 +1626,7 @@ func (a *SpotApiService) ListOrders(ctx context.Context, currencyPair string, st
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1721,7 +1720,7 @@ func (a *SpotApiService) CreateOrder(ctx context.Context, order Order) (Order, *
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1754,9 +1753,9 @@ func (a *SpotApiService) CreateOrder(ctx context.Context, order Order) (Order, *
 
 // CancelOrdersOpts Optional parameters for the method 'CancelOrders'
 type CancelOrdersOpts struct {
-	Side       optional.String
-	Account    optional.String
-	ActionMode optional.String
+	Side       Optional[string]
+	Account    Optional[string]
+	ActionMode Optional[string]
 }
 
 /*
@@ -1765,9 +1764,9 @@ If &#x60;account&#x60; is not set, all open orders, including spot, portfolio, m
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param currencyPair Currency pair
   - @param optional nil or *CancelOrdersOpts - Optional Parameters:
-  - @param "Side" (optional.String) -  All bids or asks. Both included if not specified
-  - @param "Account" (optional.String) -  Specify account type  - classic account：Default to all account types being included   - portfolio margin account：`cross_margin` only
-  - @param "ActionMode" (optional.String) -  Processing Mode  When placing an order, different fields are returned based on the action_mode  - ACK: Asynchronous mode, returns only key order fields - RESULT: No clearing information - FULL: Full mode (default)
+  - @param "Side" (Optional[string]) -  All bids or asks. Both included if not specified
+  - @param "Account" (Optional[string]) -  Specify account type  - classic account：Default to all account types being included   - portfolio margin account：`cross_margin` only
+  - @param "ActionMode" (Optional[string]) -  Processing Mode  When placing an order, different fields are returned based on the action_mode  - ACK: Asynchronous mode, returns only key order fields - RESULT: No clearing information - FULL: Full mode (default)
 
 @return []Order
 */
@@ -1834,7 +1833,7 @@ func (a *SpotApiService) CancelOrders(ctx context.Context, currencyPair string, 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1928,7 +1927,7 @@ func (a *SpotApiService) CancelBatchOrders(ctx context.Context, cancelBatchOrder
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1961,7 +1960,7 @@ func (a *SpotApiService) CancelBatchOrders(ctx context.Context, cancelBatchOrder
 
 // GetOrderOpts Optional parameters for the method 'GetOrder'
 type GetOrderOpts struct {
-	Account optional.String
+	Account Optional[string]
 }
 
 /*
@@ -1971,7 +1970,7 @@ Spot, portfolio and margin orders are queried by default. If cross margin orders
   - @param orderId Order ID returned, or user custom ID(i.e., `text` field). Operations based on custom ID can only be checked when the order is in orderbook.  When the order is finished, it can be checked within 1 hour after the end of the order.  After that, only order ID is accepted.
   - @param currencyPair Currency pair
   - @param optional nil or *GetOrderOpts - Optional Parameters:
-  - @param "Account" (optional.String) -  Specify operation account. Default to spot ,portfolio and margin account if not specified. Set to `cross_margin` to operate against margin account.  Portfolio margin account must set to `cross_margin` only
+  - @param "Account" (Optional[string]) -  Specify operation account. Default to spot ,portfolio and margin account if not specified. Set to `cross_margin` to operate against margin account.  Portfolio margin account must set to `cross_margin` only
 
 @return Order
 */
@@ -2034,7 +2033,7 @@ func (a *SpotApiService) GetOrder(ctx context.Context, orderId string, currencyP
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2067,8 +2066,8 @@ func (a *SpotApiService) GetOrder(ctx context.Context, orderId string, currencyP
 
 // CancelOrderOpts Optional parameters for the method 'CancelOrder'
 type CancelOrderOpts struct {
-	Account    optional.String
-	ActionMode optional.String
+	Account    Optional[string]
+	ActionMode Optional[string]
 }
 
 /*
@@ -2078,8 +2077,8 @@ Spot,portfolio and margin orders are cancelled by default. If trying to cancel c
   - @param orderId Order ID returned, or user custom ID(i.e., `text` field). Operations based on custom ID can only be checked when the order is in orderbook.  When the order is finished, it can be checked within 1 hour after the end of the order.  After that, only order ID is accepted.
   - @param currencyPair Currency pair
   - @param optional nil or *CancelOrderOpts - Optional Parameters:
-  - @param "Account" (optional.String) -  Specify operation account. Default to spot ,portfolio and margin account if not specified. Set to `cross_margin` to operate against margin account.  Portfolio margin account must set to `cross_margin` only
-  - @param "ActionMode" (optional.String) -  Processing Mode  When placing an order, different fields are returned based on the action_mode  - ACK: Asynchronous mode, returns only key order fields - RESULT: No clearing information - FULL: Full mode (default)
+  - @param "Account" (Optional[string]) -  Specify operation account. Default to spot ,portfolio and margin account if not specified. Set to `cross_margin` to operate against margin account.  Portfolio margin account must set to `cross_margin` only
+  - @param "ActionMode" (Optional[string]) -  Processing Mode  When placing an order, different fields are returned based on the action_mode  - ACK: Asynchronous mode, returns only key order fields - RESULT: No clearing information - FULL: Full mode (default)
 
 @return Order
 */
@@ -2145,7 +2144,7 @@ func (a *SpotApiService) CancelOrder(ctx context.Context, orderId string, curren
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2178,7 +2177,7 @@ func (a *SpotApiService) CancelOrder(ctx context.Context, orderId string, curren
 
 // AmendOrderOpts Optional parameters for the method 'AmendOrder'
 type AmendOrderOpts struct {
-	Account optional.String
+	Account Optional[string]
 }
 
 /*
@@ -2189,7 +2188,7 @@ By default, the orders of spot, portfolio and margin account are updated.  If yo
   - @param currencyPair Currency pair
   - @param orderPatch
   - @param optional nil or *AmendOrderOpts - Optional Parameters:
-  - @param "Account" (optional.String) -  Specify operation account. Default to spot ,portfolio and margin account if not specified. Set to `cross_margin` to operate against margin account.  Portfolio margin account must set to `cross_margin` only
+  - @param "Account" (Optional[string]) -  Specify operation account. Default to spot ,portfolio and margin account if not specified. Set to `cross_margin` to operate against margin account.  Portfolio margin account must set to `cross_margin` only
 
 @return Order
 */
@@ -2254,7 +2253,7 @@ func (a *SpotApiService) AmendOrder(ctx context.Context, orderId string, currenc
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2287,13 +2286,13 @@ func (a *SpotApiService) AmendOrder(ctx context.Context, orderId string, currenc
 
 // ListMyTradesOpts Optional parameters for the method 'ListMyTrades'
 type ListMyTradesOpts struct {
-	CurrencyPair optional.String
-	Limit        optional.Int32
-	Page         optional.Int32
-	OrderId      optional.String
-	Account      optional.String
-	From         optional.Int64
-	To           optional.Int64
+	CurrencyPair Optional[string]
+	Limit        Optional[int32]
+	Page         Optional[int32]
+	OrderId      Optional[string]
+	Account      Optional[string]
+	From         Optional[int64]
+	To           Optional[int64]
 }
 
 /*
@@ -2301,13 +2300,13 @@ ListMyTrades List personal trading history
 Spot,portfolio and margin trades are queried by default. If cross margin trades are needed, &#x60;account&#x60; must be set to &#x60;cross_margin&#x60;  You can also set &#x60;from&#x60; and(or) &#x60;to&#x60; to query by time range. If you don&#39;t specify &#x60;from&#x60; and/or &#x60;to&#x60; parameters, only the last 7 days of data will be retured. The range of &#x60;from&#x60; and &#x60;to&#x60; is not alloed to exceed 30 days.  Time range parameters are handled as order finish time.
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListMyTradesOpts - Optional Parameters:
-  - @param "CurrencyPair" (optional.String) -  Retrieve results with specified currency pair
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "OrderId" (optional.String) -  Filter trades with specified order ID. `currency_pair` is also required if this field is present
-  - @param "Account" (optional.String) -  Specify operation account. Default to spot ,portfolio and margin account if not specified. Set to `cross_margin` to operate against margin account.  Portfolio margin account must set to `cross_margin` only
-  - @param "From" (optional.Int64) -  Start timestamp of the query
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
+  - @param "CurrencyPair" (Optional[string]) -  Retrieve results with specified currency pair
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "OrderId" (Optional[string]) -  Filter trades with specified order ID. `currency_pair` is also required if this field is present
+  - @param "Account" (Optional[string]) -  Specify operation account. Default to spot ,portfolio and margin account if not specified. Set to `cross_margin` to operate against margin account.  Portfolio margin account must set to `cross_margin` only
+  - @param "From" (Optional[int64]) -  Start timestamp of the query
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
 
 @return []Trade
 */
@@ -2385,7 +2384,7 @@ func (a *SpotApiService) ListMyTrades(ctx context.Context, localVarOptionals *Li
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2469,7 +2468,7 @@ func (a *SpotApiService) GetSystemTime(ctx context.Context) (SystemTime, *http.R
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2563,7 +2562,7 @@ func (a *SpotApiService) CountdownCancelAllSpot(ctx context.Context, countdownCa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2657,7 +2656,7 @@ func (a *SpotApiService) AmendBatchOrders(ctx context.Context, batchAmendItem []
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2690,10 +2689,10 @@ func (a *SpotApiService) AmendBatchOrders(ctx context.Context, batchAmendItem []
 
 // ListSpotPriceTriggeredOrdersOpts Optional parameters for the method 'ListSpotPriceTriggeredOrders'
 type ListSpotPriceTriggeredOrdersOpts struct {
-	Market  optional.String
-	Account optional.String
-	Limit   optional.Int32
-	Offset  optional.Int32
+	Market  Optional[string]
+	Account Optional[string]
+	Limit   Optional[int32]
+	Offset  Optional[int32]
 }
 
 /*
@@ -2701,10 +2700,10 @@ ListSpotPriceTriggeredOrders Retrieve running auto order list
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param status Only list the orders with this status
   - @param optional nil or *ListSpotPriceTriggeredOrdersOpts - Optional Parameters:
-  - @param "Market" (optional.String) -  Currency pair
-  - @param "Account" (optional.String) -  Trading account type.  Portfolio margin account must set to `cross_margin`
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
+  - @param "Market" (Optional[string]) -  Currency pair
+  - @param "Account" (Optional[string]) -  Trading account type.  Portfolio margin account must set to `cross_margin`
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
 
 @return []SpotPriceTriggeredOrder
 */
@@ -2774,7 +2773,7 @@ func (a *SpotApiService) ListSpotPriceTriggeredOrders(ctx context.Context, statu
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2867,7 +2866,7 @@ func (a *SpotApiService) CreateSpotPriceTriggeredOrder(ctx context.Context, spot
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2900,16 +2899,16 @@ func (a *SpotApiService) CreateSpotPriceTriggeredOrder(ctx context.Context, spot
 
 // CancelSpotPriceTriggeredOrderListOpts Optional parameters for the method 'CancelSpotPriceTriggeredOrderList'
 type CancelSpotPriceTriggeredOrderListOpts struct {
-	Market  optional.String
-	Account optional.String
+	Market  Optional[string]
+	Account Optional[string]
 }
 
 /*
 CancelSpotPriceTriggeredOrderList Cancel all open orders
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *CancelSpotPriceTriggeredOrderListOpts - Optional Parameters:
-  - @param "Market" (optional.String) -  Currency pair
-  - @param "Account" (optional.String) -  Trading account type.  Portfolio margin account must set to `cross_margin`
+  - @param "Market" (Optional[string]) -  Currency pair
+  - @param "Account" (Optional[string]) -  Trading account type.  Portfolio margin account must set to `cross_margin`
 
 @return []SpotPriceTriggeredOrder
 */
@@ -2972,7 +2971,7 @@ func (a *SpotApiService) CancelSpotPriceTriggeredOrderList(ctx context.Context, 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3065,7 +3064,7 @@ func (a *SpotApiService) GetSpotPriceTriggeredOrder(ctx context.Context, orderId
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -3158,7 +3157,7 @@ func (a *SpotApiService) CancelSpotPriceTriggeredOrder(ctx context.Context, orde
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

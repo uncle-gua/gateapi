@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -27,12 +26,12 @@ type RebateApiService service
 
 // AgencyTransactionHistoryOpts Optional parameters for the method 'AgencyTransactionHistory'
 type AgencyTransactionHistoryOpts struct {
-	CurrencyPair optional.String
-	UserId       optional.Int64
-	From         optional.Int64
-	To           optional.Int64
-	Limit        optional.Int32
-	Offset       optional.Int32
+	CurrencyPair Optional[string]
+	UserId       Optional[int64]
+	From         Optional[int64]
+	To           Optional[int64]
+	Limit        Optional[int32]
+	Offset       Optional[int32]
 }
 
 /*
@@ -40,12 +39,12 @@ AgencyTransactionHistory The agency obtains the transaction history of the recom
 Record time range cannot exceed 30 days
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *AgencyTransactionHistoryOpts - Optional Parameters:
-  - @param "CurrencyPair" (optional.String) -  Specify the currency pair, if not specified, return all currency pairs
-  - @param "UserId" (optional.Int64) -  User ID. If not specified, all user records will be returned
-  - @param "From" (optional.Int64) -  Time range beginning, default to 7 days before current time
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
+  - @param "CurrencyPair" (Optional[string]) -  Specify the currency pair, if not specified, return all currency pairs
+  - @param "UserId" (Optional[int64]) -  User ID. If not specified, all user records will be returned
+  - @param "From" (Optional[int64]) -  Time range beginning, default to 7 days before current time
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
 
 @return []AgencyTransactionHistory
 */
@@ -120,7 +119,7 @@ func (a *RebateApiService) AgencyTransactionHistory(ctx context.Context, localVa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -153,12 +152,12 @@ func (a *RebateApiService) AgencyTransactionHistory(ctx context.Context, localVa
 
 // AgencyCommissionsHistoryOpts Optional parameters for the method 'AgencyCommissionsHistory'
 type AgencyCommissionsHistoryOpts struct {
-	Currency optional.String
-	UserId   optional.Int64
-	From     optional.Int64
-	To       optional.Int64
-	Limit    optional.Int32
-	Offset   optional.Int32
+	Currency Optional[string]
+	UserId   Optional[int64]
+	From     Optional[int64]
+	To       Optional[int64]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
 }
 
 /*
@@ -166,12 +165,12 @@ AgencyCommissionsHistory The agency obtains the commission history of the recomm
 Record time range cannot exceed 30 days
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *AgencyCommissionsHistoryOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Filter by currency. Return all currency records if not specified
-  - @param "UserId" (optional.Int64) -  User ID. If not specified, all user records will be returned
-  - @param "From" (optional.Int64) -  Time range beginning, default to 7 days before current time
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
+  - @param "Currency" (Optional[string]) -  Filter by currency. Return all currency records if not specified
+  - @param "UserId" (Optional[int64]) -  User ID. If not specified, all user records will be returned
+  - @param "From" (Optional[int64]) -  Time range beginning, default to 7 days before current time
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
 
 @return []AgencyCommissionHistory
 */
@@ -246,7 +245,7 @@ func (a *RebateApiService) AgencyCommissionsHistory(ctx context.Context, localVa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -279,9 +278,9 @@ func (a *RebateApiService) AgencyCommissionsHistory(ctx context.Context, localVa
 
 // RebateBrokerCommissionHistoryOpts Optional parameters for the method 'RebateBrokerCommissionHistory'
 type RebateBrokerCommissionHistoryOpts struct {
-	Limit  optional.Int32
-	Offset optional.Int32
-	UserId optional.Int64
+	Limit  Optional[int32]
+	Offset Optional[int32]
+	UserId Optional[int64]
 }
 
 /*
@@ -289,9 +288,9 @@ RebateBrokerCommissionHistory The broker obtains the user's commission rebate re
 Record time range cannot exceed 30 days
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *RebateBrokerCommissionHistoryOpts - Optional Parameters:
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
-  - @param "UserId" (optional.Int64) -  User ID. If not specified, all user records will be returned
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
+  - @param "UserId" (Optional[int64]) -  User ID. If not specified, all user records will be returned
 
 @return []BrokerCommission
 */
@@ -357,7 +356,7 @@ func (a *RebateApiService) RebateBrokerCommissionHistory(ctx context.Context, lo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -390,9 +389,9 @@ func (a *RebateApiService) RebateBrokerCommissionHistory(ctx context.Context, lo
 
 // RebateBrokerTransactionHistoryOpts Optional parameters for the method 'RebateBrokerTransactionHistory'
 type RebateBrokerTransactionHistoryOpts struct {
-	Limit  optional.Int32
-	Offset optional.Int32
-	UserId optional.Int64
+	Limit  Optional[int32]
+	Offset Optional[int32]
+	UserId Optional[int64]
 }
 
 /*
@@ -400,9 +399,9 @@ RebateBrokerTransactionHistory The broker obtains the user's trading history
 Record time range cannot exceed 30 days
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *RebateBrokerTransactionHistoryOpts - Optional Parameters:
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
-  - @param "UserId" (optional.Int64) -  User ID. If not specified, all user records will be returned
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
+  - @param "UserId" (Optional[int64]) -  User ID. If not specified, all user records will be returned
 
 @return []BrokerTransaction
 */
@@ -468,7 +467,7 @@ func (a *RebateApiService) RebateBrokerTransactionHistory(ctx context.Context, l
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -558,7 +557,7 @@ func (a *RebateApiService) RebateUserInfo(ctx context.Context) ([]RebateUserInfo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

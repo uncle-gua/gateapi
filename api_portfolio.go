@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -27,7 +26,7 @@ type PortfolioApiService service
 
 // ListPortfolioAccountsOpts Optional parameters for the method 'ListPortfolioAccounts'
 type ListPortfolioAccountsOpts struct {
-	Currency optional.String
+	Currency Optional[string]
 }
 
 /*
@@ -35,7 +34,7 @@ ListPortfolioAccounts Get portfolio account information
 The assets of each currency in the account will be adjusted according to their liquidity, defined by corresponding adjustment coefficients, and then uniformly converted to USD to calculate the total asset value and position value of the account.  You can refer to the [Formula](#portfolio-account) in the documentation
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListPortfolioAccountsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
 
 @return PortfolioAccount
 */
@@ -95,7 +94,7 @@ func (a *PortfolioApiService) ListPortfolioAccounts(ctx context.Context, localVa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -186,7 +185,7 @@ func (a *PortfolioApiService) ListAccountPortfolioMode(ctx context.Context) (map
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -279,7 +278,7 @@ func (a *PortfolioApiService) SetAccountPortfolioMode(ctx context.Context, portf
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -371,7 +370,7 @@ func (a *PortfolioApiService) GetPortfolioBorrowable(ctx context.Context, curren
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -463,7 +462,7 @@ func (a *PortfolioApiService) GetPortfolioTransferable(ctx context.Context, curr
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -496,18 +495,18 @@ func (a *PortfolioApiService) GetPortfolioTransferable(ctx context.Context, curr
 
 // ListPortfolioUniLoanInterestRecordsOpts Optional parameters for the method 'ListPortfolioUniLoanInterestRecords'
 type ListPortfolioUniLoanInterestRecordsOpts struct {
-	Currency optional.String
-	Page     optional.Int32
-	Limit    optional.Int32
+	Currency Optional[string]
+	Page     Optional[int32]
+	Limit    Optional[int32]
 }
 
 /*
 ListPortfolioUniLoanInterestRecords List loans
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListPortfolioUniLoanInterestRecordsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
 
 @return []UniLoan
 */
@@ -573,7 +572,7 @@ func (a *PortfolioApiService) ListPortfolioUniLoanInterestRecords(ctx context.Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -664,7 +663,7 @@ func (a *PortfolioApiService) CreatePortfolioLoan(ctx context.Context, portfolio
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -688,20 +687,20 @@ func (a *PortfolioApiService) CreatePortfolioLoan(ctx context.Context, portfolio
 
 // ListPortfolioLoanRecordsOpts Optional parameters for the method 'ListPortfolioLoanRecords'
 type ListPortfolioLoanRecordsOpts struct {
-	Type_    optional.String
-	Currency optional.String
-	Page     optional.Int32
-	Limit    optional.Int32
+	Type_    Optional[string]
+	Currency Optional[string]
+	Page     Optional[int32]
+	Limit    Optional[int32]
 }
 
 /*
 ListPortfolioLoanRecords Get load records
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListPortfolioLoanRecordsOpts - Optional Parameters:
-  - @param "Type_" (optional.String) -  The types of lending records, borrow - indicates the action of borrowing funds, repay - indicates the action of repaying the borrowed funds
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "Type_" (Optional[string]) -  The types of lending records, borrow - indicates the action of borrowing funds, repay - indicates the action of repaying the borrowed funds
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
 
 @return []PortfolioLoanRecord
 */
@@ -770,7 +769,7 @@ func (a *PortfolioApiService) ListPortfolioLoanRecords(ctx context.Context, loca
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -803,18 +802,18 @@ func (a *PortfolioApiService) ListPortfolioLoanRecords(ctx context.Context, loca
 
 // ListPortfolioLoanInterestRecordsOpts Optional parameters for the method 'ListPortfolioLoanInterestRecords'
 type ListPortfolioLoanInterestRecordsOpts struct {
-	Currency optional.String
-	Page     optional.Int32
-	Limit    optional.Int32
+	Currency Optional[string]
+	Page     Optional[int32]
+	Limit    Optional[int32]
 }
 
 /*
 ListPortfolioLoanInterestRecords List interest records
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListPortfolioLoanInterestRecordsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
 
 @return []UniLoanInterestRecord
 */
@@ -880,7 +879,7 @@ func (a *PortfolioApiService) ListPortfolioLoanInterestRecords(ctx context.Conte
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -80,7 +79,7 @@ func (a *WalletApiService) ListCurrencyChains(ctx context.Context, currency stri
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -172,7 +171,7 @@ func (a *WalletApiService) GetDepositAddress(ctx context.Context, currency strin
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -205,11 +204,11 @@ func (a *WalletApiService) GetDepositAddress(ctx context.Context, currency strin
 
 // ListWithdrawalsOpts Optional parameters for the method 'ListWithdrawals'
 type ListWithdrawalsOpts struct {
-	Currency optional.String
-	From     optional.Int64
-	To       optional.Int64
-	Limit    optional.Int32
-	Offset   optional.Int32
+	Currency Optional[string]
+	From     Optional[int64]
+	To       Optional[int64]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
 }
 
 /*
@@ -217,11 +216,11 @@ ListWithdrawals Retrieve withdrawal records
 Record time range cannot exceed 30 days
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListWithdrawalsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Filter by currency. Return all currency records if not specified
-  - @param "From" (optional.Int64) -  Time range beginning, default to 7 days before current time
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
+  - @param "Currency" (Optional[string]) -  Filter by currency. Return all currency records if not specified
+  - @param "From" (Optional[int64]) -  Time range beginning, default to 7 days before current time
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
 
 @return []WithdrawalRecord
 */
@@ -293,7 +292,7 @@ func (a *WalletApiService) ListWithdrawals(ctx context.Context, localVarOptional
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -326,11 +325,11 @@ func (a *WalletApiService) ListWithdrawals(ctx context.Context, localVarOptional
 
 // ListDepositsOpts Optional parameters for the method 'ListDeposits'
 type ListDepositsOpts struct {
-	Currency optional.String
-	From     optional.Int64
-	To       optional.Int64
-	Limit    optional.Int32
-	Offset   optional.Int32
+	Currency Optional[string]
+	From     Optional[int64]
+	To       Optional[int64]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
 }
 
 /*
@@ -338,11 +337,11 @@ ListDeposits Retrieve deposit records
 Record time range cannot exceed 30 days
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListDepositsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Filter by currency. Return all currency records if not specified
-  - @param "From" (optional.Int64) -  Time range beginning, default to 7 days before current time
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
-  - @param "Limit" (optional.Int32) -  The maximum number of entries returned in the list is limited to 500 transactions.
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
+  - @param "Currency" (Optional[string]) -  Filter by currency. Return all currency records if not specified
+  - @param "From" (Optional[int64]) -  Time range beginning, default to 7 days before current time
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
+  - @param "Limit" (Optional[int32]) -  The maximum number of entries returned in the list is limited to 500 transactions.
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
 
 @return []LedgerRecord
 */
@@ -414,7 +413,7 @@ func (a *WalletApiService) ListDeposits(ctx context.Context, localVarOptionals *
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -508,7 +507,7 @@ func (a *WalletApiService) Transfer(ctx context.Context, transfer Transfer) (Tra
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -541,11 +540,11 @@ func (a *WalletApiService) Transfer(ctx context.Context, transfer Transfer) (Tra
 
 // ListSubAccountTransfersOpts Optional parameters for the method 'ListSubAccountTransfers'
 type ListSubAccountTransfersOpts struct {
-	SubUid optional.String
-	From   optional.Int64
-	To     optional.Int64
-	Limit  optional.Int32
-	Offset optional.Int32
+	SubUid Optional[string]
+	From   Optional[int64]
+	To     Optional[int64]
+	Limit  Optional[int32]
+	Offset Optional[int32]
 }
 
 /*
@@ -553,11 +552,11 @@ ListSubAccountTransfers Retrieve transfer records between main and sub accounts
 Record time range cannot exceed 30 days  &gt; Note: only records after 2020-04-10 can be retrieved
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListSubAccountTransfersOpts - Optional Parameters:
-  - @param "SubUid" (optional.String) -  User ID of sub-account, you can query multiple records separated by `,`. If not specified, it will return the records of all sub accounts
-  - @param "From" (optional.Int64) -  Time range beginning, default to 7 days before current time
-  - @param "To" (optional.Int64) -  Time range ending, default to current time
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
+  - @param "SubUid" (Optional[string]) -  User ID of sub-account, you can query multiple records separated by `,`. If not specified, it will return the records of all sub accounts
+  - @param "From" (Optional[int64]) -  Time range beginning, default to 7 days before current time
+  - @param "To" (Optional[int64]) -  Time range ending, default to current time
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
 
 @return []SubAccountTransfer
 */
@@ -629,7 +628,7 @@ func (a *WalletApiService) ListSubAccountTransfers(ctx context.Context, localVar
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -720,7 +719,7 @@ func (a *WalletApiService) TransferWithSubAccount(ctx context.Context, subAccoun
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -802,7 +801,7 @@ func (a *WalletApiService) SubAccountToSubAccount(ctx context.Context, subAccoun
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -826,14 +825,14 @@ func (a *WalletApiService) SubAccountToSubAccount(ctx context.Context, subAccoun
 
 // ListWithdrawStatusOpts Optional parameters for the method 'ListWithdrawStatus'
 type ListWithdrawStatusOpts struct {
-	Currency optional.String
+	Currency Optional[string]
 }
 
 /*
 ListWithdrawStatus Retrieve withdrawal status
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListWithdrawStatusOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
 
 @return []WithdrawStatus
 */
@@ -893,7 +892,7 @@ func (a *WalletApiService) ListWithdrawStatus(ctx context.Context, localVarOptio
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -926,14 +925,14 @@ func (a *WalletApiService) ListWithdrawStatus(ctx context.Context, localVarOptio
 
 // ListSubAccountBalancesOpts Optional parameters for the method 'ListSubAccountBalances'
 type ListSubAccountBalancesOpts struct {
-	SubUid optional.String
+	SubUid Optional[string]
 }
 
 /*
 ListSubAccountBalances Retrieve sub account balances
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListSubAccountBalancesOpts - Optional Parameters:
-  - @param "SubUid" (optional.String) -  User ID of sub-account, you can query multiple records separated by `,`. If not specified, it will return the records of all sub accounts
+  - @param "SubUid" (Optional[string]) -  User ID of sub-account, you can query multiple records separated by `,`. If not specified, it will return the records of all sub accounts
 
 @return []SubAccountBalance
 */
@@ -993,7 +992,7 @@ func (a *WalletApiService) ListSubAccountBalances(ctx context.Context, localVarO
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1026,14 +1025,14 @@ func (a *WalletApiService) ListSubAccountBalances(ctx context.Context, localVarO
 
 // ListSubAccountMarginBalancesOpts Optional parameters for the method 'ListSubAccountMarginBalances'
 type ListSubAccountMarginBalancesOpts struct {
-	SubUid optional.String
+	SubUid Optional[string]
 }
 
 /*
 ListSubAccountMarginBalances Query sub accounts' margin balances
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListSubAccountMarginBalancesOpts - Optional Parameters:
-  - @param "SubUid" (optional.String) -  User ID of sub-account, you can query multiple records separated by `,`. If not specified, it will return the records of all sub accounts
+  - @param "SubUid" (Optional[string]) -  User ID of sub-account, you can query multiple records separated by `,`. If not specified, it will return the records of all sub accounts
 
 @return []SubAccountMarginBalance
 */
@@ -1093,7 +1092,7 @@ func (a *WalletApiService) ListSubAccountMarginBalances(ctx context.Context, loc
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1126,16 +1125,16 @@ func (a *WalletApiService) ListSubAccountMarginBalances(ctx context.Context, loc
 
 // ListSubAccountFuturesBalancesOpts Optional parameters for the method 'ListSubAccountFuturesBalances'
 type ListSubAccountFuturesBalancesOpts struct {
-	SubUid optional.String
-	Settle optional.String
+	SubUid Optional[string]
+	Settle Optional[string]
 }
 
 /*
 ListSubAccountFuturesBalances Query sub accounts' futures account balances
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListSubAccountFuturesBalancesOpts - Optional Parameters:
-  - @param "SubUid" (optional.String) -  User ID of sub-account, you can query multiple records separated by `,`. If not specified, it will return the records of all sub accounts
-  - @param "Settle" (optional.String) -  Query only balances of specified settle currency
+  - @param "SubUid" (Optional[string]) -  User ID of sub-account, you can query multiple records separated by `,`. If not specified, it will return the records of all sub accounts
+  - @param "Settle" (Optional[string]) -  Query only balances of specified settle currency
 
 @return []SubAccountFuturesBalance
 */
@@ -1198,7 +1197,7 @@ func (a *WalletApiService) ListSubAccountFuturesBalances(ctx context.Context, lo
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1231,14 +1230,14 @@ func (a *WalletApiService) ListSubAccountFuturesBalances(ctx context.Context, lo
 
 // ListSubAccountCrossMarginBalancesOpts Optional parameters for the method 'ListSubAccountCrossMarginBalances'
 type ListSubAccountCrossMarginBalancesOpts struct {
-	SubUid optional.String
+	SubUid Optional[string]
 }
 
 /*
 ListSubAccountCrossMarginBalances Query subaccount's cross_margin account info
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListSubAccountCrossMarginBalancesOpts - Optional Parameters:
-  - @param "SubUid" (optional.String) -  User ID of sub-account, you can query multiple records separated by `,`. If not specified, it will return the records of all sub accounts
+  - @param "SubUid" (Optional[string]) -  User ID of sub-account, you can query multiple records separated by `,`. If not specified, it will return the records of all sub accounts
 
 @return []SubAccountCrossMarginBalance
 */
@@ -1298,7 +1297,7 @@ func (a *WalletApiService) ListSubAccountCrossMarginBalances(ctx context.Context
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1331,9 +1330,9 @@ func (a *WalletApiService) ListSubAccountCrossMarginBalances(ctx context.Context
 
 // ListSavedAddressOpts Optional parameters for the method 'ListSavedAddress'
 type ListSavedAddressOpts struct {
-	Chain optional.String
-	Limit optional.String
-	Page  optional.Int32
+	Chain Optional[string]
+	Limit Optional[string]
+	Page  Optional[int32]
 }
 
 /*
@@ -1341,9 +1340,9 @@ ListSavedAddress Query saved address
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param currency Currency
   - @param optional nil or *ListSavedAddressOpts - Optional Parameters:
-  - @param "Chain" (optional.String) -  Chain name
-  - @param "Limit" (optional.String) -  Maximum number returned, 100 at most
-  - @param "Page" (optional.Int32) -  Page number
+  - @param "Chain" (Optional[string]) -  Chain name
+  - @param "Limit" (Optional[string]) -  Maximum number returned, 100 at most
+  - @param "Page" (Optional[int32]) -  Page number
 
 @return []SavedAddress
 */
@@ -1410,7 +1409,7 @@ func (a *WalletApiService) ListSavedAddress(ctx context.Context, currency string
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1443,16 +1442,16 @@ func (a *WalletApiService) ListSavedAddress(ctx context.Context, currency string
 
 // GetTradeFeeOpts Optional parameters for the method 'GetTradeFee'
 type GetTradeFeeOpts struct {
-	CurrencyPair optional.String
-	Settle       optional.String
+	CurrencyPair Optional[string]
+	Settle       Optional[string]
 }
 
 /*
 GetTradeFee Retrieve personal trading fee
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *GetTradeFeeOpts - Optional Parameters:
-  - @param "CurrencyPair" (optional.String) -  Specify a currency pair to retrieve precise fee rate  This field is optional. In most cases, the fee rate is identical among all currency pairs
-  - @param "Settle" (optional.String) -  Specify the settlement currency of the contract to get more accurate rate settings  This field is optional. Generally, the rate settings for all settlement currencies are the same.
+  - @param "CurrencyPair" (Optional[string]) -  Specify a currency pair to retrieve precise fee rate  This field is optional. In most cases, the fee rate is identical among all currency pairs
+  - @param "Settle" (Optional[string]) -  Specify the settlement currency of the contract to get more accurate rate settings  This field is optional. Generally, the rate settings for all settlement currencies are the same.
 
 @return TradeFee
 */
@@ -1515,7 +1514,7 @@ func (a *WalletApiService) GetTradeFee(ctx context.Context, localVarOptionals *G
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1548,7 +1547,7 @@ func (a *WalletApiService) GetTradeFee(ctx context.Context, localVarOptionals *G
 
 // GetTotalBalanceOpts Optional parameters for the method 'GetTotalBalance'
 type GetTotalBalanceOpts struct {
-	Currency optional.String
+	Currency Optional[string]
 }
 
 /*
@@ -1556,7 +1555,7 @@ GetTotalBalance Retrieve user's total balances
 This endpoint returns an approximate sum of exchanged amount from all currencies to input currency for each account.The exchange rate and account balance could have been cached for at most 1 minute. It is not recommended to use its result for any trading calculation.  For trading calculation, use the corresponding account query endpoint for each account type. For example:   - &#x60;GET /spot/accounts&#x60; to query spot account balance - &#x60;GET /margin/accounts&#x60; to query margin account balance - &#x60;GET /futures/{settle}/accounts&#x60; to query futures account balance
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *GetTotalBalanceOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Currency unit used to calculate the balance amount. BTC, CNY, USD and USDT are allowed. USDT is the default.
+  - @param "Currency" (Optional[string]) -  Currency unit used to calculate the balance amount. BTC, CNY, USD and USDT are allowed. USDT is the default.
 
 @return TotalBalance
 */
@@ -1616,7 +1615,7 @@ func (a *WalletApiService) GetTotalBalance(ctx context.Context, localVarOptional
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1706,7 +1705,7 @@ func (a *WalletApiService) ListSmallBalance(ctx context.Context) (SmallBalance, 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1796,7 +1795,7 @@ func (a *WalletApiService) ConvertSmallBalance(ctx context.Context, convertSmall
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -1820,18 +1819,18 @@ func (a *WalletApiService) ConvertSmallBalance(ctx context.Context, convertSmall
 
 // ListSmallBalanceHistoryOpts Optional parameters for the method 'ListSmallBalanceHistory'
 type ListSmallBalanceHistoryOpts struct {
-	Currency optional.String
-	Page     optional.Int32
-	Limit    optional.Int32
+	Currency Optional[string]
+	Page     Optional[int32]
+	Limit    Optional[int32]
 }
 
 /*
 ListSmallBalanceHistory List small balance history
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListSmallBalanceHistoryOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "Currency" (Optional[string]) -  Currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
 
 @return SmallBalanceHistory
 */
@@ -1897,7 +1896,7 @@ func (a *WalletApiService) ListSmallBalanceHistory(ctx context.Context, localVar
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

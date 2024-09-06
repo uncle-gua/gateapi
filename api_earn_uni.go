@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -79,7 +78,7 @@ func (a *EarnUniApiService) ListUniCurrencies(ctx context.Context) ([]UniCurrenc
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -166,7 +165,7 @@ func (a *EarnUniApiService) GetUniCurrency(ctx context.Context, currency string)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -199,18 +198,18 @@ func (a *EarnUniApiService) GetUniCurrency(ctx context.Context, currency string)
 
 // ListUserUniLendsOpts Optional parameters for the method 'ListUserUniLends'
 type ListUserUniLendsOpts struct {
-	Currency optional.String
-	Page     optional.Int32
-	Limit    optional.Int32
+	Currency Optional[string]
+	Page     Optional[int32]
+	Limit    Optional[int32]
 }
 
 /*
 ListUserUniLends List user's lending orders
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListUserUniLendsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
 
 @return []UniLend
 */
@@ -276,7 +275,7 @@ func (a *EarnUniApiService) ListUserUniLends(ctx context.Context, localVarOption
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -367,7 +366,7 @@ func (a *EarnUniApiService) CreateUniLend(ctx context.Context, createUniLend Cre
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -449,7 +448,7 @@ func (a *EarnUniApiService) ChangeUniLend(ctx context.Context, patchUniLend Patc
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -473,24 +472,24 @@ func (a *EarnUniApiService) ChangeUniLend(ctx context.Context, patchUniLend Patc
 
 // ListUniLendRecordsOpts Optional parameters for the method 'ListUniLendRecords'
 type ListUniLendRecordsOpts struct {
-	Currency optional.String
-	Page     optional.Int32
-	Limit    optional.Int32
-	From     optional.Int64
-	To       optional.Int64
-	Type_    optional.String
+	Currency Optional[string]
+	Page     Optional[int32]
+	Limit    Optional[int32]
+	From     Optional[int64]
+	To       Optional[int64]
+	Type_    Optional[string]
 }
 
 /*
 ListUniLendRecords List records of lending
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListUniLendRecordsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
-  - @param "From" (optional.Int64) -  Start timestamp
-  - @param "To" (optional.Int64) -  End timestamp
-  - @param "Type_" (optional.String) -  type: lend - lend, redeem - redeem
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "From" (Optional[int64]) -  Start timestamp
+  - @param "To" (Optional[int64]) -  End timestamp
+  - @param "Type_" (Optional[string]) -  type: lend - lend, redeem - redeem
 
 @return []UniLendRecord
 */
@@ -565,7 +564,7 @@ func (a *EarnUniApiService) ListUniLendRecords(ctx context.Context, localVarOpti
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -658,7 +657,7 @@ func (a *EarnUniApiService) GetUniInterest(ctx context.Context, currency string)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -691,22 +690,22 @@ func (a *EarnUniApiService) GetUniInterest(ctx context.Context, currency string)
 
 // ListUniInterestRecordsOpts Optional parameters for the method 'ListUniInterestRecords'
 type ListUniInterestRecordsOpts struct {
-	Currency optional.String
-	Page     optional.Int32
-	Limit    optional.Int32
-	From     optional.Int64
-	To       optional.Int64
+	Currency Optional[string]
+	Page     Optional[int32]
+	Limit    Optional[int32]
+	From     Optional[int64]
+	To       Optional[int64]
 }
 
 /*
 ListUniInterestRecords List interest records
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param optional nil or *ListUniInterestRecordsOpts - Optional Parameters:
-  - @param "Currency" (optional.String) -  Retrieve data of the specified currency
-  - @param "Page" (optional.Int32) -  Page number
-  - @param "Limit" (optional.Int32) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
-  - @param "From" (optional.Int64) -  Start timestamp
-  - @param "To" (optional.Int64) -  End timestamp
+  - @param "Currency" (Optional[string]) -  Retrieve data of the specified currency
+  - @param "Page" (Optional[int32]) -  Page number
+  - @param "Limit" (Optional[int32]) -  Maximum response items.  Default: 100, minimum: 1, Maximum: 100
+  - @param "From" (Optional[int64]) -  Start timestamp
+  - @param "To" (Optional[int64]) -  End timestamp
 
 @return []UniInterestRecord
 */
@@ -778,7 +777,7 @@ func (a *EarnUniApiService) ListUniInterestRecords(ctx context.Context, localVar
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -868,7 +867,7 @@ func (a *EarnUniApiService) SwitchInterestReinvest(ctx context.Context, uniInter
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarHTTPResponse, err
@@ -952,7 +951,7 @@ func (a *EarnUniApiService) GetUniInterestStatus(ctx context.Context, currency s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err

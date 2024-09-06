@@ -11,8 +11,7 @@ package gateapi
 
 import (
 	"context"
-	"github.com/antihax/optional"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -82,7 +81,7 @@ func (a *DeliveryApiService) ListDeliveryContracts(ctx context.Context, settle s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -172,7 +171,7 @@ func (a *DeliveryApiService) GetDeliveryContract(ctx context.Context, settle str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -205,9 +204,9 @@ func (a *DeliveryApiService) GetDeliveryContract(ctx context.Context, settle str
 
 // ListDeliveryOrderBookOpts Optional parameters for the method 'ListDeliveryOrderBook'
 type ListDeliveryOrderBookOpts struct {
-	Interval optional.String
-	Limit    optional.Int32
-	WithId   optional.Bool
+	Interval Optional[string]
+	Limit    Optional[int32]
+	WithId   Optional[bool]
 }
 
 /*
@@ -217,9 +216,9 @@ Bids will be sorted by price from high to low, while asks sorted reversely
   - @param settle Settle currency
   - @param contract Futures contract
   - @param optional nil or *ListDeliveryOrderBookOpts - Optional Parameters:
-  - @param "Interval" (optional.String) -  Order depth. 0 means no aggregation is applied. default to 0
-  - @param "Limit" (optional.Int32) -  Maximum number of order depth data in asks or bids
-  - @param "WithId" (optional.Bool) -  Whether the order book update ID will be returned. This ID increases by 1 on every order book update
+  - @param "Interval" (Optional[string]) -  Order depth. 0 means no aggregation is applied. default to 0
+  - @param "Limit" (Optional[int32]) -  Maximum number of order depth data in asks or bids
+  - @param "WithId" (Optional[bool]) -  Whether the order book update ID will be returned. This ID increases by 1 on every order book update
 
 @return FuturesOrderBook
 */
@@ -282,7 +281,7 @@ func (a *DeliveryApiService) ListDeliveryOrderBook(ctx context.Context, settle s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -315,10 +314,10 @@ func (a *DeliveryApiService) ListDeliveryOrderBook(ctx context.Context, settle s
 
 // ListDeliveryTradesOpts Optional parameters for the method 'ListDeliveryTrades'
 type ListDeliveryTradesOpts struct {
-	Limit  optional.Int32
-	LastId optional.String
-	From   optional.Int64
-	To     optional.Int64
+	Limit  Optional[int32]
+	LastId Optional[string]
+	From   Optional[int64]
+	To     Optional[int64]
 }
 
 /*
@@ -327,10 +326,10 @@ ListDeliveryTrades Futures trading history
   - @param settle Settle currency
   - @param contract Futures contract
   - @param optional nil or *ListDeliveryTradesOpts - Optional Parameters:
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "LastId" (optional.String) -  Specify the starting point for this list based on a previously retrieved id  This parameter is deprecated. Use `from` and `to` instead to limit time range
-  - @param "From" (optional.Int64) -  Specify starting time in Unix seconds. If not specified, `to` and `limit` will be used to limit response items. If items between `from` and `to` are more than `limit`, only `limit` number will be returned.
-  - @param "To" (optional.Int64) -  Specify end time in Unix seconds, default to current time
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "LastId" (Optional[string]) -  Specify the starting point for this list based on a previously retrieved id  This parameter is deprecated. Use `from` and `to` instead to limit time range
+  - @param "From" (Optional[int64]) -  Specify starting time in Unix seconds. If not specified, `to` and `limit` will be used to limit response items. If items between `from` and `to` are more than `limit`, only `limit` number will be returned.
+  - @param "To" (Optional[int64]) -  Specify end time in Unix seconds, default to current time
 
 @return []FuturesTrade
 */
@@ -396,7 +395,7 @@ func (a *DeliveryApiService) ListDeliveryTrades(ctx context.Context, settle stri
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -429,10 +428,10 @@ func (a *DeliveryApiService) ListDeliveryTrades(ctx context.Context, settle stri
 
 // ListDeliveryCandlesticksOpts Optional parameters for the method 'ListDeliveryCandlesticks'
 type ListDeliveryCandlesticksOpts struct {
-	From     optional.Int64
-	To       optional.Int64
-	Limit    optional.Int32
-	Interval optional.String
+	From     Optional[int64]
+	To       Optional[int64]
+	Limit    Optional[int32]
+	Interval Optional[string]
 }
 
 /*
@@ -442,10 +441,10 @@ Return specified contract candlesticks. If prefix &#x60;contract&#x60; with &#x6
   - @param settle Settle currency
   - @param contract Futures contract
   - @param optional nil or *ListDeliveryCandlesticksOpts - Optional Parameters:
-  - @param "From" (optional.Int64) -  Start time of candlesticks, formatted in Unix timestamp in seconds. Default to`to - 100 * interval` if not specified
-  - @param "To" (optional.Int64) -  End time of candlesticks, formatted in Unix timestamp in seconds. Default to current time
-  - @param "Limit" (optional.Int32) -  Maximum recent data points to return. `limit` is conflicted with `from` and `to`. If either `from` or `to` is specified, request will be rejected.
-  - @param "Interval" (optional.String) -  Interval time between data points. Note that `1w` means natual week(Mon-Sun), while `7d` means every 7d since unix 0
+  - @param "From" (Optional[int64]) -  Start time of candlesticks, formatted in Unix timestamp in seconds. Default to`to - 100 * interval` if not specified
+  - @param "To" (Optional[int64]) -  End time of candlesticks, formatted in Unix timestamp in seconds. Default to current time
+  - @param "Limit" (Optional[int32]) -  Maximum recent data points to return. `limit` is conflicted with `from` and `to`. If either `from` or `to` is specified, request will be rejected.
+  - @param "Interval" (Optional[string]) -  Interval time between data points. Note that `1w` means natual week(Mon-Sun), while `7d` means every 7d since unix 0
 
 @return []DeliveryCandlestick
 */
@@ -511,7 +510,7 @@ func (a *DeliveryApiService) ListDeliveryCandlesticks(ctx context.Context, settl
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -544,7 +543,7 @@ func (a *DeliveryApiService) ListDeliveryCandlesticks(ctx context.Context, settl
 
 // ListDeliveryTickersOpts Optional parameters for the method 'ListDeliveryTickers'
 type ListDeliveryTickersOpts struct {
-	Contract optional.String
+	Contract Optional[string]
 }
 
 /*
@@ -552,7 +551,7 @@ ListDeliveryTickers List futures tickers
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListDeliveryTickersOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract
+  - @param "Contract" (Optional[string]) -  Futures contract
 
 @return []FuturesTicker
 */
@@ -608,7 +607,7 @@ func (a *DeliveryApiService) ListDeliveryTickers(ctx context.Context, settle str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -641,7 +640,7 @@ func (a *DeliveryApiService) ListDeliveryTickers(ctx context.Context, settle str
 
 // ListDeliveryInsuranceLedgerOpts Optional parameters for the method 'ListDeliveryInsuranceLedger'
 type ListDeliveryInsuranceLedgerOpts struct {
-	Limit optional.Int32
+	Limit Optional[int32]
 }
 
 /*
@@ -649,7 +648,7 @@ ListDeliveryInsuranceLedger Futures insurance balance history
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListDeliveryInsuranceLedgerOpts - Optional Parameters:
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
 
 @return []InsuranceRecord
 */
@@ -705,7 +704,7 @@ func (a *DeliveryApiService) ListDeliveryInsuranceLedger(ctx context.Context, se
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -798,7 +797,7 @@ func (a *DeliveryApiService) ListDeliveryAccounts(ctx context.Context, settle st
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -831,10 +830,10 @@ func (a *DeliveryApiService) ListDeliveryAccounts(ctx context.Context, settle st
 
 // ListDeliveryAccountBookOpts Optional parameters for the method 'ListDeliveryAccountBook'
 type ListDeliveryAccountBookOpts struct {
-	Limit optional.Int32
-	From  optional.Int64
-	To    optional.Int64
-	Type_ optional.String
+	Limit Optional[int32]
+	From  Optional[int64]
+	To    Optional[int64]
+	Type_ Optional[string]
 }
 
 /*
@@ -842,10 +841,10 @@ ListDeliveryAccountBook Query account book
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListDeliveryAccountBookOpts - Optional Parameters:
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "From" (optional.Int64) -  Start timestamp
-  - @param "To" (optional.Int64) -  End timestamp
-  - @param "Type_" (optional.String) -  Changing Type: - dnw: Deposit & Withdraw - pnl: Profit & Loss by reducing position - fee: Trading fee - refr: Referrer rebate - fund: Funding - point_dnw: POINT Deposit & Withdraw - point_fee: POINT Trading fee - point_refr: POINT Referrer rebate
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "From" (Optional[int64]) -  Start timestamp
+  - @param "To" (Optional[int64]) -  End timestamp
+  - @param "Type_" (Optional[string]) -  Changing Type: - dnw: Deposit & Withdraw - pnl: Profit & Loss by reducing position - fee: Trading fee - refr: Referrer rebate - fund: Funding - point_dnw: POINT Deposit & Withdraw - point_fee: POINT Trading fee - point_refr: POINT Referrer rebate
 
 @return []FuturesAccountBook
 */
@@ -916,7 +915,7 @@ func (a *DeliveryApiService) ListDeliveryAccountBook(ctx context.Context, settle
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1009,7 +1008,7 @@ func (a *DeliveryApiService) ListDeliveryPositions(ctx context.Context, settle s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1105,7 +1104,7 @@ func (a *DeliveryApiService) GetDeliveryPosition(ctx context.Context, settle str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1203,7 +1202,7 @@ func (a *DeliveryApiService) UpdateDeliveryPositionMargin(ctx context.Context, s
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1301,7 +1300,7 @@ func (a *DeliveryApiService) UpdateDeliveryPositionLeverage(ctx context.Context,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1399,7 +1398,7 @@ func (a *DeliveryApiService) UpdateDeliveryPositionRiskLimit(ctx context.Context
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1432,11 +1431,11 @@ func (a *DeliveryApiService) UpdateDeliveryPositionRiskLimit(ctx context.Context
 
 // ListDeliveryOrdersOpts Optional parameters for the method 'ListDeliveryOrders'
 type ListDeliveryOrdersOpts struct {
-	Contract   optional.String
-	Limit      optional.Int32
-	Offset     optional.Int32
-	LastId     optional.String
-	CountTotal optional.Int32
+	Contract   Optional[string]
+	Limit      Optional[int32]
+	Offset     Optional[int32]
+	LastId     Optional[string]
+	CountTotal Optional[int32]
 }
 
 /*
@@ -1446,11 +1445,11 @@ Zero-filled order cannot be retrieved 10 minutes after order cancellation
   - @param settle Settle currency
   - @param status Only list the orders with this status
   - @param optional nil or *ListDeliveryOrdersOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
-  - @param "LastId" (optional.String) -  Specify list staring point using the `id` of last record in previous list-query results
-  - @param "CountTotal" (optional.Int32) -  Whether to return total number matched. Default to 0(no return)
+  - @param "Contract" (Optional[string]) -  Futures contract
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
+  - @param "LastId" (Optional[string]) -  Specify list staring point using the `id` of last record in previous list-query results
+  - @param "CountTotal" (Optional[int32]) -  Whether to return total number matched. Default to 0(no return)
 
 @return []FuturesOrder
 */
@@ -1525,7 +1524,7 @@ func (a *DeliveryApiService) ListDeliveryOrders(ctx context.Context, settle stri
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1622,7 +1621,7 @@ func (a *DeliveryApiService) CreateDeliveryOrder(ctx context.Context, settle str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1655,7 +1654,7 @@ func (a *DeliveryApiService) CreateDeliveryOrder(ctx context.Context, settle str
 
 // CancelDeliveryOrdersOpts Optional parameters for the method 'CancelDeliveryOrders'
 type CancelDeliveryOrdersOpts struct {
-	Side optional.String
+	Side Optional[string]
 }
 
 /*
@@ -1665,7 +1664,7 @@ Zero-filled order cannot be retrieved 10 minutes after order cancellation
   - @param settle Settle currency
   - @param contract Futures contract
   - @param optional nil or *CancelDeliveryOrdersOpts - Optional Parameters:
-  - @param "Side" (optional.String) -  All bids or asks. Both included if not specified
+  - @param "Side" (Optional[string]) -  All bids or asks. Both included if not specified
 
 @return []FuturesOrder
 */
@@ -1728,7 +1727,7 @@ func (a *DeliveryApiService) CancelDeliveryOrders(ctx context.Context, settle st
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1825,7 +1824,7 @@ func (a *DeliveryApiService) GetDeliveryOrder(ctx context.Context, settle string
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1921,7 +1920,7 @@ func (a *DeliveryApiService) CancelDeliveryOrder(ctx context.Context, settle str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -1954,12 +1953,12 @@ func (a *DeliveryApiService) CancelDeliveryOrder(ctx context.Context, settle str
 
 // GetMyDeliveryTradesOpts Optional parameters for the method 'GetMyDeliveryTrades'
 type GetMyDeliveryTradesOpts struct {
-	Contract   optional.String
-	Order      optional.Int64
-	Limit      optional.Int32
-	Offset     optional.Int32
-	LastId     optional.String
-	CountTotal optional.Int32
+	Contract   Optional[string]
+	Order      Optional[int64]
+	Limit      Optional[int32]
+	Offset     Optional[int32]
+	LastId     Optional[string]
+	CountTotal Optional[int32]
 }
 
 /*
@@ -1967,12 +1966,12 @@ GetMyDeliveryTrades List personal trading history
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *GetMyDeliveryTradesOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract
-  - @param "Order" (optional.Int64) -  Futures order ID, return related data only if specified
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
-  - @param "LastId" (optional.String) -  Specify list staring point using the `id` of last record in previous list-query results
-  - @param "CountTotal" (optional.Int32) -  Whether to return total number matched. Default to 0(no return)
+  - @param "Contract" (Optional[string]) -  Futures contract
+  - @param "Order" (Optional[int64]) -  Futures order ID, return related data only if specified
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
+  - @param "LastId" (Optional[string]) -  Specify list staring point using the `id` of last record in previous list-query results
+  - @param "CountTotal" (Optional[int32]) -  Whether to return total number matched. Default to 0(no return)
 
 @return []MyFuturesTrade
 */
@@ -2049,7 +2048,7 @@ func (a *DeliveryApiService) GetMyDeliveryTrades(ctx context.Context, settle str
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2082,8 +2081,8 @@ func (a *DeliveryApiService) GetMyDeliveryTrades(ctx context.Context, settle str
 
 // ListDeliveryPositionCloseOpts Optional parameters for the method 'ListDeliveryPositionClose'
 type ListDeliveryPositionCloseOpts struct {
-	Contract optional.String
-	Limit    optional.Int32
+	Contract Optional[string]
+	Limit    Optional[int32]
 }
 
 /*
@@ -2091,8 +2090,8 @@ ListDeliveryPositionClose List position close history
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListDeliveryPositionCloseOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
+  - @param "Contract" (Optional[string]) -  Futures contract
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
 
 @return []PositionClose
 */
@@ -2157,7 +2156,7 @@ func (a *DeliveryApiService) ListDeliveryPositionClose(ctx context.Context, sett
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2190,9 +2189,9 @@ func (a *DeliveryApiService) ListDeliveryPositionClose(ctx context.Context, sett
 
 // ListDeliveryLiquidatesOpts Optional parameters for the method 'ListDeliveryLiquidates'
 type ListDeliveryLiquidatesOpts struct {
-	Contract optional.String
-	Limit    optional.Int32
-	At       optional.Int32
+	Contract Optional[string]
+	Limit    Optional[int32]
+	At       Optional[int32]
 }
 
 /*
@@ -2200,9 +2199,9 @@ ListDeliveryLiquidates List liquidation history
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListDeliveryLiquidatesOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "At" (optional.Int32) -  Specify a liquidation timestamp
+  - @param "Contract" (Optional[string]) -  Futures contract
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "At" (Optional[int32]) -  Specify a liquidation timestamp
 
 @return []FuturesLiquidate
 */
@@ -2270,7 +2269,7 @@ func (a *DeliveryApiService) ListDeliveryLiquidates(ctx context.Context, settle 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2303,9 +2302,9 @@ func (a *DeliveryApiService) ListDeliveryLiquidates(ctx context.Context, settle 
 
 // ListDeliverySettlementsOpts Optional parameters for the method 'ListDeliverySettlements'
 type ListDeliverySettlementsOpts struct {
-	Contract optional.String
-	Limit    optional.Int32
-	At       optional.Int32
+	Contract Optional[string]
+	Limit    Optional[int32]
+	At       Optional[int32]
 }
 
 /*
@@ -2313,9 +2312,9 @@ ListDeliverySettlements List settlement history
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param settle Settle currency
   - @param optional nil or *ListDeliverySettlementsOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "At" (optional.Int32) -  Specify a settlement timestamp
+  - @param "Contract" (Optional[string]) -  Futures contract
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "At" (Optional[int32]) -  Specify a settlement timestamp
 
 @return []DeliverySettlement
 */
@@ -2383,7 +2382,7 @@ func (a *DeliveryApiService) ListDeliverySettlements(ctx context.Context, settle
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2416,9 +2415,9 @@ func (a *DeliveryApiService) ListDeliverySettlements(ctx context.Context, settle
 
 // ListPriceTriggeredDeliveryOrdersOpts Optional parameters for the method 'ListPriceTriggeredDeliveryOrders'
 type ListPriceTriggeredDeliveryOrdersOpts struct {
-	Contract optional.String
-	Limit    optional.Int32
-	Offset   optional.Int32
+	Contract Optional[string]
+	Limit    Optional[int32]
+	Offset   Optional[int32]
 }
 
 /*
@@ -2427,9 +2426,9 @@ ListPriceTriggeredDeliveryOrders List all auto orders
   - @param settle Settle currency
   - @param status Only list the orders with this status
   - @param optional nil or *ListPriceTriggeredDeliveryOrdersOpts - Optional Parameters:
-  - @param "Contract" (optional.String) -  Futures contract, return related data only if specified
-  - @param "Limit" (optional.Int32) -  Maximum number of records to be returned in a single list
-  - @param "Offset" (optional.Int32) -  List offset, starting from 0
+  - @param "Contract" (Optional[string]) -  Futures contract, return related data only if specified
+  - @param "Limit" (Optional[int32]) -  Maximum number of records to be returned in a single list
+  - @param "Offset" (Optional[int32]) -  List offset, starting from 0
 
 @return []FuturesPriceTriggeredOrder
 */
@@ -2498,7 +2497,7 @@ func (a *DeliveryApiService) ListPriceTriggeredDeliveryOrders(ctx context.Contex
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2594,7 +2593,7 @@ func (a *DeliveryApiService) CreatePriceTriggeredDeliveryOrder(ctx context.Conte
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2689,7 +2688,7 @@ func (a *DeliveryApiService) CancelPriceTriggeredDeliveryOrderList(ctx context.C
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2785,7 +2784,7 @@ func (a *DeliveryApiService) GetPriceTriggeredDeliveryOrder(ctx context.Context,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -2881,7 +2880,7 @@ func (a *DeliveryApiService) CancelPriceTriggeredDeliveryOrder(ctx context.Conte
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
