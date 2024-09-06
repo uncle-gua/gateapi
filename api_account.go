@@ -15,6 +15,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -31,14 +33,14 @@ GetAccountDetail Get account detail
 
 @return AccountDetail
 */
-func (a *AccountApiService) GetAccountDetail(ctx context.Context) (AccountDetail, *http.Response, error) {
+func (a *AccountApiService) GetAccountDetail(ctx context.Context) (model.AccountDetail, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  AccountDetail
+		localVarReturnValue  model.AccountDetail
 	)
 
 	// create path and map variables
@@ -129,14 +131,14 @@ Retrieve the list of STP groups created by the main account user only
 
 @return []StpGroup
 */
-func (a *AccountApiService) ListSTPGroups(ctx context.Context, localVarOptionals *ListSTPGroupsOpts) ([]StpGroup, *http.Response, error) {
+func (a *AccountApiService) ListSTPGroups(ctx context.Context, localVarOptionals *ListSTPGroupsOpts) ([]model.StpGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []StpGroup
+		localVarReturnValue  []model.StpGroup
 	)
 
 	// create path and map variables
@@ -224,14 +226,14 @@ Only the main account is allowed to create a new STP user group
 
 @return StpGroup
 */
-func (a *AccountApiService) CreateSTPGroup(ctx context.Context, stpGroup StpGroup) (StpGroup, *http.Response, error) {
+func (a *AccountApiService) CreateSTPGroup(ctx context.Context, stpGroup model.StpGroup) (model.StpGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  StpGroup
+		localVarReturnValue  model.StpGroup
 	)
 
 	// create path and map variables
@@ -318,14 +320,14 @@ Only the main account that created this STP group is allowed to list the user ID
 
 @return []StpGroupUser
 */
-func (a *AccountApiService) ListSTPGroupsUsers(ctx context.Context, stpId int64) ([]StpGroupUser, *http.Response, error) {
+func (a *AccountApiService) ListSTPGroupsUsers(ctx context.Context, stpId int64) ([]model.StpGroupUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []StpGroupUser
+		localVarReturnValue  []model.StpGroupUser
 	)
 
 	// create path and map variables
@@ -413,14 +415,14 @@ AddSTPGroupUsers Add users to the STP group
 
 @return []StpGroupUser
 */
-func (a *AccountApiService) AddSTPGroupUsers(ctx context.Context, stpId int64, requestBody []int64) ([]StpGroupUser, *http.Response, error) {
+func (a *AccountApiService) AddSTPGroupUsers(ctx context.Context, stpId int64, requestBody []int64) ([]model.StpGroupUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []StpGroupUser
+		localVarReturnValue  []model.StpGroupUser
 	)
 
 	// create path and map variables
@@ -510,14 +512,14 @@ DeleteSTPGroupUsers Delete the user in the STP group
 
 @return []StpGroupUser
 */
-func (a *AccountApiService) DeleteSTPGroupUsers(ctx context.Context, stpId int64, userId int64) ([]StpGroupUser, *http.Response, error) {
+func (a *AccountApiService) DeleteSTPGroupUsers(ctx context.Context, stpId int64, userId int64) ([]model.StpGroupUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []StpGroupUser
+		localVarReturnValue  []model.StpGroupUser
 	)
 
 	// create path and map variables

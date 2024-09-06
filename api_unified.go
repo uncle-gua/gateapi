@@ -15,6 +15,8 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -39,14 +41,14 @@ The assets of each currency in the account will be adjusted according to their l
 
 @return UnifiedAccount
 */
-func (a *UnifiedApiService) ListUnifiedAccounts(ctx context.Context, localVarOptionals *ListUnifiedAccountsOpts) (UnifiedAccount, *http.Response, error) {
+func (a *UnifiedApiService) ListUnifiedAccounts(ctx context.Context, localVarOptionals *ListUnifiedAccountsOpts) (model.UnifiedAccount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UnifiedAccount
+		localVarReturnValue  model.UnifiedAccount
 	)
 
 	// create path and map variables
@@ -224,7 +226,7 @@ SetUnifiedAccountMode Set unified account mode (deprecated)
 
 @return map[string]bool
 */
-func (a *UnifiedApiService) SetUnifiedAccountMode(ctx context.Context, unifiedMode UnifiedMode) (map[string]bool, *http.Response, error) {
+func (a *UnifiedApiService) SetUnifiedAccountMode(ctx context.Context, unifiedMode model.UnifiedMode) (map[string]bool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -317,14 +319,14 @@ GetUnifiedBorrowable Query about the maximum borrowing for the unified account
 
 @return UnifiedBorrowable
 */
-func (a *UnifiedApiService) GetUnifiedBorrowable(ctx context.Context, currency string) (UnifiedBorrowable, *http.Response, error) {
+func (a *UnifiedApiService) GetUnifiedBorrowable(ctx context.Context, currency string) (model.UnifiedBorrowable, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UnifiedBorrowable
+		localVarReturnValue  model.UnifiedBorrowable
 	)
 
 	// create path and map variables
@@ -409,14 +411,14 @@ GetUnifiedTransferable Query about the maximum transferable for the unified acco
 
 @return UnifiedTransferable
 */
-func (a *UnifiedApiService) GetUnifiedTransferable(ctx context.Context, currency string) (UnifiedTransferable, *http.Response, error) {
+func (a *UnifiedApiService) GetUnifiedTransferable(ctx context.Context, currency string) (model.UnifiedTransferable, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UnifiedTransferable
+		localVarReturnValue  model.UnifiedTransferable
 	)
 
 	// create path and map variables
@@ -513,14 +515,14 @@ ListUnifiedLoans List loans
 
 @return []UniLoan
 */
-func (a *UnifiedApiService) ListUnifiedLoans(ctx context.Context, localVarOptionals *ListUnifiedLoansOpts) ([]UniLoan, *http.Response, error) {
+func (a *UnifiedApiService) ListUnifiedLoans(ctx context.Context, localVarOptionals *ListUnifiedLoansOpts) ([]model.UniLoan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniLoan
+		localVarReturnValue  []model.UniLoan
 	)
 
 	// create path and map variables
@@ -615,7 +617,7 @@ When borrowing, it is essential to ensure that the borrowed amount is not below 
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param unifiedLoan
 */
-func (a *UnifiedApiService) CreateUnifiedLoan(ctx context.Context, unifiedLoan UnifiedLoan) (*http.Response, error) {
+func (a *UnifiedApiService) CreateUnifiedLoan(ctx context.Context, unifiedLoan model.UnifiedLoan) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -710,14 +712,14 @@ ListUnifiedLoanRecords Get load records
 
 @return []UnifiedLoanRecord
 */
-func (a *UnifiedApiService) ListUnifiedLoanRecords(ctx context.Context, localVarOptionals *ListUnifiedLoanRecordsOpts) ([]UnifiedLoanRecord, *http.Response, error) {
+func (a *UnifiedApiService) ListUnifiedLoanRecords(ctx context.Context, localVarOptionals *ListUnifiedLoanRecordsOpts) ([]model.UnifiedLoanRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UnifiedLoanRecord
+		localVarReturnValue  []model.UnifiedLoanRecord
 	)
 
 	// create path and map variables
@@ -825,14 +827,14 @@ ListUnifiedLoanInterestRecords List interest records
 
 @return []UniLoanInterestRecord
 */
-func (a *UnifiedApiService) ListUnifiedLoanInterestRecords(ctx context.Context, localVarOptionals *ListUnifiedLoanInterestRecordsOpts) ([]UniLoanInterestRecord, *http.Response, error) {
+func (a *UnifiedApiService) ListUnifiedLoanInterestRecords(ctx context.Context, localVarOptionals *ListUnifiedLoanInterestRecordsOpts) ([]model.UniLoanInterestRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniLoanInterestRecord
+		localVarReturnValue  []model.UniLoanInterestRecord
 	)
 
 	// create path and map variables
@@ -927,14 +929,14 @@ GetUnifiedRiskUnits Retrieve user risk unit details, only valid in portfolio mar
 
 @return UnifiedRiskUnits
 */
-func (a *UnifiedApiService) GetUnifiedRiskUnits(ctx context.Context) (UnifiedRiskUnits, *http.Response, error) {
+func (a *UnifiedApiService) GetUnifiedRiskUnits(ctx context.Context) (model.UnifiedRiskUnits, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UnifiedRiskUnits
+		localVarReturnValue  model.UnifiedRiskUnits
 	)
 
 	// create path and map variables
@@ -1018,14 +1020,14 @@ Unified account mode： - &#x60;classic&#x60;: Classic account mode - &#x60;mult
 
 @return UnifiedModeSet
 */
-func (a *UnifiedApiService) GetUnifiedMode(ctx context.Context) (UnifiedModeSet, *http.Response, error) {
+func (a *UnifiedApiService) GetUnifiedMode(ctx context.Context) (model.UnifiedModeSet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UnifiedModeSet
+		localVarReturnValue  model.UnifiedModeSet
 	)
 
 	// create path and map variables
@@ -1108,7 +1110,7 @@ Switching between different account modes requires only passing the parameters n
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param unifiedModeSet
 */
-func (a *UnifiedApiService) SetUnifiedMode(ctx context.Context, unifiedModeSet UnifiedModeSet) (*http.Response, error) {
+func (a *UnifiedApiService) SetUnifiedMode(ctx context.Context, unifiedModeSet model.UnifiedModeSet) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1299,14 +1301,14 @@ ListCurrencyDiscountTiers list currency discount tiers
 
 @return []UnifiedDiscount
 */
-func (a *UnifiedApiService) ListCurrencyDiscountTiers(ctx context.Context) ([]UnifiedDiscount, *http.Response, error) {
+func (a *UnifiedApiService) ListCurrencyDiscountTiers(ctx context.Context) ([]model.UnifiedDiscount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UnifiedDiscount
+		localVarReturnValue  []model.UnifiedDiscount
 	)
 
 	// create path and map variables
@@ -1385,14 +1387,14 @@ CalculatePortfolioMargin portfolio margin calculator
 
 @return UnifiedPortfolioOutput
 */
-func (a *UnifiedApiService) CalculatePortfolioMargin(ctx context.Context, unifiedPortfolioInput UnifiedPortfolioInput) (UnifiedPortfolioOutput, *http.Response, error) {
+func (a *UnifiedApiService) CalculatePortfolioMargin(ctx context.Context, unifiedPortfolioInput model.UnifiedPortfolioInput) (model.UnifiedPortfolioOutput, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UnifiedPortfolioOutput
+		localVarReturnValue  model.UnifiedPortfolioOutput
 	)
 
 	// create path and map variables

@@ -15,6 +15,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -32,14 +34,14 @@ Currency has two forms:  1. Only currency name, e.g., BTC, USDT 2. &#x60;&lt;cur
 
 @return []Currency
 */
-func (a *SpotApiService) ListCurrencies(ctx context.Context) ([]Currency, *http.Response, error) {
+func (a *SpotApiService) ListCurrencies(ctx context.Context) ([]model.Currency, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Currency
+		localVarReturnValue  []model.Currency
 	)
 
 	// create path and map variables
@@ -117,14 +119,14 @@ GetCurrency Get details of a specific currency
 
 @return Currency
 */
-func (a *SpotApiService) GetCurrency(ctx context.Context, currency string) (Currency, *http.Response, error) {
+func (a *SpotApiService) GetCurrency(ctx context.Context, currency string) (model.Currency, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Currency
+		localVarReturnValue  model.Currency
 	)
 
 	// create path and map variables
@@ -203,14 +205,14 @@ ListCurrencyPairs List all currency pairs supported
 
 @return []CurrencyPair
 */
-func (a *SpotApiService) ListCurrencyPairs(ctx context.Context) ([]CurrencyPair, *http.Response, error) {
+func (a *SpotApiService) ListCurrencyPairs(ctx context.Context) ([]model.CurrencyPair, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []CurrencyPair
+		localVarReturnValue  []model.CurrencyPair
 	)
 
 	// create path and map variables
@@ -288,14 +290,14 @@ GetCurrencyPair Get details of a specifc currency pair
 
 @return CurrencyPair
 */
-func (a *SpotApiService) GetCurrencyPair(ctx context.Context, currencyPair string) (CurrencyPair, *http.Response, error) {
+func (a *SpotApiService) GetCurrencyPair(ctx context.Context, currencyPair string) (model.CurrencyPair, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CurrencyPair
+		localVarReturnValue  model.CurrencyPair
 	)
 
 	// create path and map variables
@@ -384,14 +386,14 @@ Return only related data if &#x60;currency_pair&#x60; is specified; otherwise re
 
 @return []Ticker
 */
-func (a *SpotApiService) ListTickers(ctx context.Context, localVarOptionals *ListTickersOpts) ([]Ticker, *http.Response, error) {
+func (a *SpotApiService) ListTickers(ctx context.Context, localVarOptionals *ListTickersOpts) ([]model.Ticker, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Ticker
+		localVarReturnValue  []model.Ticker
 	)
 
 	// create path and map variables
@@ -487,14 +489,14 @@ Order book will be sorted by price from high to low on bids; low to high on asks
 
 @return OrderBook
 */
-func (a *SpotApiService) ListOrderBook(ctx context.Context, currencyPair string, localVarOptionals *ListOrderBookOpts) (OrderBook, *http.Response, error) {
+func (a *SpotApiService) ListOrderBook(ctx context.Context, currencyPair string, localVarOptionals *ListOrderBookOpts) (model.OrderBook, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OrderBook
+		localVarReturnValue  model.OrderBook
 	)
 
 	// create path and map variables
@@ -600,14 +602,14 @@ You can use &#x60;from&#x60; and &#x60;to&#x60; to query by time range, or use &
 
 @return []Trade
 */
-func (a *SpotApiService) ListTrades(ctx context.Context, currencyPair string, localVarOptionals *ListTradesOpts) ([]Trade, *http.Response, error) {
+func (a *SpotApiService) ListTrades(ctx context.Context, currencyPair string, localVarOptionals *ListTradesOpts) ([]model.Trade, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Trade
+		localVarReturnValue  []model.Trade
 	)
 
 	// create path and map variables
@@ -823,14 +825,14 @@ This API is deprecated in favour of new fee retrieving API &#x60;/wallet/fee&#x6
 
 @return SpotFee
 */
-func (a *SpotApiService) GetFee(ctx context.Context, localVarOptionals *GetFeeOpts) (SpotFee, *http.Response, error) {
+func (a *SpotApiService) GetFee(ctx context.Context, localVarOptionals *GetFeeOpts) (model.SpotFee, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SpotFee
+		localVarReturnValue  model.SpotFee
 	)
 
 	// create path and map variables
@@ -917,14 +919,14 @@ GetBatchSpotFee Query a batch of user trading fee rates
 
 @return map[string]SpotFee
 */
-func (a *SpotApiService) GetBatchSpotFee(ctx context.Context, currencyPairs string) (map[string]SpotFee, *http.Response, error) {
+func (a *SpotApiService) GetBatchSpotFee(ctx context.Context, currencyPairs string) (map[string]model.SpotFee, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  map[string]SpotFee
+		localVarReturnValue  map[string]model.SpotFee
 	)
 
 	// create path and map variables
@@ -1015,14 +1017,14 @@ ListSpotAccounts List spot accounts
 
 @return []SpotAccount
 */
-func (a *SpotApiService) ListSpotAccounts(ctx context.Context, localVarOptionals *ListSpotAccountsOpts) ([]SpotAccount, *http.Response, error) {
+func (a *SpotApiService) ListSpotAccounts(ctx context.Context, localVarOptionals *ListSpotAccountsOpts) ([]model.SpotAccount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SpotAccount
+		localVarReturnValue  []model.SpotAccount
 	)
 
 	// create path and map variables
@@ -1126,14 +1128,14 @@ Record time range cannot exceed 30 days
 
 @return []SpotAccountBook
 */
-func (a *SpotApiService) ListSpotAccountBook(ctx context.Context, localVarOptionals *ListSpotAccountBookOpts) ([]SpotAccountBook, *http.Response, error) {
+func (a *SpotApiService) ListSpotAccountBook(ctx context.Context, localVarOptionals *ListSpotAccountBookOpts) ([]model.SpotAccountBook, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SpotAccountBook
+		localVarReturnValue  []model.SpotAccountBook
 	)
 
 	// create path and map variables
@@ -1236,14 +1238,14 @@ Batch orders requirements:  1. custom order field &#x60;text&#x60; is required 2
 
 @return []BatchOrder
 */
-func (a *SpotApiService) CreateBatchOrders(ctx context.Context, order []Order) ([]BatchOrder, *http.Response, error) {
+func (a *SpotApiService) CreateBatchOrders(ctx context.Context, order []model.Order) ([]model.BatchOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []BatchOrder
+		localVarReturnValue  []model.BatchOrder
 	)
 
 	// create path and map variables
@@ -1340,14 +1342,14 @@ List open orders in all currency pairs.  Note that pagination parameters affect 
 
 @return []OpenOrders
 */
-func (a *SpotApiService) ListAllOpenOrders(ctx context.Context, localVarOptionals *ListAllOpenOrdersOpts) ([]OpenOrders, *http.Response, error) {
+func (a *SpotApiService) ListAllOpenOrders(ctx context.Context, localVarOptionals *ListAllOpenOrdersOpts) ([]model.OpenOrders, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OpenOrders
+		localVarReturnValue  []model.OpenOrders
 	)
 
 	// create path and map variables
@@ -1441,14 +1443,14 @@ Currently, only cross-margin accounts are supported to close position when cross
 
 @return Order
 */
-func (a *SpotApiService) CreateCrossLiquidateOrder(ctx context.Context, liquidateOrder LiquidateOrder) (Order, *http.Response, error) {
+func (a *SpotApiService) CreateCrossLiquidateOrder(ctx context.Context, liquidateOrder model.LiquidateOrder) (model.Order, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Order
+		localVarReturnValue  model.Order
 	)
 
 	// create path and map variables
@@ -1553,14 +1555,14 @@ Spot, portfolio and margin orders are returned by default. If cross margin order
 
 @return []Order
 */
-func (a *SpotApiService) ListOrders(ctx context.Context, currencyPair string, status string, localVarOptionals *ListOrdersOpts) ([]Order, *http.Response, error) {
+func (a *SpotApiService) ListOrders(ctx context.Context, currencyPair string, status string, localVarOptionals *ListOrdersOpts) ([]model.Order, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Order
+		localVarReturnValue  []model.Order
 	)
 
 	// create path and map variables
@@ -1665,14 +1667,14 @@ You can place orders with spot, portfolio, margin or cross margin account throug
 
 @return Order
 */
-func (a *SpotApiService) CreateOrder(ctx context.Context, order Order) (Order, *http.Response, error) {
+func (a *SpotApiService) CreateOrder(ctx context.Context, order model.Order) (model.Order, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Order
+		localVarReturnValue  model.Order
 	)
 
 	// create path and map variables
@@ -1770,14 +1772,14 @@ If &#x60;account&#x60; is not set, all open orders, including spot, portfolio, m
 
 @return []Order
 */
-func (a *SpotApiService) CancelOrders(ctx context.Context, currencyPair string, localVarOptionals *CancelOrdersOpts) ([]Order, *http.Response, error) {
+func (a *SpotApiService) CancelOrders(ctx context.Context, currencyPair string, localVarOptionals *CancelOrdersOpts) ([]model.Order, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Order
+		localVarReturnValue  []model.Order
 	)
 
 	// create path and map variables
@@ -1872,14 +1874,14 @@ Multiple currency pairs can be specified, but maximum 20 orders are allowed per 
 
 @return []CancelOrderResult
 */
-func (a *SpotApiService) CancelBatchOrders(ctx context.Context, cancelBatchOrder []CancelBatchOrder) ([]CancelOrderResult, *http.Response, error) {
+func (a *SpotApiService) CancelBatchOrders(ctx context.Context, cancelBatchOrder []model.CancelBatchOrder) ([]model.CancelOrderResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []CancelOrderResult
+		localVarReturnValue  []model.CancelOrderResult
 	)
 
 	// create path and map variables
@@ -1974,14 +1976,14 @@ Spot, portfolio and margin orders are queried by default. If cross margin orders
 
 @return Order
 */
-func (a *SpotApiService) GetOrder(ctx context.Context, orderId string, currencyPair string, localVarOptionals *GetOrderOpts) (Order, *http.Response, error) {
+func (a *SpotApiService) GetOrder(ctx context.Context, orderId string, currencyPair string, localVarOptionals *GetOrderOpts) (model.Order, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Order
+		localVarReturnValue  model.Order
 	)
 
 	// create path and map variables
@@ -2082,14 +2084,14 @@ Spot,portfolio and margin orders are cancelled by default. If trying to cancel c
 
 @return Order
 */
-func (a *SpotApiService) CancelOrder(ctx context.Context, orderId string, currencyPair string, localVarOptionals *CancelOrderOpts) (Order, *http.Response, error) {
+func (a *SpotApiService) CancelOrder(ctx context.Context, orderId string, currencyPair string, localVarOptionals *CancelOrderOpts) (model.Order, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Order
+		localVarReturnValue  model.Order
 	)
 
 	// create path and map variables
@@ -2192,14 +2194,14 @@ By default, the orders of spot, portfolio and margin account are updated.  If yo
 
 @return Order
 */
-func (a *SpotApiService) AmendOrder(ctx context.Context, orderId string, currencyPair string, orderPatch OrderPatch, localVarOptionals *AmendOrderOpts) (Order, *http.Response, error) {
+func (a *SpotApiService) AmendOrder(ctx context.Context, orderId string, currencyPair string, orderPatch model.OrderPatch, localVarOptionals *AmendOrderOpts) (model.Order, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Order
+		localVarReturnValue  model.Order
 	)
 
 	// create path and map variables
@@ -2310,14 +2312,14 @@ Spot,portfolio and margin trades are queried by default. If cross margin trades 
 
 @return []Trade
 */
-func (a *SpotApiService) ListMyTrades(ctx context.Context, localVarOptionals *ListMyTradesOpts) ([]Trade, *http.Response, error) {
+func (a *SpotApiService) ListMyTrades(ctx context.Context, localVarOptionals *ListMyTradesOpts) ([]model.Trade, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Trade
+		localVarReturnValue  []model.Trade
 	)
 
 	// create path and map variables
@@ -2421,14 +2423,14 @@ GetSystemTime Get server current time
 
 @return SystemTime
 */
-func (a *SpotApiService) GetSystemTime(ctx context.Context) (SystemTime, *http.Response, error) {
+func (a *SpotApiService) GetSystemTime(ctx context.Context) (model.SystemTime, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SystemTime
+		localVarReturnValue  model.SystemTime
 	)
 
 	// create path and map variables
@@ -2507,14 +2509,14 @@ When the timeout set by the user is reached, if there is no cancel or set a new 
 
 @return TriggerTime
 */
-func (a *SpotApiService) CountdownCancelAllSpot(ctx context.Context, countdownCancelAllSpotTask CountdownCancelAllSpotTask) (TriggerTime, *http.Response, error) {
+func (a *SpotApiService) CountdownCancelAllSpot(ctx context.Context, countdownCancelAllSpotTask model.CountdownCancelAllSpotTask) (model.TriggerTime, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  TriggerTime
+		localVarReturnValue  model.TriggerTime
 	)
 
 	// create path and map variables
@@ -2601,14 +2603,14 @@ Default modification of orders for spot, portfolio, and margin accounts. To modi
 
 @return []BatchOrder
 */
-func (a *SpotApiService) AmendBatchOrders(ctx context.Context, batchAmendItem []BatchAmendItem) ([]BatchOrder, *http.Response, error) {
+func (a *SpotApiService) AmendBatchOrders(ctx context.Context, batchAmendItem []model.BatchAmendItem) ([]model.BatchOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []BatchOrder
+		localVarReturnValue  []model.BatchOrder
 	)
 
 	// create path and map variables
@@ -2707,14 +2709,14 @@ ListSpotPriceTriggeredOrders Retrieve running auto order list
 
 @return []SpotPriceTriggeredOrder
 */
-func (a *SpotApiService) ListSpotPriceTriggeredOrders(ctx context.Context, status string, localVarOptionals *ListSpotPriceTriggeredOrdersOpts) ([]SpotPriceTriggeredOrder, *http.Response, error) {
+func (a *SpotApiService) ListSpotPriceTriggeredOrders(ctx context.Context, status string, localVarOptionals *ListSpotPriceTriggeredOrdersOpts) ([]model.SpotPriceTriggeredOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SpotPriceTriggeredOrder
+		localVarReturnValue  []model.SpotPriceTriggeredOrder
 	)
 
 	// create path and map variables
@@ -2811,14 +2813,14 @@ CreateSpotPriceTriggeredOrder Create a price-triggered order
 
 @return TriggerOrderResponse
 */
-func (a *SpotApiService) CreateSpotPriceTriggeredOrder(ctx context.Context, spotPriceTriggeredOrder SpotPriceTriggeredOrder) (TriggerOrderResponse, *http.Response, error) {
+func (a *SpotApiService) CreateSpotPriceTriggeredOrder(ctx context.Context, spotPriceTriggeredOrder model.SpotPriceTriggeredOrder) (model.TriggerOrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  TriggerOrderResponse
+		localVarReturnValue  model.TriggerOrderResponse
 	)
 
 	// create path and map variables
@@ -2912,14 +2914,14 @@ CancelSpotPriceTriggeredOrderList Cancel all open orders
 
 @return []SpotPriceTriggeredOrder
 */
-func (a *SpotApiService) CancelSpotPriceTriggeredOrderList(ctx context.Context, localVarOptionals *CancelSpotPriceTriggeredOrderListOpts) ([]SpotPriceTriggeredOrder, *http.Response, error) {
+func (a *SpotApiService) CancelSpotPriceTriggeredOrderList(ctx context.Context, localVarOptionals *CancelSpotPriceTriggeredOrderListOpts) ([]model.SpotPriceTriggeredOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SpotPriceTriggeredOrder
+		localVarReturnValue  []model.SpotPriceTriggeredOrder
 	)
 
 	// create path and map variables
@@ -3009,14 +3011,14 @@ GetSpotPriceTriggeredOrder Get a price-triggered order
 
 @return SpotPriceTriggeredOrder
 */
-func (a *SpotApiService) GetSpotPriceTriggeredOrder(ctx context.Context, orderId string) (SpotPriceTriggeredOrder, *http.Response, error) {
+func (a *SpotApiService) GetSpotPriceTriggeredOrder(ctx context.Context, orderId string) (model.SpotPriceTriggeredOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SpotPriceTriggeredOrder
+		localVarReturnValue  model.SpotPriceTriggeredOrder
 	)
 
 	// create path and map variables
@@ -3102,14 +3104,14 @@ CancelSpotPriceTriggeredOrder cancel a price-triggered order
 
 @return SpotPriceTriggeredOrder
 */
-func (a *SpotApiService) CancelSpotPriceTriggeredOrder(ctx context.Context, orderId string) (SpotPriceTriggeredOrder, *http.Response, error) {
+func (a *SpotApiService) CancelSpotPriceTriggeredOrder(ctx context.Context, orderId string) (model.SpotPriceTriggeredOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SpotPriceTriggeredOrder
+		localVarReturnValue  model.SpotPriceTriggeredOrder
 	)
 
 	// create path and map variables

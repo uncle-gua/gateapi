@@ -14,6 +14,8 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -48,14 +50,14 @@ Record time range cannot exceed 30 days
 
 @return []AgencyTransactionHistory
 */
-func (a *RebateApiService) AgencyTransactionHistory(ctx context.Context, localVarOptionals *AgencyTransactionHistoryOpts) ([]AgencyTransactionHistory, *http.Response, error) {
+func (a *RebateApiService) AgencyTransactionHistory(ctx context.Context, localVarOptionals *AgencyTransactionHistoryOpts) ([]model.AgencyTransactionHistory, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []AgencyTransactionHistory
+		localVarReturnValue  []model.AgencyTransactionHistory
 	)
 
 	// create path and map variables
@@ -174,14 +176,14 @@ Record time range cannot exceed 30 days
 
 @return []AgencyCommissionHistory
 */
-func (a *RebateApiService) AgencyCommissionsHistory(ctx context.Context, localVarOptionals *AgencyCommissionsHistoryOpts) ([]AgencyCommissionHistory, *http.Response, error) {
+func (a *RebateApiService) AgencyCommissionsHistory(ctx context.Context, localVarOptionals *AgencyCommissionsHistoryOpts) ([]model.AgencyCommissionHistory, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []AgencyCommissionHistory
+		localVarReturnValue  []model.AgencyCommissionHistory
 	)
 
 	// create path and map variables
@@ -294,14 +296,14 @@ Record time range cannot exceed 30 days
 
 @return []BrokerCommission
 */
-func (a *RebateApiService) RebateBrokerCommissionHistory(ctx context.Context, localVarOptionals *RebateBrokerCommissionHistoryOpts) ([]BrokerCommission, *http.Response, error) {
+func (a *RebateApiService) RebateBrokerCommissionHistory(ctx context.Context, localVarOptionals *RebateBrokerCommissionHistoryOpts) ([]model.BrokerCommission, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []BrokerCommission
+		localVarReturnValue  []model.BrokerCommission
 	)
 
 	// create path and map variables
@@ -405,14 +407,14 @@ Record time range cannot exceed 30 days
 
 @return []BrokerTransaction
 */
-func (a *RebateApiService) RebateBrokerTransactionHistory(ctx context.Context, localVarOptionals *RebateBrokerTransactionHistoryOpts) ([]BrokerTransaction, *http.Response, error) {
+func (a *RebateApiService) RebateBrokerTransactionHistory(ctx context.Context, localVarOptionals *RebateBrokerTransactionHistoryOpts) ([]model.BrokerTransaction, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []BrokerTransaction
+		localVarReturnValue  []model.BrokerTransaction
 	)
 
 	// create path and map variables
@@ -504,14 +506,14 @@ RebateUserInfo User retrieves rebate information
 
 @return []RebateUserInfo
 */
-func (a *RebateApiService) RebateUserInfo(ctx context.Context) ([]RebateUserInfo, *http.Response, error) {
+func (a *RebateApiService) RebateUserInfo(ctx context.Context) ([]model.RebateUserInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []RebateUserInfo
+		localVarReturnValue  []model.RebateUserInfo
 	)
 
 	// create path and map variables

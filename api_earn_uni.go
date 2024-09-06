@@ -15,6 +15,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -31,14 +33,14 @@ ListUniCurrencies List currencies for lending
 
 @return []UniCurrency
 */
-func (a *EarnUniApiService) ListUniCurrencies(ctx context.Context) ([]UniCurrency, *http.Response, error) {
+func (a *EarnUniApiService) ListUniCurrencies(ctx context.Context) ([]model.UniCurrency, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniCurrency
+		localVarReturnValue  []model.UniCurrency
 	)
 
 	// create path and map variables
@@ -116,14 +118,14 @@ GetUniCurrency Get currency detail for lending
 
 @return UniCurrency
 */
-func (a *EarnUniApiService) GetUniCurrency(ctx context.Context, currency string) (UniCurrency, *http.Response, error) {
+func (a *EarnUniApiService) GetUniCurrency(ctx context.Context, currency string) (model.UniCurrency, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UniCurrency
+		localVarReturnValue  model.UniCurrency
 	)
 
 	// create path and map variables
@@ -213,14 +215,14 @@ ListUserUniLends List user's lending orders
 
 @return []UniLend
 */
-func (a *EarnUniApiService) ListUserUniLends(ctx context.Context, localVarOptionals *ListUserUniLendsOpts) ([]UniLend, *http.Response, error) {
+func (a *EarnUniApiService) ListUserUniLends(ctx context.Context, localVarOptionals *ListUserUniLendsOpts) ([]model.UniLend, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniLend
+		localVarReturnValue  []model.UniLend
 	)
 
 	// create path and map variables
@@ -312,7 +314,7 @@ CreateUniLend Lend or redeem
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param createUniLend
 */
-func (a *EarnUniApiService) CreateUniLend(ctx context.Context, createUniLend CreateUniLend) (*http.Response, error) {
+func (a *EarnUniApiService) CreateUniLend(ctx context.Context, createUniLend model.CreateUniLend) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -394,7 +396,7 @@ Currently only supports amending the minimum interest rate (hour)
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param patchUniLend
 */
-func (a *EarnUniApiService) ChangeUniLend(ctx context.Context, patchUniLend PatchUniLend) (*http.Response, error) {
+func (a *EarnUniApiService) ChangeUniLend(ctx context.Context, patchUniLend model.PatchUniLend) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -493,14 +495,14 @@ ListUniLendRecords List records of lending
 
 @return []UniLendRecord
 */
-func (a *EarnUniApiService) ListUniLendRecords(ctx context.Context, localVarOptionals *ListUniLendRecordsOpts) ([]UniLendRecord, *http.Response, error) {
+func (a *EarnUniApiService) ListUniLendRecords(ctx context.Context, localVarOptionals *ListUniLendRecordsOpts) ([]model.UniLendRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniLendRecord
+		localVarReturnValue  []model.UniLendRecord
 	)
 
 	// create path and map variables
@@ -602,14 +604,14 @@ GetUniInterest Get the user's total interest income of specified currency
 
 @return UniLendInterest
 */
-func (a *EarnUniApiService) GetUniInterest(ctx context.Context, currency string) (UniLendInterest, *http.Response, error) {
+func (a *EarnUniApiService) GetUniInterest(ctx context.Context, currency string) (model.UniLendInterest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UniLendInterest
+		localVarReturnValue  model.UniLendInterest
 	)
 
 	// create path and map variables
@@ -709,14 +711,14 @@ ListUniInterestRecords List interest records
 
 @return []UniInterestRecord
 */
-func (a *EarnUniApiService) ListUniInterestRecords(ctx context.Context, localVarOptionals *ListUniInterestRecordsOpts) ([]UniInterestRecord, *http.Response, error) {
+func (a *EarnUniApiService) ListUniInterestRecords(ctx context.Context, localVarOptionals *ListUniInterestRecordsOpts) ([]model.UniInterestRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniInterestRecord
+		localVarReturnValue  []model.UniInterestRecord
 	)
 
 	// create path and map variables
@@ -813,7 +815,7 @@ SwitchInterestReinvest Set interest reinvestment toggle
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param uniInterestMode
 */
-func (a *EarnUniApiService) SwitchInterestReinvest(ctx context.Context, uniInterestMode UniInterestMode) (*http.Response, error) {
+func (a *EarnUniApiService) SwitchInterestReinvest(ctx context.Context, uniInterestMode model.UniInterestMode) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -896,14 +898,14 @@ GetUniInterestStatus query currency interest compounding status
 
 @return UniCurrencyInterest
 */
-func (a *EarnUniApiService) GetUniInterestStatus(ctx context.Context, currency string) (UniCurrencyInterest, *http.Response, error) {
+func (a *EarnUniApiService) GetUniInterestStatus(ctx context.Context, currency string) (model.UniCurrencyInterest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UniCurrencyInterest
+		localVarReturnValue  model.UniCurrencyInterest
 	)
 
 	// create path and map variables

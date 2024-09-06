@@ -15,6 +15,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -41,14 +43,14 @@ ListFuturesContracts List all futures contracts
 
 @return []Contract
 */
-func (a *FuturesApiService) ListFuturesContracts(ctx context.Context, settle string, localVarOptionals *ListFuturesContractsOpts) ([]Contract, *http.Response, error) {
+func (a *FuturesApiService) ListFuturesContracts(ctx context.Context, settle string, localVarOptionals *ListFuturesContractsOpts) ([]model.Contract, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Contract
+		localVarReturnValue  []model.Contract
 	)
 
 	// create path and map variables
@@ -135,14 +137,14 @@ GetFuturesContract Get a single contract
 
 @return Contract
 */
-func (a *FuturesApiService) GetFuturesContract(ctx context.Context, settle string, contract string) (Contract, *http.Response, error) {
+func (a *FuturesApiService) GetFuturesContract(ctx context.Context, settle string, contract string) (model.Contract, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Contract
+		localVarReturnValue  model.Contract
 	)
 
 	// create path and map variables
@@ -237,14 +239,14 @@ Bids will be sorted by price from high to low, while asks sorted reversely
 
 @return FuturesOrderBook
 */
-func (a *FuturesApiService) ListFuturesOrderBook(ctx context.Context, settle string, contract string, localVarOptionals *ListFuturesOrderBookOpts) (FuturesOrderBook, *http.Response, error) {
+func (a *FuturesApiService) ListFuturesOrderBook(ctx context.Context, settle string, contract string, localVarOptionals *ListFuturesOrderBookOpts) (model.FuturesOrderBook, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FuturesOrderBook
+		localVarReturnValue  model.FuturesOrderBook
 	)
 
 	// create path and map variables
@@ -350,14 +352,14 @@ ListFuturesTrades Futures trading history
 
 @return []FuturesTrade
 */
-func (a *FuturesApiService) ListFuturesTrades(ctx context.Context, settle string, contract string, localVarOptionals *ListFuturesTradesOpts) ([]FuturesTrade, *http.Response, error) {
+func (a *FuturesApiService) ListFuturesTrades(ctx context.Context, settle string, contract string, localVarOptionals *ListFuturesTradesOpts) ([]model.FuturesTrade, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesTrade
+		localVarReturnValue  []model.FuturesTrade
 	)
 
 	// create path and map variables
@@ -468,14 +470,14 @@ Return specified contract candlesticks. If prefix &#x60;contract&#x60; with &#x6
 
 @return []FuturesCandlestick
 */
-func (a *FuturesApiService) ListFuturesCandlesticks(ctx context.Context, settle string, contract string, localVarOptionals *ListFuturesCandlesticksOpts) ([]FuturesCandlestick, *http.Response, error) {
+func (a *FuturesApiService) ListFuturesCandlesticks(ctx context.Context, settle string, contract string, localVarOptionals *ListFuturesCandlesticksOpts) ([]model.FuturesCandlestick, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesCandlestick
+		localVarReturnValue  []model.FuturesCandlestick
 	)
 
 	// create path and map variables
@@ -583,14 +585,14 @@ Maximum of 1000 points can be returned in a query. Be sure not to exceed the lim
 
 @return []FuturesPremiumIndex
 */
-func (a *FuturesApiService) ListFuturesPremiumIndex(ctx context.Context, settle string, contract string, localVarOptionals *ListFuturesPremiumIndexOpts) ([]FuturesPremiumIndex, *http.Response, error) {
+func (a *FuturesApiService) ListFuturesPremiumIndex(ctx context.Context, settle string, contract string, localVarOptionals *ListFuturesPremiumIndexOpts) ([]model.FuturesPremiumIndex, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesPremiumIndex
+		localVarReturnValue  []model.FuturesPremiumIndex
 	)
 
 	// create path and map variables
@@ -690,14 +692,14 @@ ListFuturesTickers List futures tickers
 
 @return []FuturesTicker
 */
-func (a *FuturesApiService) ListFuturesTickers(ctx context.Context, settle string, localVarOptionals *ListFuturesTickersOpts) ([]FuturesTicker, *http.Response, error) {
+func (a *FuturesApiService) ListFuturesTickers(ctx context.Context, settle string, localVarOptionals *ListFuturesTickersOpts) ([]model.FuturesTicker, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesTicker
+		localVarReturnValue  []model.FuturesTicker
 	)
 
 	// create path and map variables
@@ -788,14 +790,14 @@ ListFuturesFundingRateHistory Funding rate history
 
 @return []FundingRateRecord
 */
-func (a *FuturesApiService) ListFuturesFundingRateHistory(ctx context.Context, settle string, contract string, localVarOptionals *ListFuturesFundingRateHistoryOpts) ([]FundingRateRecord, *http.Response, error) {
+func (a *FuturesApiService) ListFuturesFundingRateHistory(ctx context.Context, settle string, contract string, localVarOptionals *ListFuturesFundingRateHistoryOpts) ([]model.FundingRateRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FundingRateRecord
+		localVarReturnValue  []model.FundingRateRecord
 	)
 
 	// create path and map variables
@@ -886,14 +888,14 @@ ListFuturesInsuranceLedger Futures insurance balance history
 
 @return []InsuranceRecord
 */
-func (a *FuturesApiService) ListFuturesInsuranceLedger(ctx context.Context, settle string, localVarOptionals *ListFuturesInsuranceLedgerOpts) ([]InsuranceRecord, *http.Response, error) {
+func (a *FuturesApiService) ListFuturesInsuranceLedger(ctx context.Context, settle string, localVarOptionals *ListFuturesInsuranceLedgerOpts) ([]model.InsuranceRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []InsuranceRecord
+		localVarReturnValue  []model.InsuranceRecord
 	)
 
 	// create path and map variables
@@ -988,14 +990,14 @@ ListContractStats Futures stats
 
 @return []ContractStat
 */
-func (a *FuturesApiService) ListContractStats(ctx context.Context, settle string, contract string, localVarOptionals *ListContractStatsOpts) ([]ContractStat, *http.Response, error) {
+func (a *FuturesApiService) ListContractStats(ctx context.Context, settle string, contract string, localVarOptionals *ListContractStatsOpts) ([]model.ContractStat, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []ContractStat
+		localVarReturnValue  []model.ContractStat
 	)
 
 	// create path and map variables
@@ -1086,14 +1088,14 @@ GetIndexConstituents Get index constituents
 
 @return FuturesIndexConstituents
 */
-func (a *FuturesApiService) GetIndexConstituents(ctx context.Context, settle string, index string) (FuturesIndexConstituents, *http.Response, error) {
+func (a *FuturesApiService) GetIndexConstituents(ctx context.Context, settle string, index string) (model.FuturesIndexConstituents, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FuturesIndexConstituents
+		localVarReturnValue  model.FuturesIndexConstituents
 	)
 
 	// create path and map variables
@@ -1189,14 +1191,14 @@ Interval between &#x60;from&#x60; and &#x60;to&#x60; cannot exceeds 3600. Some p
 
 @return []FuturesLiqOrder
 */
-func (a *FuturesApiService) ListLiquidatedOrders(ctx context.Context, settle string, localVarOptionals *ListLiquidatedOrdersOpts) ([]FuturesLiqOrder, *http.Response, error) {
+func (a *FuturesApiService) ListLiquidatedOrders(ctx context.Context, settle string, localVarOptionals *ListLiquidatedOrdersOpts) ([]model.FuturesLiqOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesLiqOrder
+		localVarReturnValue  []model.FuturesLiqOrder
 	)
 
 	// create path and map variables
@@ -1289,14 +1291,14 @@ ListRiskLimitTiers List risk limit tiers
 
 @return []FuturesLimitRiskTiers
 */
-func (a *FuturesApiService) ListRiskLimitTiers(ctx context.Context, settle string, contract string) ([]FuturesLimitRiskTiers, *http.Response, error) {
+func (a *FuturesApiService) ListRiskLimitTiers(ctx context.Context, settle string, contract string) ([]model.FuturesLimitRiskTiers, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesLimitRiskTiers
+		localVarReturnValue  []model.FuturesLimitRiskTiers
 	)
 
 	// create path and map variables
@@ -1377,14 +1379,14 @@ ListFuturesAccounts Query futures account
 
 @return FuturesAccount
 */
-func (a *FuturesApiService) ListFuturesAccounts(ctx context.Context, settle string) (FuturesAccount, *http.Response, error) {
+func (a *FuturesApiService) ListFuturesAccounts(ctx context.Context, settle string) (model.FuturesAccount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FuturesAccount
+		localVarReturnValue  model.FuturesAccount
 	)
 
 	// create path and map variables
@@ -1488,14 +1490,14 @@ If the &#x60;contract&#x60; field is provided, it can only filter records that i
 
 @return []FuturesAccountBook
 */
-func (a *FuturesApiService) ListFuturesAccountBook(ctx context.Context, settle string, localVarOptionals *ListFuturesAccountBookOpts) ([]FuturesAccountBook, *http.Response, error) {
+func (a *FuturesApiService) ListFuturesAccountBook(ctx context.Context, settle string, localVarOptionals *ListFuturesAccountBookOpts) ([]model.FuturesAccountBook, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesAccountBook
+		localVarReturnValue  []model.FuturesAccountBook
 	)
 
 	// create path and map variables
@@ -1610,14 +1612,14 @@ ListPositions List all positions of a user
 
 @return []Position
 */
-func (a *FuturesApiService) ListPositions(ctx context.Context, settle string, localVarOptionals *ListPositionsOpts) ([]Position, *http.Response, error) {
+func (a *FuturesApiService) ListPositions(ctx context.Context, settle string, localVarOptionals *ListPositionsOpts) ([]model.Position, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Position
+		localVarReturnValue  []model.Position
 	)
 
 	// create path and map variables
@@ -1713,14 +1715,14 @@ GetPosition Get single position
 
 @return Position
 */
-func (a *FuturesApiService) GetPosition(ctx context.Context, settle string, contract string) (Position, *http.Response, error) {
+func (a *FuturesApiService) GetPosition(ctx context.Context, settle string, contract string) (model.Position, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Position
+		localVarReturnValue  model.Position
 	)
 
 	// create path and map variables
@@ -1810,14 +1812,14 @@ UpdatePositionMargin Update position margin
 
 @return Position
 */
-func (a *FuturesApiService) UpdatePositionMargin(ctx context.Context, settle string, contract string, change string) (Position, *http.Response, error) {
+func (a *FuturesApiService) UpdatePositionMargin(ctx context.Context, settle string, contract string, change string) (model.Position, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Position
+		localVarReturnValue  model.Position
 	)
 
 	// create path and map variables
@@ -1915,14 +1917,14 @@ UpdatePositionLeverage Update position leverage
 
 @return Position
 */
-func (a *FuturesApiService) UpdatePositionLeverage(ctx context.Context, settle string, contract string, leverage string, localVarOptionals *UpdatePositionLeverageOpts) (Position, *http.Response, error) {
+func (a *FuturesApiService) UpdatePositionLeverage(ctx context.Context, settle string, contract string, leverage string, localVarOptionals *UpdatePositionLeverageOpts) (model.Position, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Position
+		localVarReturnValue  model.Position
 	)
 
 	// create path and map variables
@@ -2016,14 +2018,14 @@ UpdatePositionRiskLimit Update position risk limit
 
 @return Position
 */
-func (a *FuturesApiService) UpdatePositionRiskLimit(ctx context.Context, settle string, contract string, riskLimit string) (Position, *http.Response, error) {
+func (a *FuturesApiService) UpdatePositionRiskLimit(ctx context.Context, settle string, contract string, riskLimit string) (model.Position, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Position
+		localVarReturnValue  model.Position
 	)
 
 	// create path and map variables
@@ -2114,14 +2116,14 @@ Before setting dual mode, make sure all positions are closed and no orders are o
 
 @return FuturesAccount
 */
-func (a *FuturesApiService) SetDualMode(ctx context.Context, settle string, dualMode bool) (FuturesAccount, *http.Response, error) {
+func (a *FuturesApiService) SetDualMode(ctx context.Context, settle string, dualMode bool) (model.FuturesAccount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FuturesAccount
+		localVarReturnValue  model.FuturesAccount
 	)
 
 	// create path and map variables
@@ -2209,14 +2211,14 @@ GetDualModePosition Retrieve position detail in dual mode
 
 @return []Position
 */
-func (a *FuturesApiService) GetDualModePosition(ctx context.Context, settle string, contract string) ([]Position, *http.Response, error) {
+func (a *FuturesApiService) GetDualModePosition(ctx context.Context, settle string, contract string) ([]model.Position, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Position
+		localVarReturnValue  []model.Position
 	)
 
 	// create path and map variables
@@ -2307,14 +2309,14 @@ UpdateDualModePositionMargin Update position margin in dual mode
 
 @return []Position
 */
-func (a *FuturesApiService) UpdateDualModePositionMargin(ctx context.Context, settle string, contract string, change string, dualSide string) ([]Position, *http.Response, error) {
+func (a *FuturesApiService) UpdateDualModePositionMargin(ctx context.Context, settle string, contract string, change string, dualSide string) ([]model.Position, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Position
+		localVarReturnValue  []model.Position
 	)
 
 	// create path and map variables
@@ -2413,14 +2415,14 @@ UpdateDualModePositionLeverage Update position leverage in dual mode
 
 @return []Position
 */
-func (a *FuturesApiService) UpdateDualModePositionLeverage(ctx context.Context, settle string, contract string, leverage string, localVarOptionals *UpdateDualModePositionLeverageOpts) ([]Position, *http.Response, error) {
+func (a *FuturesApiService) UpdateDualModePositionLeverage(ctx context.Context, settle string, contract string, leverage string, localVarOptionals *UpdateDualModePositionLeverageOpts) ([]model.Position, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Position
+		localVarReturnValue  []model.Position
 	)
 
 	// create path and map variables
@@ -2514,14 +2516,14 @@ UpdateDualModePositionRiskLimit Update position risk limit in dual mode
 
 @return []Position
 */
-func (a *FuturesApiService) UpdateDualModePositionRiskLimit(ctx context.Context, settle string, contract string, riskLimit string) ([]Position, *http.Response, error) {
+func (a *FuturesApiService) UpdateDualModePositionRiskLimit(ctx context.Context, settle string, contract string, riskLimit string) ([]model.Position, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Position
+		localVarReturnValue  []model.Position
 	)
 
 	// create path and map variables
@@ -2625,14 +2627,14 @@ ListFuturesOrders List futures orders
 
 @return []FuturesOrder
 */
-func (a *FuturesApiService) ListFuturesOrders(ctx context.Context, settle string, status string, localVarOptionals *ListFuturesOrdersOpts) ([]FuturesOrder, *http.Response, error) {
+func (a *FuturesApiService) ListFuturesOrders(ctx context.Context, settle string, status string, localVarOptionals *ListFuturesOrdersOpts) ([]model.FuturesOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesOrder
+		localVarReturnValue  []model.FuturesOrder
 	)
 
 	// create path and map variables
@@ -2733,14 +2735,14 @@ CreateFuturesOrder Create a futures order
 
 @return FuturesOrder
 */
-func (a *FuturesApiService) CreateFuturesOrder(ctx context.Context, settle string, futuresOrder FuturesOrder) (FuturesOrder, *http.Response, error) {
+func (a *FuturesApiService) CreateFuturesOrder(ctx context.Context, settle string, futuresOrder model.FuturesOrder) (model.FuturesOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FuturesOrder
+		localVarReturnValue  model.FuturesOrder
 	)
 
 	// create path and map variables
@@ -2837,14 +2839,14 @@ Zero-filled order cannot be retrieved 10 minutes after order cancellation
 
 @return []FuturesOrder
 */
-func (a *FuturesApiService) CancelFuturesOrders(ctx context.Context, settle string, contract string, localVarOptionals *CancelFuturesOrdersOpts) ([]FuturesOrder, *http.Response, error) {
+func (a *FuturesApiService) CancelFuturesOrders(ctx context.Context, settle string, contract string, localVarOptionals *CancelFuturesOrdersOpts) ([]model.FuturesOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesOrder
+		localVarReturnValue  []model.FuturesOrder
 	)
 
 	// create path and map variables
@@ -2949,14 +2951,14 @@ GetOrdersWithTimeRange List Futures Orders By Time Range
 
 @return []FuturesOrder
 */
-func (a *FuturesApiService) GetOrdersWithTimeRange(ctx context.Context, settle string, localVarOptionals *GetOrdersWithTimeRangeOpts) ([]FuturesOrder, *http.Response, error) {
+func (a *FuturesApiService) GetOrdersWithTimeRange(ctx context.Context, settle string, localVarOptionals *GetOrdersWithTimeRangeOpts) ([]model.FuturesOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesOrder
+		localVarReturnValue  []model.FuturesOrder
 	)
 
 	// create path and map variables
@@ -3059,14 +3061,14 @@ CreateBatchFuturesOrder Create a batch of futures orders
 
 @return []BatchFuturesOrder
 */
-func (a *FuturesApiService) CreateBatchFuturesOrder(ctx context.Context, settle string, futuresOrder []FuturesOrder) ([]BatchFuturesOrder, *http.Response, error) {
+func (a *FuturesApiService) CreateBatchFuturesOrder(ctx context.Context, settle string, futuresOrder []model.FuturesOrder) ([]model.BatchFuturesOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []BatchFuturesOrder
+		localVarReturnValue  []model.BatchFuturesOrder
 	)
 
 	// create path and map variables
@@ -3156,14 +3158,14 @@ GetFuturesOrder Get a single order
 
 @return FuturesOrder
 */
-func (a *FuturesApiService) GetFuturesOrder(ctx context.Context, settle string, orderId string) (FuturesOrder, *http.Response, error) {
+func (a *FuturesApiService) GetFuturesOrder(ctx context.Context, settle string, orderId string) (model.FuturesOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FuturesOrder
+		localVarReturnValue  model.FuturesOrder
 	)
 
 	// create path and map variables
@@ -3253,14 +3255,14 @@ AmendFuturesOrder Amend an order
 
 @return FuturesOrder
 */
-func (a *FuturesApiService) AmendFuturesOrder(ctx context.Context, settle string, orderId string, futuresOrderAmendment FuturesOrderAmendment) (FuturesOrder, *http.Response, error) {
+func (a *FuturesApiService) AmendFuturesOrder(ctx context.Context, settle string, orderId string, futuresOrderAmendment model.FuturesOrderAmendment) (model.FuturesOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FuturesOrder
+		localVarReturnValue  model.FuturesOrder
 	)
 
 	// create path and map variables
@@ -3351,14 +3353,14 @@ CancelFuturesOrder Cancel a single order
 
 @return FuturesOrder
 */
-func (a *FuturesApiService) CancelFuturesOrder(ctx context.Context, settle string, orderId string) (FuturesOrder, *http.Response, error) {
+func (a *FuturesApiService) CancelFuturesOrder(ctx context.Context, settle string, orderId string) (model.FuturesOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FuturesOrder
+		localVarReturnValue  model.FuturesOrder
 	)
 
 	// create path and map variables
@@ -3462,14 +3464,14 @@ By default, only data within the past 6 months is supported.  If you need to que
 
 @return []MyFuturesTrade
 */
-func (a *FuturesApiService) GetMyTrades(ctx context.Context, settle string, localVarOptionals *GetMyTradesOpts) ([]MyFuturesTrade, *http.Response, error) {
+func (a *FuturesApiService) GetMyTrades(ctx context.Context, settle string, localVarOptionals *GetMyTradesOpts) ([]model.MyFuturesTrade, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []MyFuturesTrade
+		localVarReturnValue  []model.MyFuturesTrade
 	)
 
 	// create path and map variables
@@ -3587,14 +3589,14 @@ GetMyTradesWithTimeRange List personal trading history by time range
 
 @return []MyFuturesTradeTimeRange
 */
-func (a *FuturesApiService) GetMyTradesWithTimeRange(ctx context.Context, settle string, localVarOptionals *GetMyTradesWithTimeRangeOpts) ([]MyFuturesTradeTimeRange, *http.Response, error) {
+func (a *FuturesApiService) GetMyTradesWithTimeRange(ctx context.Context, settle string, localVarOptionals *GetMyTradesWithTimeRangeOpts) ([]model.MyFuturesTradeTimeRange, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []MyFuturesTradeTimeRange
+		localVarReturnValue  []model.MyFuturesTradeTimeRange
 	)
 
 	// create path and map variables
@@ -3717,14 +3719,14 @@ ListPositionClose List position close history
 
 @return []PositionClose
 */
-func (a *FuturesApiService) ListPositionClose(ctx context.Context, settle string, localVarOptionals *ListPositionCloseOpts) ([]PositionClose, *http.Response, error) {
+func (a *FuturesApiService) ListPositionClose(ctx context.Context, settle string, localVarOptionals *ListPositionCloseOpts) ([]model.PositionClose, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []PositionClose
+		localVarReturnValue  []model.PositionClose
 	)
 
 	// create path and map variables
@@ -3842,14 +3844,14 @@ ListLiquidates List liquidation history
 
 @return []FuturesLiquidate
 */
-func (a *FuturesApiService) ListLiquidates(ctx context.Context, settle string, localVarOptionals *ListLiquidatesOpts) ([]FuturesLiquidate, *http.Response, error) {
+func (a *FuturesApiService) ListLiquidates(ctx context.Context, settle string, localVarOptionals *ListLiquidatesOpts) ([]model.FuturesLiquidate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesLiquidate
+		localVarReturnValue  []model.FuturesLiquidate
 	)
 
 	// create path and map variables
@@ -3955,14 +3957,14 @@ ListAutoDeleverages List Auto-Deleveraging History
 
 @return []FuturesAutoDeleverage
 */
-func (a *FuturesApiService) ListAutoDeleverages(ctx context.Context, settle string, localVarOptionals *ListAutoDeleveragesOpts) ([]FuturesAutoDeleverage, *http.Response, error) {
+func (a *FuturesApiService) ListAutoDeleverages(ctx context.Context, settle string, localVarOptionals *ListAutoDeleveragesOpts) ([]model.FuturesAutoDeleverage, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesAutoDeleverage
+		localVarReturnValue  []model.FuturesAutoDeleverage
 	)
 
 	// create path and map variables
@@ -4059,14 +4061,14 @@ When the timeout set by the user is reached, if there is no cancel or set a new 
 
 @return TriggerTime
 */
-func (a *FuturesApiService) CountdownCancelAllFutures(ctx context.Context, settle string, countdownCancelAllFuturesTask CountdownCancelAllFuturesTask) (TriggerTime, *http.Response, error) {
+func (a *FuturesApiService) CountdownCancelAllFutures(ctx context.Context, settle string, countdownCancelAllFuturesTask model.CountdownCancelAllFuturesTask) (model.TriggerTime, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  TriggerTime
+		localVarReturnValue  model.TriggerTime
 	)
 
 	// create path and map variables
@@ -4161,14 +4163,14 @@ GetFuturesFee Query user trading fee rates
 
 @return map[string]FuturesFee
 */
-func (a *FuturesApiService) GetFuturesFee(ctx context.Context, settle string, localVarOptionals *GetFuturesFeeOpts) (map[string]FuturesFee, *http.Response, error) {
+func (a *FuturesApiService) GetFuturesFee(ctx context.Context, settle string, localVarOptionals *GetFuturesFeeOpts) (map[string]model.FuturesFee, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  map[string]FuturesFee
+		localVarReturnValue  map[string]model.FuturesFee
 	)
 
 	// create path and map variables
@@ -4259,14 +4261,14 @@ Multiple distinct order ID list can be specified。Each request can cancel a max
 
 @return []FutureCancelOrderResult
 */
-func (a *FuturesApiService) CancelBatchFutureOrders(ctx context.Context, settle string, requestBody []string) ([]FutureCancelOrderResult, *http.Response, error) {
+func (a *FuturesApiService) CancelBatchFutureOrders(ctx context.Context, settle string, requestBody []string) ([]model.FutureCancelOrderResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FutureCancelOrderResult
+		localVarReturnValue  []model.FutureCancelOrderResult
 	)
 
 	// create path and map variables
@@ -4366,14 +4368,14 @@ ListPriceTriggeredOrders List all auto orders
 
 @return []FuturesPriceTriggeredOrder
 */
-func (a *FuturesApiService) ListPriceTriggeredOrders(ctx context.Context, settle string, status string, localVarOptionals *ListPriceTriggeredOrdersOpts) ([]FuturesPriceTriggeredOrder, *http.Response, error) {
+func (a *FuturesApiService) ListPriceTriggeredOrders(ctx context.Context, settle string, status string, localVarOptionals *ListPriceTriggeredOrdersOpts) ([]model.FuturesPriceTriggeredOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesPriceTriggeredOrder
+		localVarReturnValue  []model.FuturesPriceTriggeredOrder
 	)
 
 	// create path and map variables
@@ -4470,14 +4472,14 @@ CreatePriceTriggeredOrder Create a price-triggered order
 
 @return TriggerOrderResponse
 */
-func (a *FuturesApiService) CreatePriceTriggeredOrder(ctx context.Context, settle string, futuresPriceTriggeredOrder FuturesPriceTriggeredOrder) (TriggerOrderResponse, *http.Response, error) {
+func (a *FuturesApiService) CreatePriceTriggeredOrder(ctx context.Context, settle string, futuresPriceTriggeredOrder model.FuturesPriceTriggeredOrder) (model.TriggerOrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  TriggerOrderResponse
+		localVarReturnValue  model.TriggerOrderResponse
 	)
 
 	// create path and map variables
@@ -4566,14 +4568,14 @@ CancelPriceTriggeredOrderList Cancel all open orders
 
 @return []FuturesPriceTriggeredOrder
 */
-func (a *FuturesApiService) CancelPriceTriggeredOrderList(ctx context.Context, settle string, contract string) ([]FuturesPriceTriggeredOrder, *http.Response, error) {
+func (a *FuturesApiService) CancelPriceTriggeredOrderList(ctx context.Context, settle string, contract string) ([]model.FuturesPriceTriggeredOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesPriceTriggeredOrder
+		localVarReturnValue  []model.FuturesPriceTriggeredOrder
 	)
 
 	// create path and map variables
@@ -4661,14 +4663,14 @@ GetPriceTriggeredOrder Get a price-triggered order
 
 @return FuturesPriceTriggeredOrder
 */
-func (a *FuturesApiService) GetPriceTriggeredOrder(ctx context.Context, settle string, orderId string) (FuturesPriceTriggeredOrder, *http.Response, error) {
+func (a *FuturesApiService) GetPriceTriggeredOrder(ctx context.Context, settle string, orderId string) (model.FuturesPriceTriggeredOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FuturesPriceTriggeredOrder
+		localVarReturnValue  model.FuturesPriceTriggeredOrder
 	)
 
 	// create path and map variables
@@ -4757,14 +4759,14 @@ CancelPriceTriggeredOrder cancel a price-triggered order
 
 @return FuturesPriceTriggeredOrder
 */
-func (a *FuturesApiService) CancelPriceTriggeredOrder(ctx context.Context, settle string, orderId string) (FuturesPriceTriggeredOrder, *http.Response, error) {
+func (a *FuturesApiService) CancelPriceTriggeredOrder(ctx context.Context, settle string, orderId string) (model.FuturesPriceTriggeredOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FuturesPriceTriggeredOrder
+		localVarReturnValue  model.FuturesPriceTriggeredOrder
 	)
 
 	// create path and map variables

@@ -14,6 +14,8 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -31,14 +33,14 @@ ListCurrencyChains List chains supported for specified currency
 
 @return []CurrencyChain
 */
-func (a *WalletApiService) ListCurrencyChains(ctx context.Context, currency string) ([]CurrencyChain, *http.Response, error) {
+func (a *WalletApiService) ListCurrencyChains(ctx context.Context, currency string) ([]model.CurrencyChain, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []CurrencyChain
+		localVarReturnValue  []model.CurrencyChain
 	)
 
 	// create path and map variables
@@ -117,14 +119,14 @@ GetDepositAddress Generate currency deposit address
 
 @return DepositAddress
 */
-func (a *WalletApiService) GetDepositAddress(ctx context.Context, currency string) (DepositAddress, *http.Response, error) {
+func (a *WalletApiService) GetDepositAddress(ctx context.Context, currency string) (model.DepositAddress, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  DepositAddress
+		localVarReturnValue  model.DepositAddress
 	)
 
 	// create path and map variables
@@ -224,14 +226,14 @@ Record time range cannot exceed 30 days
 
 @return []WithdrawalRecord
 */
-func (a *WalletApiService) ListWithdrawals(ctx context.Context, localVarOptionals *ListWithdrawalsOpts) ([]WithdrawalRecord, *http.Response, error) {
+func (a *WalletApiService) ListWithdrawals(ctx context.Context, localVarOptionals *ListWithdrawalsOpts) ([]model.WithdrawalRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []WithdrawalRecord
+		localVarReturnValue  []model.WithdrawalRecord
 	)
 
 	// create path and map variables
@@ -345,14 +347,14 @@ Record time range cannot exceed 30 days
 
 @return []LedgerRecord
 */
-func (a *WalletApiService) ListDeposits(ctx context.Context, localVarOptionals *ListDepositsOpts) ([]LedgerRecord, *http.Response, error) {
+func (a *WalletApiService) ListDeposits(ctx context.Context, localVarOptionals *ListDepositsOpts) ([]model.LedgerRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []LedgerRecord
+		localVarReturnValue  []model.LedgerRecord
 	)
 
 	// create path and map variables
@@ -452,14 +454,14 @@ Transfer between different accounts. Currently support transfers between the fol
 
 @return TransactionId
 */
-func (a *WalletApiService) Transfer(ctx context.Context, transfer Transfer) (TransactionId, *http.Response, error) {
+func (a *WalletApiService) Transfer(ctx context.Context, transfer model.Transfer) (model.TransactionId, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  TransactionId
+		localVarReturnValue  model.TransactionId
 	)
 
 	// create path and map variables
@@ -560,14 +562,14 @@ Record time range cannot exceed 30 days  &gt; Note: only records after 2020-04-1
 
 @return []SubAccountTransfer
 */
-func (a *WalletApiService) ListSubAccountTransfers(ctx context.Context, localVarOptionals *ListSubAccountTransfersOpts) ([]SubAccountTransfer, *http.Response, error) {
+func (a *WalletApiService) ListSubAccountTransfers(ctx context.Context, localVarOptionals *ListSubAccountTransfersOpts) ([]model.SubAccountTransfer, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SubAccountTransfer
+		localVarReturnValue  []model.SubAccountTransfer
 	)
 
 	// create path and map variables
@@ -665,7 +667,7 @@ Support transferring with sub user&#39;s spot or futures account. Note that only
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param subAccountTransfer
 */
-func (a *WalletApiService) TransferWithSubAccount(ctx context.Context, subAccountTransfer SubAccountTransfer) (*http.Response, error) {
+func (a *WalletApiService) TransferWithSubAccount(ctx context.Context, subAccountTransfer model.SubAccountTransfer) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -747,7 +749,7 @@ It is possible to perform balance transfers between two sub-accounts under the s
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param subAccountToSubAccount
 */
-func (a *WalletApiService) SubAccountToSubAccount(ctx context.Context, subAccountToSubAccount SubAccountToSubAccount) (*http.Response, error) {
+func (a *WalletApiService) SubAccountToSubAccount(ctx context.Context, subAccountToSubAccount model.SubAccountToSubAccount) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -836,14 +838,14 @@ ListWithdrawStatus Retrieve withdrawal status
 
 @return []WithdrawStatus
 */
-func (a *WalletApiService) ListWithdrawStatus(ctx context.Context, localVarOptionals *ListWithdrawStatusOpts) ([]WithdrawStatus, *http.Response, error) {
+func (a *WalletApiService) ListWithdrawStatus(ctx context.Context, localVarOptionals *ListWithdrawStatusOpts) ([]model.WithdrawStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []WithdrawStatus
+		localVarReturnValue  []model.WithdrawStatus
 	)
 
 	// create path and map variables
@@ -936,14 +938,14 @@ ListSubAccountBalances Retrieve sub account balances
 
 @return []SubAccountBalance
 */
-func (a *WalletApiService) ListSubAccountBalances(ctx context.Context, localVarOptionals *ListSubAccountBalancesOpts) ([]SubAccountBalance, *http.Response, error) {
+func (a *WalletApiService) ListSubAccountBalances(ctx context.Context, localVarOptionals *ListSubAccountBalancesOpts) ([]model.SubAccountBalance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SubAccountBalance
+		localVarReturnValue  []model.SubAccountBalance
 	)
 
 	// create path and map variables
@@ -1036,14 +1038,14 @@ ListSubAccountMarginBalances Query sub accounts' margin balances
 
 @return []SubAccountMarginBalance
 */
-func (a *WalletApiService) ListSubAccountMarginBalances(ctx context.Context, localVarOptionals *ListSubAccountMarginBalancesOpts) ([]SubAccountMarginBalance, *http.Response, error) {
+func (a *WalletApiService) ListSubAccountMarginBalances(ctx context.Context, localVarOptionals *ListSubAccountMarginBalancesOpts) ([]model.SubAccountMarginBalance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SubAccountMarginBalance
+		localVarReturnValue  []model.SubAccountMarginBalance
 	)
 
 	// create path and map variables
@@ -1138,14 +1140,14 @@ ListSubAccountFuturesBalances Query sub accounts' futures account balances
 
 @return []SubAccountFuturesBalance
 */
-func (a *WalletApiService) ListSubAccountFuturesBalances(ctx context.Context, localVarOptionals *ListSubAccountFuturesBalancesOpts) ([]SubAccountFuturesBalance, *http.Response, error) {
+func (a *WalletApiService) ListSubAccountFuturesBalances(ctx context.Context, localVarOptionals *ListSubAccountFuturesBalancesOpts) ([]model.SubAccountFuturesBalance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SubAccountFuturesBalance
+		localVarReturnValue  []model.SubAccountFuturesBalance
 	)
 
 	// create path and map variables
@@ -1241,14 +1243,14 @@ ListSubAccountCrossMarginBalances Query subaccount's cross_margin account info
 
 @return []SubAccountCrossMarginBalance
 */
-func (a *WalletApiService) ListSubAccountCrossMarginBalances(ctx context.Context, localVarOptionals *ListSubAccountCrossMarginBalancesOpts) ([]SubAccountCrossMarginBalance, *http.Response, error) {
+func (a *WalletApiService) ListSubAccountCrossMarginBalances(ctx context.Context, localVarOptionals *ListSubAccountCrossMarginBalancesOpts) ([]model.SubAccountCrossMarginBalance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SubAccountCrossMarginBalance
+		localVarReturnValue  []model.SubAccountCrossMarginBalance
 	)
 
 	// create path and map variables
@@ -1346,14 +1348,14 @@ ListSavedAddress Query saved address
 
 @return []SavedAddress
 */
-func (a *WalletApiService) ListSavedAddress(ctx context.Context, currency string, localVarOptionals *ListSavedAddressOpts) ([]SavedAddress, *http.Response, error) {
+func (a *WalletApiService) ListSavedAddress(ctx context.Context, currency string, localVarOptionals *ListSavedAddressOpts) ([]model.SavedAddress, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SavedAddress
+		localVarReturnValue  []model.SavedAddress
 	)
 
 	// create path and map variables
@@ -1455,14 +1457,14 @@ GetTradeFee Retrieve personal trading fee
 
 @return TradeFee
 */
-func (a *WalletApiService) GetTradeFee(ctx context.Context, localVarOptionals *GetTradeFeeOpts) (TradeFee, *http.Response, error) {
+func (a *WalletApiService) GetTradeFee(ctx context.Context, localVarOptionals *GetTradeFeeOpts) (model.TradeFee, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  TradeFee
+		localVarReturnValue  model.TradeFee
 	)
 
 	// create path and map variables
@@ -1559,14 +1561,14 @@ This endpoint returns an approximate sum of exchanged amount from all currencies
 
 @return TotalBalance
 */
-func (a *WalletApiService) GetTotalBalance(ctx context.Context, localVarOptionals *GetTotalBalanceOpts) (TotalBalance, *http.Response, error) {
+func (a *WalletApiService) GetTotalBalance(ctx context.Context, localVarOptionals *GetTotalBalanceOpts) (model.TotalBalance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  TotalBalance
+		localVarReturnValue  model.TotalBalance
 	)
 
 	// create path and map variables
@@ -1652,14 +1654,14 @@ ListSmallBalance List small balance
 
 @return SmallBalance
 */
-func (a *WalletApiService) ListSmallBalance(ctx context.Context) (SmallBalance, *http.Response, error) {
+func (a *WalletApiService) ListSmallBalance(ctx context.Context) (model.SmallBalance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SmallBalance
+		localVarReturnValue  model.SmallBalance
 	)
 
 	// create path and map variables
@@ -1741,7 +1743,7 @@ ConvertSmallBalance Convert small balance
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param convertSmallBalance
 */
-func (a *WalletApiService) ConvertSmallBalance(ctx context.Context, convertSmallBalance ConvertSmallBalance) (*http.Response, error) {
+func (a *WalletApiService) ConvertSmallBalance(ctx context.Context, convertSmallBalance model.ConvertSmallBalance) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1834,14 +1836,14 @@ ListSmallBalanceHistory List small balance history
 
 @return SmallBalanceHistory
 */
-func (a *WalletApiService) ListSmallBalanceHistory(ctx context.Context, localVarOptionals *ListSmallBalanceHistoryOpts) (SmallBalanceHistory, *http.Response, error) {
+func (a *WalletApiService) ListSmallBalanceHistory(ctx context.Context, localVarOptionals *ListSmallBalanceHistoryOpts) (model.SmallBalanceHistory, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SmallBalanceHistory
+		localVarReturnValue  model.SmallBalanceHistory
 	)
 
 	// create path and map variables

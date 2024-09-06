@@ -16,6 +16,8 @@ import (
 	"net/url"
 	"reflect"
 	"strings"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -32,14 +34,14 @@ ListUniCurrencyPairs List lending markets
 
 @return []UniCurrencyPair
 */
-func (a *MarginUniApiService) ListUniCurrencyPairs(ctx context.Context) ([]UniCurrencyPair, *http.Response, error) {
+func (a *MarginUniApiService) ListUniCurrencyPairs(ctx context.Context) ([]model.UniCurrencyPair, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniCurrencyPair
+		localVarReturnValue  []model.UniCurrencyPair
 	)
 
 	// create path and map variables
@@ -117,14 +119,14 @@ GetUniCurrencyPair Get detail of lending market
 
 @return UniCurrencyPair
 */
-func (a *MarginUniApiService) GetUniCurrencyPair(ctx context.Context, currencyPair string) (UniCurrencyPair, *http.Response, error) {
+func (a *MarginUniApiService) GetUniCurrencyPair(ctx context.Context, currencyPair string) (model.UniCurrencyPair, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UniCurrencyPair
+		localVarReturnValue  model.UniCurrencyPair
 	)
 
 	// create path and map variables
@@ -325,14 +327,14 @@ ListUniLoans List loans
 
 @return []UniLoan
 */
-func (a *MarginUniApiService) ListUniLoans(ctx context.Context, localVarOptionals *ListUniLoansOpts) ([]UniLoan, *http.Response, error) {
+func (a *MarginUniApiService) ListUniLoans(ctx context.Context, localVarOptionals *ListUniLoansOpts) ([]model.UniLoan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniLoan
+		localVarReturnValue  []model.UniLoan
 	)
 
 	// create path and map variables
@@ -426,7 +428,7 @@ CreateUniLoan Borrow or repay
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param createUniLoan
 */
-func (a *MarginUniApiService) CreateUniLoan(ctx context.Context, createUniLoan CreateUniLoan) (*http.Response, error) {
+func (a *MarginUniApiService) CreateUniLoan(ctx context.Context, createUniLoan model.CreateUniLoan) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -523,14 +525,14 @@ ListUniLoanRecords Get load records
 
 @return []UniLoanRecord
 */
-func (a *MarginUniApiService) ListUniLoanRecords(ctx context.Context, localVarOptionals *ListUniLoanRecordsOpts) ([]UniLoanRecord, *http.Response, error) {
+func (a *MarginUniApiService) ListUniLoanRecords(ctx context.Context, localVarOptionals *ListUniLoanRecordsOpts) ([]model.UniLoanRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniLoanRecord
+		localVarReturnValue  []model.UniLoanRecord
 	)
 
 	// create path and map variables
@@ -645,14 +647,14 @@ ListUniLoanInterestRecords List interest records
 
 @return []UniLoanInterestRecord
 */
-func (a *MarginUniApiService) ListUniLoanInterestRecords(ctx context.Context, localVarOptionals *ListUniLoanInterestRecordsOpts) ([]UniLoanInterestRecord, *http.Response, error) {
+func (a *MarginUniApiService) ListUniLoanInterestRecords(ctx context.Context, localVarOptionals *ListUniLoanInterestRecordsOpts) ([]model.UniLoanInterestRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniLoanInterestRecord
+		localVarReturnValue  []model.UniLoanInterestRecord
 	)
 
 	// create path and map variables
@@ -755,14 +757,14 @@ GetUniBorrowable Get maximum borrowable
 
 @return MaxUniBorrowable
 */
-func (a *MarginUniApiService) GetUniBorrowable(ctx context.Context, currency string, currencyPair string) (MaxUniBorrowable, *http.Response, error) {
+func (a *MarginUniApiService) GetUniBorrowable(ctx context.Context, currency string, currencyPair string) (model.MaxUniBorrowable, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  MaxUniBorrowable
+		localVarReturnValue  model.MaxUniBorrowable
 	)
 
 	// create path and map variables

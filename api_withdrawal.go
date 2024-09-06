@@ -15,6 +15,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -33,14 +35,14 @@ Withdrawals to Gate addresses do not incur transaction fees.
 
 @return LedgerRecord
 */
-func (a *WithdrawalApiService) Withdraw(ctx context.Context, ledgerRecord LedgerRecord) (LedgerRecord, *http.Response, error) {
+func (a *WithdrawalApiService) Withdraw(ctx context.Context, ledgerRecord model.LedgerRecord) (model.LedgerRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  LedgerRecord
+		localVarReturnValue  model.LedgerRecord
 	)
 
 	// create path and map variables
@@ -126,14 +128,14 @@ CancelWithdrawal Cancel withdrawal with specified ID
 
 @return LedgerRecord
 */
-func (a *WithdrawalApiService) CancelWithdrawal(ctx context.Context, withdrawalId string) (LedgerRecord, *http.Response, error) {
+func (a *WithdrawalApiService) CancelWithdrawal(ctx context.Context, withdrawalId string) (model.LedgerRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  LedgerRecord
+		localVarReturnValue  model.LedgerRecord
 	)
 
 	// create path and map variables

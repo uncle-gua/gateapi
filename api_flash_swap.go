@@ -15,6 +15,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -31,14 +33,14 @@ ListFlashSwapCurrencies List All Supported Currencies In Flash Swap (deprecated)
 
 @return []FlashSwapCurrency
 */
-func (a *FlashSwapApiService) ListFlashSwapCurrencies(ctx context.Context) ([]FlashSwapCurrency, *http.Response, error) {
+func (a *FlashSwapApiService) ListFlashSwapCurrencies(ctx context.Context) ([]model.FlashSwapCurrency, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FlashSwapCurrency
+		localVarReturnValue  []model.FlashSwapCurrency
 	)
 
 	// create path and map variables
@@ -123,14 +125,14 @@ ListFlashSwapCurrencyPair List All Supported Currency Pairs In Flash Swap
 
 @return []FlashSwapCurrencyPair
 */
-func (a *FlashSwapApiService) ListFlashSwapCurrencyPair(ctx context.Context, localVarOptionals *ListFlashSwapCurrencyPairOpts) ([]FlashSwapCurrencyPair, *http.Response, error) {
+func (a *FlashSwapApiService) ListFlashSwapCurrencyPair(ctx context.Context, localVarOptionals *ListFlashSwapCurrencyPairOpts) ([]model.FlashSwapCurrencyPair, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FlashSwapCurrencyPair
+		localVarReturnValue  []model.FlashSwapCurrencyPair
 	)
 
 	// create path and map variables
@@ -227,14 +229,14 @@ ListFlashSwapOrders List all flash swap orders
 
 @return []FlashSwapOrder
 */
-func (a *FlashSwapApiService) ListFlashSwapOrders(ctx context.Context, localVarOptionals *ListFlashSwapOrdersOpts) ([]FlashSwapOrder, *http.Response, error) {
+func (a *FlashSwapApiService) ListFlashSwapOrders(ctx context.Context, localVarOptionals *ListFlashSwapOrdersOpts) ([]model.FlashSwapOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FlashSwapOrder
+		localVarReturnValue  []model.FlashSwapOrder
 	)
 
 	// create path and map variables
@@ -337,14 +339,14 @@ Initiate a flash swap preview in advance because order creation requires a previ
 
 @return FlashSwapOrder
 */
-func (a *FlashSwapApiService) CreateFlashSwapOrder(ctx context.Context, flashSwapOrderRequest FlashSwapOrderRequest) (FlashSwapOrder, *http.Response, error) {
+func (a *FlashSwapApiService) CreateFlashSwapOrder(ctx context.Context, flashSwapOrderRequest model.FlashSwapOrderRequest) (model.FlashSwapOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FlashSwapOrder
+		localVarReturnValue  model.FlashSwapOrder
 	)
 
 	// create path and map variables
@@ -430,14 +432,14 @@ GetFlashSwapOrder Get a single flash swap order's detail
 
 @return FlashSwapOrder
 */
-func (a *FlashSwapApiService) GetFlashSwapOrder(ctx context.Context, orderId int32) (FlashSwapOrder, *http.Response, error) {
+func (a *FlashSwapApiService) GetFlashSwapOrder(ctx context.Context, orderId int32) (model.FlashSwapOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FlashSwapOrder
+		localVarReturnValue  model.FlashSwapOrder
 	)
 
 	// create path and map variables
@@ -523,14 +525,14 @@ PreviewFlashSwapOrder Initiate a flash swap order preview
 
 @return FlashSwapOrderPreview
 */
-func (a *FlashSwapApiService) PreviewFlashSwapOrder(ctx context.Context, flashSwapPreviewRequest FlashSwapPreviewRequest) (FlashSwapOrderPreview, *http.Response, error) {
+func (a *FlashSwapApiService) PreviewFlashSwapOrder(ctx context.Context, flashSwapPreviewRequest model.FlashSwapPreviewRequest) (model.FlashSwapOrderPreview, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FlashSwapOrderPreview
+		localVarReturnValue  model.FlashSwapOrderPreview
 	)
 
 	// create path and map variables

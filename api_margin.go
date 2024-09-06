@@ -16,6 +16,8 @@ import (
 	"net/url"
 	"reflect"
 	"strings"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -39,14 +41,14 @@ ListMarginAccounts Margin account list
 
 @return []MarginAccount
 */
-func (a *MarginApiService) ListMarginAccounts(ctx context.Context, localVarOptionals *ListMarginAccountsOpts) ([]MarginAccount, *http.Response, error) {
+func (a *MarginApiService) ListMarginAccounts(ctx context.Context, localVarOptionals *ListMarginAccountsOpts) ([]model.MarginAccount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []MarginAccount
+		localVarReturnValue  []model.MarginAccount
 	)
 
 	// create path and map variables
@@ -152,14 +154,14 @@ Only transferals from and to margin account are provided for now. Time range all
 
 @return []MarginAccountBook
 */
-func (a *MarginApiService) ListMarginAccountBook(ctx context.Context, localVarOptionals *ListMarginAccountBookOpts) ([]MarginAccountBook, *http.Response, error) {
+func (a *MarginApiService) ListMarginAccountBook(ctx context.Context, localVarOptionals *ListMarginAccountBookOpts) ([]model.MarginAccountBook, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []MarginAccountBook
+		localVarReturnValue  []model.MarginAccountBook
 	)
 
 	// create path and map variables
@@ -270,14 +272,14 @@ ListFundingAccounts Funding account list
 
 @return []FundingAccount
 */
-func (a *MarginApiService) ListFundingAccounts(ctx context.Context, localVarOptionals *ListFundingAccountsOpts) ([]FundingAccount, *http.Response, error) {
+func (a *MarginApiService) ListFundingAccounts(ctx context.Context, localVarOptionals *ListFundingAccountsOpts) ([]model.FundingAccount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FundingAccount
+		localVarReturnValue  []model.FundingAccount
 	)
 
 	// create path and map variables
@@ -363,14 +365,14 @@ GetAutoRepayStatus Retrieve user auto repayment setting
 
 @return AutoRepaySetting
 */
-func (a *MarginApiService) GetAutoRepayStatus(ctx context.Context) (AutoRepaySetting, *http.Response, error) {
+func (a *MarginApiService) GetAutoRepayStatus(ctx context.Context) (model.AutoRepaySetting, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  AutoRepaySetting
+		localVarReturnValue  model.AutoRepaySetting
 	)
 
 	// create path and map variables
@@ -454,14 +456,14 @@ SetAutoRepay Update user's auto repayment setting
 
 @return AutoRepaySetting
 */
-func (a *MarginApiService) SetAutoRepay(ctx context.Context, status string) (AutoRepaySetting, *http.Response, error) {
+func (a *MarginApiService) SetAutoRepay(ctx context.Context, status string) (model.AutoRepaySetting, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  AutoRepaySetting
+		localVarReturnValue  model.AutoRepaySetting
 	)
 
 	// create path and map variables
@@ -553,14 +555,14 @@ GetMarginTransferable Get the max transferable amount for a specific margin curr
 
 @return MarginTransferable
 */
-func (a *MarginApiService) GetMarginTransferable(ctx context.Context, currency string, localVarOptionals *GetMarginTransferableOpts) (MarginTransferable, *http.Response, error) {
+func (a *MarginApiService) GetMarginTransferable(ctx context.Context, currency string, localVarOptionals *GetMarginTransferableOpts) (model.MarginTransferable, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  MarginTransferable
+		localVarReturnValue  model.MarginTransferable
 	)
 
 	// create path and map variables
@@ -647,14 +649,14 @@ ListMarginCurrencyPairs List all supported currency pairs supported in margin tr
 
 @return []MarginCurrencyPair
 */
-func (a *MarginApiService) ListMarginCurrencyPairs(ctx context.Context) ([]MarginCurrencyPair, *http.Response, error) {
+func (a *MarginApiService) ListMarginCurrencyPairs(ctx context.Context) ([]model.MarginCurrencyPair, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []MarginCurrencyPair
+		localVarReturnValue  []model.MarginCurrencyPair
 	)
 
 	// create path and map variables
@@ -732,14 +734,14 @@ GetMarginCurrencyPair Query one single margin currency pair(Deprecated)
 
 @return MarginCurrencyPair
 */
-func (a *MarginApiService) GetMarginCurrencyPair(ctx context.Context, currencyPair string) (MarginCurrencyPair, *http.Response, error) {
+func (a *MarginApiService) GetMarginCurrencyPair(ctx context.Context, currencyPair string) (model.MarginCurrencyPair, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  MarginCurrencyPair
+		localVarReturnValue  model.MarginCurrencyPair
 	)
 
 	// create path and map variables
@@ -819,14 +821,14 @@ ListFundingBook Order book of lending loans(Deprecated)
 
 @return []FundingBookItem
 */
-func (a *MarginApiService) ListFundingBook(ctx context.Context, currency string) ([]FundingBookItem, *http.Response, error) {
+func (a *MarginApiService) ListFundingBook(ctx context.Context, currency string) ([]model.FundingBookItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FundingBookItem
+		localVarReturnValue  []model.FundingBookItem
 	)
 
 	// create path and map variables
@@ -923,14 +925,14 @@ ListLoans List all loans(Deprecated)
 
 @return []Loan
 */
-func (a *MarginApiService) ListLoans(ctx context.Context, status string, side string, localVarOptionals *ListLoansOpts) ([]Loan, *http.Response, error) {
+func (a *MarginApiService) ListLoans(ctx context.Context, status string, side string, localVarOptionals *ListLoansOpts) ([]model.Loan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Loan
+		localVarReturnValue  []model.Loan
 	)
 
 	// create path and map variables
@@ -1034,14 +1036,14 @@ CreateLoan Lend or borrow(Deprecated)
 
 @return Loan
 */
-func (a *MarginApiService) CreateLoan(ctx context.Context, loan Loan) (Loan, *http.Response, error) {
+func (a *MarginApiService) CreateLoan(ctx context.Context, loan model.Loan) (model.Loan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Loan
+		localVarReturnValue  model.Loan
 	)
 
 	// create path and map variables
@@ -1128,14 +1130,14 @@ MergeLoans Merge multiple lending loans(Deprecated)
 
 @return Loan
 */
-func (a *MarginApiService) MergeLoans(ctx context.Context, currency string, ids string) (Loan, *http.Response, error) {
+func (a *MarginApiService) MergeLoans(ctx context.Context, currency string, ids string) (model.Loan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Loan
+		localVarReturnValue  model.Loan
 	)
 
 	// create path and map variables
@@ -1222,14 +1224,14 @@ GetLoan Retrieve one single loan detail(Deprecated)
 
 @return Loan
 */
-func (a *MarginApiService) GetLoan(ctx context.Context, loanId string, side string) (Loan, *http.Response, error) {
+func (a *MarginApiService) GetLoan(ctx context.Context, loanId string, side string) (model.Loan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Loan
+		localVarReturnValue  model.Loan
 	)
 
 	// create path and map variables
@@ -1318,14 +1320,14 @@ Only lent loans can be cancelled
 
 @return Loan
 */
-func (a *MarginApiService) CancelLoan(ctx context.Context, loanId string, currency string) (Loan, *http.Response, error) {
+func (a *MarginApiService) CancelLoan(ctx context.Context, loanId string, currency string) (model.Loan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Loan
+		localVarReturnValue  model.Loan
 	)
 
 	// create path and map variables
@@ -1414,14 +1416,14 @@ Only &#x60;auto_renew&#x60; modification is supported currently
 
 @return Loan
 */
-func (a *MarginApiService) UpdateLoan(ctx context.Context, loanId string, loanPatch LoanPatch) (Loan, *http.Response, error) {
+func (a *MarginApiService) UpdateLoan(ctx context.Context, loanId string, loanPatch model.LoanPatch) (model.Loan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Loan
+		localVarReturnValue  model.Loan
 	)
 
 	// create path and map variables
@@ -1509,14 +1511,14 @@ ListLoanRepayments List loan repayment records(Deprecated)
 
 @return []Repayment
 */
-func (a *MarginApiService) ListLoanRepayments(ctx context.Context, loanId string) ([]Repayment, *http.Response, error) {
+func (a *MarginApiService) ListLoanRepayments(ctx context.Context, loanId string) ([]model.Repayment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []Repayment
+		localVarReturnValue  []model.Repayment
 	)
 
 	// create path and map variables
@@ -1603,14 +1605,14 @@ RepayLoan Repay a loan(Deprecated)
 
 @return Loan
 */
-func (a *MarginApiService) RepayLoan(ctx context.Context, loanId string, repayRequest RepayRequest) (Loan, *http.Response, error) {
+func (a *MarginApiService) RepayLoan(ctx context.Context, loanId string, repayRequest model.RepayRequest) (model.Loan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Loan
+		localVarReturnValue  model.Loan
 	)
 
 	// create path and map variables
@@ -1709,14 +1711,14 @@ ListLoanRecords List repayment records of a specific loan(Deprecated)
 
 @return []LoanRecord
 */
-func (a *MarginApiService) ListLoanRecords(ctx context.Context, loanId string, localVarOptionals *ListLoanRecordsOpts) ([]LoanRecord, *http.Response, error) {
+func (a *MarginApiService) ListLoanRecords(ctx context.Context, loanId string, localVarOptionals *ListLoanRecordsOpts) ([]model.LoanRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []LoanRecord
+		localVarReturnValue  []model.LoanRecord
 	)
 
 	// create path and map variables
@@ -1811,14 +1813,14 @@ GetLoanRecord Get one single loan record(Deprecated)
 
 @return LoanRecord
 */
-func (a *MarginApiService) GetLoanRecord(ctx context.Context, loanRecordId string, loanId string) (LoanRecord, *http.Response, error) {
+func (a *MarginApiService) GetLoanRecord(ctx context.Context, loanRecordId string, loanId string) (model.LoanRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  LoanRecord
+		localVarReturnValue  model.LoanRecord
 	)
 
 	// create path and map variables
@@ -1907,14 +1909,14 @@ Only &#x60;auto_renew&#x60; modification is supported currently
 
 @return LoanRecord
 */
-func (a *MarginApiService) UpdateLoanRecord(ctx context.Context, loanRecordId string, loanPatch LoanPatch) (LoanRecord, *http.Response, error) {
+func (a *MarginApiService) UpdateLoanRecord(ctx context.Context, loanRecordId string, loanPatch model.LoanPatch) (model.LoanRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  LoanRecord
+		localVarReturnValue  model.LoanRecord
 	)
 
 	// create path and map variables
@@ -2009,14 +2011,14 @@ GetMarginBorrowable Get the max borrowable amount for a specific margin currency
 
 @return MarginBorrowable
 */
-func (a *MarginApiService) GetMarginBorrowable(ctx context.Context, currency string, localVarOptionals *GetMarginBorrowableOpts) (MarginBorrowable, *http.Response, error) {
+func (a *MarginApiService) GetMarginBorrowable(ctx context.Context, currency string, localVarOptionals *GetMarginBorrowableOpts) (model.MarginBorrowable, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  MarginBorrowable
+		localVarReturnValue  model.MarginBorrowable
 	)
 
 	// create path and map variables
@@ -2103,14 +2105,14 @@ ListCrossMarginCurrencies Currencies supported by cross margin.
 
 @return []CrossMarginCurrency
 */
-func (a *MarginApiService) ListCrossMarginCurrencies(ctx context.Context) ([]CrossMarginCurrency, *http.Response, error) {
+func (a *MarginApiService) ListCrossMarginCurrencies(ctx context.Context) ([]model.CrossMarginCurrency, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []CrossMarginCurrency
+		localVarReturnValue  []model.CrossMarginCurrency
 	)
 
 	// create path and map variables
@@ -2188,14 +2190,14 @@ GetCrossMarginCurrency Retrieve detail of one single currency supported by cross
 
 @return CrossMarginCurrency
 */
-func (a *MarginApiService) GetCrossMarginCurrency(ctx context.Context, currency string) (CrossMarginCurrency, *http.Response, error) {
+func (a *MarginApiService) GetCrossMarginCurrency(ctx context.Context, currency string) (model.CrossMarginCurrency, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CrossMarginCurrency
+		localVarReturnValue  model.CrossMarginCurrency
 	)
 
 	// create path and map variables
@@ -2274,14 +2276,14 @@ GetCrossMarginAccount Retrieve cross margin account
 
 @return CrossMarginAccount
 */
-func (a *MarginApiService) GetCrossMarginAccount(ctx context.Context) (CrossMarginAccount, *http.Response, error) {
+func (a *MarginApiService) GetCrossMarginAccount(ctx context.Context) (model.CrossMarginAccount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CrossMarginAccount
+		localVarReturnValue  model.CrossMarginAccount
 	)
 
 	// create path and map variables
@@ -2382,14 +2384,14 @@ Record time range cannot exceed 30 days
 
 @return []CrossMarginAccountBook
 */
-func (a *MarginApiService) ListCrossMarginAccountBook(ctx context.Context, localVarOptionals *ListCrossMarginAccountBookOpts) ([]CrossMarginAccountBook, *http.Response, error) {
+func (a *MarginApiService) ListCrossMarginAccountBook(ctx context.Context, localVarOptionals *ListCrossMarginAccountBookOpts) ([]model.CrossMarginAccountBook, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []CrossMarginAccountBook
+		localVarReturnValue  []model.CrossMarginAccountBook
 	)
 
 	// create path and map variables
@@ -2505,14 +2507,14 @@ Sort by creation time in descending order by default. Set &#x60;reverse&#x3D;fal
 
 @return []CrossMarginLoan
 */
-func (a *MarginApiService) ListCrossMarginLoans(ctx context.Context, status int32, localVarOptionals *ListCrossMarginLoansOpts) ([]CrossMarginLoan, *http.Response, error) {
+func (a *MarginApiService) ListCrossMarginLoans(ctx context.Context, status int32, localVarOptionals *ListCrossMarginLoansOpts) ([]model.CrossMarginLoan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []CrossMarginLoan
+		localVarReturnValue  []model.CrossMarginLoan
 	)
 
 	// create path and map variables
@@ -2610,14 +2612,14 @@ Borrow amount cannot be less than currency minimum borrow amount
 
 @return CrossMarginLoan
 */
-func (a *MarginApiService) CreateCrossMarginLoan(ctx context.Context, crossMarginLoan CrossMarginLoan) (CrossMarginLoan, *http.Response, error) {
+func (a *MarginApiService) CreateCrossMarginLoan(ctx context.Context, crossMarginLoan model.CrossMarginLoan) (model.CrossMarginLoan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CrossMarginLoan
+		localVarReturnValue  model.CrossMarginLoan
 	)
 
 	// create path and map variables
@@ -2703,14 +2705,14 @@ GetCrossMarginLoan Retrieve single borrow loan detail
 
 @return CrossMarginLoan
 */
-func (a *MarginApiService) GetCrossMarginLoan(ctx context.Context, loanId string) (CrossMarginLoan, *http.Response, error) {
+func (a *MarginApiService) GetCrossMarginLoan(ctx context.Context, loanId string) (model.CrossMarginLoan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CrossMarginLoan
+		localVarReturnValue  model.CrossMarginLoan
 	)
 
 	// create path and map variables
@@ -2811,14 +2813,14 @@ Sort by creation time in descending order by default. Set &#x60;reverse&#x3D;fal
 
 @return []CrossMarginRepayment
 */
-func (a *MarginApiService) ListCrossMarginRepayments(ctx context.Context, localVarOptionals *ListCrossMarginRepaymentsOpts) ([]CrossMarginRepayment, *http.Response, error) {
+func (a *MarginApiService) ListCrossMarginRepayments(ctx context.Context, localVarOptionals *ListCrossMarginRepaymentsOpts) ([]model.CrossMarginRepayment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []CrossMarginRepayment
+		localVarReturnValue  []model.CrossMarginRepayment
 	)
 
 	// create path and map variables
@@ -2918,14 +2920,14 @@ When the liquidity of the currency is insufficient and the transaction risk is h
 
 @return []CrossMarginLoan
 */
-func (a *MarginApiService) RepayCrossMarginLoan(ctx context.Context, crossMarginRepayRequest CrossMarginRepayRequest) ([]CrossMarginLoan, *http.Response, error) {
+func (a *MarginApiService) RepayCrossMarginLoan(ctx context.Context, crossMarginRepayRequest model.CrossMarginRepayRequest) ([]model.CrossMarginLoan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []CrossMarginLoan
+		localVarReturnValue  []model.CrossMarginLoan
 	)
 
 	// create path and map variables
@@ -3025,14 +3027,14 @@ GetCrossMarginInterestRecords Interest records for the cross margin account
 
 @return []UniLoanInterestRecord
 */
-func (a *MarginApiService) GetCrossMarginInterestRecords(ctx context.Context, localVarOptionals *GetCrossMarginInterestRecordsOpts) ([]UniLoanInterestRecord, *http.Response, error) {
+func (a *MarginApiService) GetCrossMarginInterestRecords(ctx context.Context, localVarOptionals *GetCrossMarginInterestRecordsOpts) ([]model.UniLoanInterestRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniLoanInterestRecord
+		localVarReturnValue  []model.UniLoanInterestRecord
 	)
 
 	// create path and map variables
@@ -3131,14 +3133,14 @@ GetCrossMarginTransferable Get the max transferable amount for a specific cross 
 
 @return CrossMarginTransferable
 */
-func (a *MarginApiService) GetCrossMarginTransferable(ctx context.Context, currency string) (CrossMarginTransferable, *http.Response, error) {
+func (a *MarginApiService) GetCrossMarginTransferable(ctx context.Context, currency string) (model.CrossMarginTransferable, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CrossMarginTransferable
+		localVarReturnValue  model.CrossMarginTransferable
 	)
 
 	// create path and map variables
@@ -3332,14 +3334,14 @@ GetCrossMarginBorrowable Get the max borrowable amount for a specific cross marg
 
 @return UnifiedBorrowable
 */
-func (a *MarginApiService) GetCrossMarginBorrowable(ctx context.Context, currency string) (UnifiedBorrowable, *http.Response, error) {
+func (a *MarginApiService) GetCrossMarginBorrowable(ctx context.Context, currency string) (model.UnifiedBorrowable, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  UnifiedBorrowable
+		localVarReturnValue  model.UnifiedBorrowable
 	)
 
 	// create path and map variables

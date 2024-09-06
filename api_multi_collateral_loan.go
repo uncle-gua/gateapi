@@ -15,6 +15,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -44,14 +46,14 @@ ListMultiCollateralOrders List Multi-Collateral Orders
 
 @return []MultiCollateralOrder
 */
-func (a *MultiCollateralLoanApiService) ListMultiCollateralOrders(ctx context.Context, localVarOptionals *ListMultiCollateralOrdersOpts) ([]MultiCollateralOrder, *http.Response, error) {
+func (a *MultiCollateralLoanApiService) ListMultiCollateralOrders(ctx context.Context, localVarOptionals *ListMultiCollateralOrdersOpts) ([]model.MultiCollateralOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []MultiCollateralOrder
+		localVarReturnValue  []model.MultiCollateralOrder
 	)
 
 	// create path and map variables
@@ -147,14 +149,14 @@ CreateMultiCollateral Create Multi-Collateral Order
 
 @return OrderResp
 */
-func (a *MultiCollateralLoanApiService) CreateMultiCollateral(ctx context.Context, createMultiCollateralOrder CreateMultiCollateralOrder) (OrderResp, *http.Response, error) {
+func (a *MultiCollateralLoanApiService) CreateMultiCollateral(ctx context.Context, createMultiCollateralOrder model.CreateMultiCollateralOrder) (model.OrderResp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OrderResp
+		localVarReturnValue  model.OrderResp
 	)
 
 	// create path and map variables
@@ -240,14 +242,14 @@ GetMultiCollateralOrderDetail Get Multi-Collateral Order Detail
 
 @return MultiCollateralOrder
 */
-func (a *MultiCollateralLoanApiService) GetMultiCollateralOrderDetail(ctx context.Context, orderId string) (MultiCollateralOrder, *http.Response, error) {
+func (a *MultiCollateralLoanApiService) GetMultiCollateralOrderDetail(ctx context.Context, orderId string) (model.MultiCollateralOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  MultiCollateralOrder
+		localVarReturnValue  model.MultiCollateralOrder
 	)
 
 	// create path and map variables
@@ -348,14 +350,14 @@ ListMultiRepayRecords List Multi-Collateral Repay Records
 
 @return []MultiRepayRecord
 */
-func (a *MultiCollateralLoanApiService) ListMultiRepayRecords(ctx context.Context, type_ string, localVarOptionals *ListMultiRepayRecordsOpts) ([]MultiRepayRecord, *http.Response, error) {
+func (a *MultiCollateralLoanApiService) ListMultiRepayRecords(ctx context.Context, type_ string, localVarOptionals *ListMultiRepayRecordsOpts) ([]model.MultiRepayRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []MultiRepayRecord
+		localVarReturnValue  []model.MultiRepayRecord
 	)
 
 	// create path and map variables
@@ -455,14 +457,14 @@ RepayMultiCollateralLoan Repay Multi-Collateral Loan
 
 @return MultiRepayResp
 */
-func (a *MultiCollateralLoanApiService) RepayMultiCollateralLoan(ctx context.Context, repayMultiLoan RepayMultiLoan) (MultiRepayResp, *http.Response, error) {
+func (a *MultiCollateralLoanApiService) RepayMultiCollateralLoan(ctx context.Context, repayMultiLoan model.RepayMultiLoan) (model.MultiRepayResp, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  MultiRepayResp
+		localVarReturnValue  model.MultiRepayResp
 	)
 
 	// create path and map variables
@@ -562,14 +564,14 @@ ListMultiCollateralRecords Query collateral adjustment records
 
 @return []MultiCollateralRecord
 */
-func (a *MultiCollateralLoanApiService) ListMultiCollateralRecords(ctx context.Context, localVarOptionals *ListMultiCollateralRecordsOpts) ([]MultiCollateralRecord, *http.Response, error) {
+func (a *MultiCollateralLoanApiService) ListMultiCollateralRecords(ctx context.Context, localVarOptionals *ListMultiCollateralRecordsOpts) ([]model.MultiCollateralRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []MultiCollateralRecord
+		localVarReturnValue  []model.MultiCollateralRecord
 	)
 
 	// create path and map variables
@@ -668,14 +670,14 @@ OperateMultiCollateral Operate Multi-Collateral
 
 @return CollateralAdjustRes
 */
-func (a *MultiCollateralLoanApiService) OperateMultiCollateral(ctx context.Context, collateralAdjust CollateralAdjust) (CollateralAdjustRes, *http.Response, error) {
+func (a *MultiCollateralLoanApiService) OperateMultiCollateral(ctx context.Context, collateralAdjust model.CollateralAdjust) (model.CollateralAdjustRes, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CollateralAdjustRes
+		localVarReturnValue  model.CollateralAdjustRes
 	)
 
 	// create path and map variables
@@ -762,14 +764,14 @@ ListUserCurrencyQuota List User Currency Quota
 
 @return []CurrencyQuota
 */
-func (a *MultiCollateralLoanApiService) ListUserCurrencyQuota(ctx context.Context, type_ string, currency string) ([]CurrencyQuota, *http.Response, error) {
+func (a *MultiCollateralLoanApiService) ListUserCurrencyQuota(ctx context.Context, type_ string, currency string) ([]model.CurrencyQuota, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []CurrencyQuota
+		localVarReturnValue  []model.CurrencyQuota
 	)
 
 	// create path and map variables
@@ -854,14 +856,14 @@ ListMultiCollateralCurrencies Query supported borrowing and collateral currencie
 
 @return MultiCollateralCurrency
 */
-func (a *MultiCollateralLoanApiService) ListMultiCollateralCurrencies(ctx context.Context) (MultiCollateralCurrency, *http.Response, error) {
+func (a *MultiCollateralLoanApiService) ListMultiCollateralCurrencies(ctx context.Context) (model.MultiCollateralCurrency, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  MultiCollateralCurrency
+		localVarReturnValue  model.MultiCollateralCurrency
 	)
 
 	// create path and map variables
@@ -939,14 +941,14 @@ The Multi-Collateral ratio is fixed, irrespective of the currency.
 
 @return CollateralLtv
 */
-func (a *MultiCollateralLoanApiService) GetMultiCollateralLtv(ctx context.Context) (CollateralLtv, *http.Response, error) {
+func (a *MultiCollateralLoanApiService) GetMultiCollateralLtv(ctx context.Context) (model.CollateralLtv, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CollateralLtv
+		localVarReturnValue  model.CollateralLtv
 	)
 
 	// create path and map variables
@@ -1023,14 +1025,14 @@ GetMultiCollateralFixRate Query fixed interest rates for the currency for 7 days
 
 @return []CollateralFixRate
 */
-func (a *MultiCollateralLoanApiService) GetMultiCollateralFixRate(ctx context.Context) ([]CollateralFixRate, *http.Response, error) {
+func (a *MultiCollateralLoanApiService) GetMultiCollateralFixRate(ctx context.Context) ([]model.CollateralFixRate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []CollateralFixRate
+		localVarReturnValue  []model.CollateralFixRate
 	)
 
 	// create path and map variables

@@ -14,6 +14,8 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -38,14 +40,14 @@ The assets of each currency in the account will be adjusted according to their l
 
 @return PortfolioAccount
 */
-func (a *PortfolioApiService) ListPortfolioAccounts(ctx context.Context, localVarOptionals *ListPortfolioAccountsOpts) (PortfolioAccount, *http.Response, error) {
+func (a *PortfolioApiService) ListPortfolioAccounts(ctx context.Context, localVarOptionals *ListPortfolioAccountsOpts) (model.PortfolioAccount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  PortfolioAccount
+		localVarReturnValue  model.PortfolioAccount
 	)
 
 	// create path and map variables
@@ -223,7 +225,7 @@ SetAccountPortfolioMode Configure the account's portfolio mode.
 
 @return map[string]bool
 */
-func (a *PortfolioApiService) SetAccountPortfolioMode(ctx context.Context, portfolioMode PortfolioMode) (map[string]bool, *http.Response, error) {
+func (a *PortfolioApiService) SetAccountPortfolioMode(ctx context.Context, portfolioMode model.PortfolioMode) (map[string]bool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -316,14 +318,14 @@ GetPortfolioBorrowable Retrieve the maximum borrowable amount for the account.
 
 @return PortfolioBorrowable
 */
-func (a *PortfolioApiService) GetPortfolioBorrowable(ctx context.Context, currency string) (PortfolioBorrowable, *http.Response, error) {
+func (a *PortfolioApiService) GetPortfolioBorrowable(ctx context.Context, currency string) (model.PortfolioBorrowable, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  PortfolioBorrowable
+		localVarReturnValue  model.PortfolioBorrowable
 	)
 
 	// create path and map variables
@@ -408,14 +410,14 @@ GetPortfolioTransferable Retrieve the maximum amount that can be transferred out
 
 @return PortfolioTransferable
 */
-func (a *PortfolioApiService) GetPortfolioTransferable(ctx context.Context, currency string) (PortfolioTransferable, *http.Response, error) {
+func (a *PortfolioApiService) GetPortfolioTransferable(ctx context.Context, currency string) (model.PortfolioTransferable, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  PortfolioTransferable
+		localVarReturnValue  model.PortfolioTransferable
 	)
 
 	// create path and map variables
@@ -510,14 +512,14 @@ ListPortfolioUniLoanInterestRecords List loans
 
 @return []UniLoan
 */
-func (a *PortfolioApiService) ListPortfolioUniLoanInterestRecords(ctx context.Context, localVarOptionals *ListPortfolioUniLoanInterestRecordsOpts) ([]UniLoan, *http.Response, error) {
+func (a *PortfolioApiService) ListPortfolioUniLoanInterestRecords(ctx context.Context, localVarOptionals *ListPortfolioUniLoanInterestRecordsOpts) ([]model.UniLoan, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniLoan
+		localVarReturnValue  []model.UniLoan
 	)
 
 	// create path and map variables
@@ -609,7 +611,7 @@ When borrowing, it is essential to ensure that the borrowed amount is not below 
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param portfolioLoan
 */
-func (a *PortfolioApiService) CreatePortfolioLoan(ctx context.Context, portfolioLoan PortfolioLoan) (*http.Response, error) {
+func (a *PortfolioApiService) CreatePortfolioLoan(ctx context.Context, portfolioLoan model.PortfolioLoan) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -704,14 +706,14 @@ ListPortfolioLoanRecords Get load records
 
 @return []PortfolioLoanRecord
 */
-func (a *PortfolioApiService) ListPortfolioLoanRecords(ctx context.Context, localVarOptionals *ListPortfolioLoanRecordsOpts) ([]PortfolioLoanRecord, *http.Response, error) {
+func (a *PortfolioApiService) ListPortfolioLoanRecords(ctx context.Context, localVarOptionals *ListPortfolioLoanRecordsOpts) ([]model.PortfolioLoanRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []PortfolioLoanRecord
+		localVarReturnValue  []model.PortfolioLoanRecord
 	)
 
 	// create path and map variables
@@ -817,14 +819,14 @@ ListPortfolioLoanInterestRecords List interest records
 
 @return []UniLoanInterestRecord
 */
-func (a *PortfolioApiService) ListPortfolioLoanInterestRecords(ctx context.Context, localVarOptionals *ListPortfolioLoanInterestRecordsOpts) ([]UniLoanInterestRecord, *http.Response, error) {
+func (a *PortfolioApiService) ListPortfolioLoanInterestRecords(ctx context.Context, localVarOptionals *ListPortfolioLoanInterestRecordsOpts) ([]model.UniLoanInterestRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []UniLoanInterestRecord
+		localVarReturnValue  []model.UniLoanInterestRecord
 	)
 
 	// create path and map variables

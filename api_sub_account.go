@@ -15,6 +15,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -38,14 +40,14 @@ ListSubAccounts List sub-accounts
 
 @return []SubAccount
 */
-func (a *SubAccountApiService) ListSubAccounts(ctx context.Context, localVarOptionals *ListSubAccountsOpts) ([]SubAccount, *http.Response, error) {
+func (a *SubAccountApiService) ListSubAccounts(ctx context.Context, localVarOptionals *ListSubAccountsOpts) ([]model.SubAccount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SubAccount
+		localVarReturnValue  []model.SubAccount
 	)
 
 	// create path and map variables
@@ -132,14 +134,14 @@ CreateSubAccounts Create a new sub-account
 
 @return SubAccount
 */
-func (a *SubAccountApiService) CreateSubAccounts(ctx context.Context, subAccount SubAccount) (SubAccount, *http.Response, error) {
+func (a *SubAccountApiService) CreateSubAccounts(ctx context.Context, subAccount model.SubAccount) (model.SubAccount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SubAccount
+		localVarReturnValue  model.SubAccount
 	)
 
 	// create path and map variables
@@ -225,14 +227,14 @@ GetSubAccount Get the sub-account
 
 @return SubAccount
 */
-func (a *SubAccountApiService) GetSubAccount(ctx context.Context, userId int64) (SubAccount, *http.Response, error) {
+func (a *SubAccountApiService) GetSubAccount(ctx context.Context, userId int64) (model.SubAccount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SubAccount
+		localVarReturnValue  model.SubAccount
 	)
 
 	// create path and map variables
@@ -318,14 +320,14 @@ ListSubAccountKeys List all API Key of the sub-account
 
 @return []SubAccountKey
 */
-func (a *SubAccountApiService) ListSubAccountKeys(ctx context.Context, userId int32) ([]SubAccountKey, *http.Response, error) {
+func (a *SubAccountApiService) ListSubAccountKeys(ctx context.Context, userId int32) ([]model.SubAccountKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SubAccountKey
+		localVarReturnValue  []model.SubAccountKey
 	)
 
 	// create path and map variables
@@ -412,14 +414,14 @@ CreateSubAccountKeys Create API Key of the sub-account
 
 @return []SubAccountKey
 */
-func (a *SubAccountApiService) CreateSubAccountKeys(ctx context.Context, userId int64, subAccountKey SubAccountKey) ([]SubAccountKey, *http.Response, error) {
+func (a *SubAccountApiService) CreateSubAccountKeys(ctx context.Context, userId int64, subAccountKey model.SubAccountKey) ([]model.SubAccountKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []SubAccountKey
+		localVarReturnValue  []model.SubAccountKey
 	)
 
 	// create path and map variables
@@ -508,14 +510,14 @@ GetSubAccountKey Get the API Key of the sub-account
 
 @return SubAccountKey
 */
-func (a *SubAccountApiService) GetSubAccountKey(ctx context.Context, userId int32, key string) (SubAccountKey, *http.Response, error) {
+func (a *SubAccountApiService) GetSubAccountKey(ctx context.Context, userId int32, key string) (model.SubAccountKey, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SubAccountKey
+		localVarReturnValue  model.SubAccountKey
 	)
 
 	// create path and map variables
@@ -603,7 +605,7 @@ UpdateSubAccountKeys Update API key of the sub-account
   - @param key The API Key of the sub-account
   - @param subAccountKey
 */
-func (a *SubAccountApiService) UpdateSubAccountKeys(ctx context.Context, userId int32, key string, subAccountKey SubAccountKey) (*http.Response, error) {
+func (a *SubAccountApiService) UpdateSubAccountKeys(ctx context.Context, userId int32, key string, subAccountKey model.SubAccountKey) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}

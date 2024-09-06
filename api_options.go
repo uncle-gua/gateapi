@@ -15,6 +15,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -31,14 +33,14 @@ ListOptionsUnderlyings List all underlyings
 
 @return []OptionsUnderlying
 */
-func (a *OptionsApiService) ListOptionsUnderlyings(ctx context.Context) ([]OptionsUnderlying, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsUnderlyings(ctx context.Context) ([]model.OptionsUnderlying, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OptionsUnderlying
+		localVarReturnValue  []model.OptionsUnderlying
 	)
 
 	// create path and map variables
@@ -209,14 +211,14 @@ ListOptionsContracts List all the contracts with specified underlying and expira
 
 @return []OptionsContract
 */
-func (a *OptionsApiService) ListOptionsContracts(ctx context.Context, underlying string, localVarOptionals *ListOptionsContractsOpts) ([]OptionsContract, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsContracts(ctx context.Context, underlying string, localVarOptionals *ListOptionsContractsOpts) ([]model.OptionsContract, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OptionsContract
+		localVarReturnValue  []model.OptionsContract
 	)
 
 	// create path and map variables
@@ -298,14 +300,14 @@ GetOptionsContract Query specified contract detail
 
 @return OptionsContract
 */
-func (a *OptionsApiService) GetOptionsContract(ctx context.Context, contract string) (OptionsContract, *http.Response, error) {
+func (a *OptionsApiService) GetOptionsContract(ctx context.Context, contract string) (model.OptionsContract, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OptionsContract
+		localVarReturnValue  model.OptionsContract
 	)
 
 	// create path and map variables
@@ -398,14 +400,14 @@ ListOptionsSettlements List settlement history
 
 @return []OptionsSettlement
 */
-func (a *OptionsApiService) ListOptionsSettlements(ctx context.Context, underlying string, localVarOptionals *ListOptionsSettlementsOpts) ([]OptionsSettlement, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsSettlements(ctx context.Context, underlying string, localVarOptionals *ListOptionsSettlementsOpts) ([]model.OptionsSettlement, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OptionsSettlement
+		localVarReturnValue  []model.OptionsSettlement
 	)
 
 	// create path and map variables
@@ -498,14 +500,14 @@ GetOptionsSettlement Get specified contract's settlement
 
 @return OptionsSettlement
 */
-func (a *OptionsApiService) GetOptionsSettlement(ctx context.Context, contract string, underlying string, at int64) (OptionsSettlement, *http.Response, error) {
+func (a *OptionsApiService) GetOptionsSettlement(ctx context.Context, contract string, underlying string, at int64) (model.OptionsSettlement, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OptionsSettlement
+		localVarReturnValue  model.OptionsSettlement
 	)
 
 	// create path and map variables
@@ -602,14 +604,14 @@ ListMyOptionsSettlements List my options settlements
 
 @return []OptionsMySettlements
 */
-func (a *OptionsApiService) ListMyOptionsSettlements(ctx context.Context, underlying string, localVarOptionals *ListMyOptionsSettlementsOpts) ([]OptionsMySettlements, *http.Response, error) {
+func (a *OptionsApiService) ListMyOptionsSettlements(ctx context.Context, underlying string, localVarOptionals *ListMyOptionsSettlementsOpts) ([]model.OptionsMySettlements, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OptionsMySettlements
+		localVarReturnValue  []model.OptionsMySettlements
 	)
 
 	// create path and map variables
@@ -721,14 +723,14 @@ Bids will be sorted by price from high to low, while asks sorted reversely
 
 @return FuturesOrderBook
 */
-func (a *OptionsApiService) ListOptionsOrderBook(ctx context.Context, contract string, localVarOptionals *ListOptionsOrderBookOpts) (FuturesOrderBook, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsOrderBook(ctx context.Context, contract string, localVarOptionals *ListOptionsOrderBookOpts) (model.FuturesOrderBook, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  FuturesOrderBook
+		localVarReturnValue  model.FuturesOrderBook
 	)
 
 	// create path and map variables
@@ -816,14 +818,14 @@ ListOptionsTickers List tickers of options contracts
 
 @return []OptionsTicker
 */
-func (a *OptionsApiService) ListOptionsTickers(ctx context.Context, underlying string) ([]OptionsTicker, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsTickers(ctx context.Context, underlying string) ([]model.OptionsTicker, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OptionsTicker
+		localVarReturnValue  []model.OptionsTicker
 	)
 
 	// create path and map variables
@@ -902,14 +904,14 @@ ListOptionsUnderlyingTickers Get underlying ticker
 
 @return OptionsUnderlyingTicker
 */
-func (a *OptionsApiService) ListOptionsUnderlyingTickers(ctx context.Context, underlying string) (OptionsUnderlyingTicker, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsUnderlyingTickers(ctx context.Context, underlying string) (model.OptionsUnderlyingTicker, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OptionsUnderlyingTicker
+		localVarReturnValue  model.OptionsUnderlyingTicker
 	)
 
 	// create path and map variables
@@ -1002,14 +1004,14 @@ ListOptionsCandlesticks Get options candlesticks
 
 @return []OptionsCandlestick
 */
-func (a *OptionsApiService) ListOptionsCandlesticks(ctx context.Context, contract string, localVarOptionals *ListOptionsCandlesticksOpts) ([]OptionsCandlestick, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsCandlesticks(ctx context.Context, contract string, localVarOptionals *ListOptionsCandlesticksOpts) ([]model.OptionsCandlestick, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OptionsCandlestick
+		localVarReturnValue  []model.OptionsCandlestick
 	)
 
 	// create path and map variables
@@ -1113,14 +1115,14 @@ ListOptionsUnderlyingCandlesticks Mark price candlesticks of an underlying
 
 @return []FuturesCandlestick
 */
-func (a *OptionsApiService) ListOptionsUnderlyingCandlesticks(ctx context.Context, underlying string, localVarOptionals *ListOptionsUnderlyingCandlesticksOpts) ([]FuturesCandlestick, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsUnderlyingCandlesticks(ctx context.Context, underlying string, localVarOptionals *ListOptionsUnderlyingCandlesticksOpts) ([]model.FuturesCandlestick, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesCandlestick
+		localVarReturnValue  []model.FuturesCandlestick
 	)
 
 	// create path and map variables
@@ -1227,14 +1229,14 @@ ListOptionsTrades Options trade history
 
 @return []FuturesTrade
 */
-func (a *OptionsApiService) ListOptionsTrades(ctx context.Context, localVarOptionals *ListOptionsTradesOpts) ([]FuturesTrade, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsTrades(ctx context.Context, localVarOptionals *ListOptionsTradesOpts) ([]model.FuturesTrade, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []FuturesTrade
+		localVarReturnValue  []model.FuturesTrade
 	)
 
 	// create path and map variables
@@ -1329,14 +1331,14 @@ ListOptionsAccount List options account
 
 @return OptionsAccount
 */
-func (a *OptionsApiService) ListOptionsAccount(ctx context.Context) (OptionsAccount, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsAccount(ctx context.Context) (model.OptionsAccount, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OptionsAccount
+		localVarReturnValue  model.OptionsAccount
 	)
 
 	// create path and map variables
@@ -1434,14 +1436,14 @@ ListOptionsAccountBook List account changing history
 
 @return []OptionsAccountBook
 */
-func (a *OptionsApiService) ListOptionsAccountBook(ctx context.Context, localVarOptionals *ListOptionsAccountBookOpts) ([]OptionsAccountBook, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsAccountBook(ctx context.Context, localVarOptionals *ListOptionsAccountBookOpts) ([]model.OptionsAccountBook, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OptionsAccountBook
+		localVarReturnValue  []model.OptionsAccountBook
 	)
 
 	// create path and map variables
@@ -1546,14 +1548,14 @@ ListOptionsPositions List user's positions of specified underlying
 
 @return []OptionsPosition
 */
-func (a *OptionsApiService) ListOptionsPositions(ctx context.Context, localVarOptionals *ListOptionsPositionsOpts) ([]OptionsPosition, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsPositions(ctx context.Context, localVarOptionals *ListOptionsPositionsOpts) ([]model.OptionsPosition, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OptionsPosition
+		localVarReturnValue  []model.OptionsPosition
 	)
 
 	// create path and map variables
@@ -1640,14 +1642,14 @@ GetOptionsPosition Get specified contract position
 
 @return OptionsPosition
 */
-func (a *OptionsApiService) GetOptionsPosition(ctx context.Context, contract string) (OptionsPosition, *http.Response, error) {
+func (a *OptionsApiService) GetOptionsPosition(ctx context.Context, contract string) (model.OptionsPosition, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OptionsPosition
+		localVarReturnValue  model.OptionsPosition
 	)
 
 	// create path and map variables
@@ -1740,14 +1742,14 @@ ListOptionsPositionClose List user's liquidation history of specified underlying
 
 @return []OptionsPositionClose
 */
-func (a *OptionsApiService) ListOptionsPositionClose(ctx context.Context, underlying string, localVarOptionals *ListOptionsPositionCloseOpts) ([]OptionsPositionClose, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsPositionClose(ctx context.Context, underlying string, localVarOptionals *ListOptionsPositionCloseOpts) ([]model.OptionsPositionClose, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OptionsPositionClose
+		localVarReturnValue  []model.OptionsPositionClose
 	)
 
 	// create path and map variables
@@ -1852,14 +1854,14 @@ ListOptionsOrders List options orders
 
 @return []OptionsOrder
 */
-func (a *OptionsApiService) ListOptionsOrders(ctx context.Context, status string, localVarOptionals *ListOptionsOrdersOpts) ([]OptionsOrder, *http.Response, error) {
+func (a *OptionsApiService) ListOptionsOrders(ctx context.Context, status string, localVarOptionals *ListOptionsOrdersOpts) ([]model.OptionsOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OptionsOrder
+		localVarReturnValue  []model.OptionsOrder
 	)
 
 	// create path and map variables
@@ -1962,14 +1964,14 @@ CreateOptionsOrder Create an options order
 
 @return OptionsOrder
 */
-func (a *OptionsApiService) CreateOptionsOrder(ctx context.Context, optionsOrder OptionsOrder) (OptionsOrder, *http.Response, error) {
+func (a *OptionsApiService) CreateOptionsOrder(ctx context.Context, optionsOrder model.OptionsOrder) (model.OptionsOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OptionsOrder
+		localVarReturnValue  model.OptionsOrder
 	)
 
 	// create path and map variables
@@ -2065,14 +2067,14 @@ CancelOptionsOrders Cancel all `open` orders matched
 
 @return []OptionsOrder
 */
-func (a *OptionsApiService) CancelOptionsOrders(ctx context.Context, localVarOptionals *CancelOptionsOrdersOpts) ([]OptionsOrder, *http.Response, error) {
+func (a *OptionsApiService) CancelOptionsOrders(ctx context.Context, localVarOptionals *CancelOptionsOrdersOpts) ([]model.OptionsOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OptionsOrder
+		localVarReturnValue  []model.OptionsOrder
 	)
 
 	// create path and map variables
@@ -2165,14 +2167,14 @@ GetOptionsOrder Get a single order
 
 @return OptionsOrder
 */
-func (a *OptionsApiService) GetOptionsOrder(ctx context.Context, orderId int64) (OptionsOrder, *http.Response, error) {
+func (a *OptionsApiService) GetOptionsOrder(ctx context.Context, orderId int64) (model.OptionsOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OptionsOrder
+		localVarReturnValue  model.OptionsOrder
 	)
 
 	// create path and map variables
@@ -2258,14 +2260,14 @@ CancelOptionsOrder Cancel a single order
 
 @return OptionsOrder
 */
-func (a *OptionsApiService) CancelOptionsOrder(ctx context.Context, orderId int64) (OptionsOrder, *http.Response, error) {
+func (a *OptionsApiService) CancelOptionsOrder(ctx context.Context, orderId int64) (model.OptionsOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OptionsOrder
+		localVarReturnValue  model.OptionsOrder
 	)
 
 	// create path and map variables
@@ -2366,14 +2368,14 @@ ListMyOptionsTrades List personal trading history
 
 @return []OptionsMyTrade
 */
-func (a *OptionsApiService) ListMyOptionsTrades(ctx context.Context, underlying string, localVarOptionals *ListMyOptionsTradesOpts) ([]OptionsMyTrade, *http.Response, error) {
+func (a *OptionsApiService) ListMyOptionsTrades(ctx context.Context, underlying string, localVarOptionals *ListMyOptionsTradesOpts) ([]model.OptionsMyTrade, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OptionsMyTrade
+		localVarReturnValue  []model.OptionsMyTrade
 	)
 
 	// create path and map variables

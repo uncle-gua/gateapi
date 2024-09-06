@@ -14,6 +14,8 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+
+	"github.com/uncle-gua/gateapi/model"
 )
 
 // Linger please
@@ -29,7 +31,7 @@ SwapETH2 ETH2 swap
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param eth2Swap
 */
-func (a *EarnApiService) SwapETH2(ctx context.Context, eth2Swap Eth2Swap) (*http.Response, error) {
+func (a *EarnApiService) SwapETH2(ctx context.Context, eth2Swap model.Eth2Swap) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -111,14 +113,14 @@ ListDualInvestmentPlans Dual Investment product list
 
 @return []DualGetPlans
 */
-func (a *EarnApiService) ListDualInvestmentPlans(ctx context.Context) ([]DualGetPlans, *http.Response, error) {
+func (a *EarnApiService) ListDualInvestmentPlans(ctx context.Context) ([]model.DualGetPlans, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []DualGetPlans
+		localVarReturnValue  []model.DualGetPlans
 	)
 
 	// create path and map variables
@@ -195,14 +197,14 @@ ListDualOrders Dual Investment order list
 
 @return []DualGetOrders
 */
-func (a *EarnApiService) ListDualOrders(ctx context.Context) ([]DualGetOrders, *http.Response, error) {
+func (a *EarnApiService) ListDualOrders(ctx context.Context) ([]model.DualGetOrders, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []DualGetOrders
+		localVarReturnValue  []model.DualGetOrders
 	)
 
 	// create path and map variables
@@ -284,7 +286,7 @@ PlaceDualOrder Place Dual Investment order
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param placeDualInvestmentOrder
 */
-func (a *EarnApiService) PlaceDualOrder(ctx context.Context, placeDualInvestmentOrder PlaceDualInvestmentOrder) (*http.Response, error) {
+func (a *EarnApiService) PlaceDualOrder(ctx context.Context, placeDualInvestmentOrder model.PlaceDualInvestmentOrder) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -378,14 +380,14 @@ ListStructuredProducts Structured Product List
 
 @return []StructuredGetProjectList
 */
-func (a *EarnApiService) ListStructuredProducts(ctx context.Context, status string, localVarOptionals *ListStructuredProductsOpts) ([]StructuredGetProjectList, *http.Response, error) {
+func (a *EarnApiService) ListStructuredProducts(ctx context.Context, status string, localVarOptionals *ListStructuredProductsOpts) ([]model.StructuredGetProjectList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []StructuredGetProjectList
+		localVarReturnValue  []model.StructuredGetProjectList
 	)
 
 	// create path and map variables
@@ -485,14 +487,14 @@ ListStructuredOrders Structured Product Order List
 
 @return []StructuredOrderList
 */
-func (a *EarnApiService) ListStructuredOrders(ctx context.Context, localVarOptionals *ListStructuredOrdersOpts) ([]StructuredOrderList, *http.Response, error) {
+func (a *EarnApiService) ListStructuredOrders(ctx context.Context, localVarOptionals *ListStructuredOrdersOpts) ([]model.StructuredOrderList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []StructuredOrderList
+		localVarReturnValue  []model.StructuredOrderList
 	)
 
 	// create path and map variables
@@ -586,7 +588,7 @@ PlaceStructuredOrder Place Structured Product Order
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param structuredBuy
 */
-func (a *EarnApiService) PlaceStructuredOrder(ctx context.Context, structuredBuy StructuredBuy) (*http.Response, error) {
+func (a *EarnApiService) PlaceStructuredOrder(ctx context.Context, structuredBuy model.StructuredBuy) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
