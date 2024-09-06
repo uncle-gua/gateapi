@@ -4,18 +4,16 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"math/rand"
 	"os"
-	"time"
 
-	"github.com/gateio/gateapi-go/v5"
+	"github.com/uncle-gua/gateapi"
 )
 
 var logger = log.New(flag.CommandLine.Output(), "", log.LstdFlags)
 
 func panicGateError(err error) {
 	if e, ok := err.(gateapi.GateAPIError); ok {
-		log.Fatal(fmt.Sprintf("Gate API error, label: %s, message: %s", e.Label, e.Message))
+		log.Fatalf("Gate API error, label: %s, message: %s", e.Label, e.Message)
 	}
 	log.Fatal(err)
 }
@@ -44,7 +42,6 @@ func main() {
 	if err != nil {
 		logger.Fatal(err)
 	}
-	rand.Seed(time.Now().Unix())
 	for _, demo := range flag.Args() {
 		switch demo {
 		case "spot":

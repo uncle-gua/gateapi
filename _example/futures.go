@@ -6,9 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/antihax/optional"
-	"github.com/gateio/gateapi-go/v5"
 	"github.com/shopspring/decimal"
+	"github.com/uncle-gua/gateapi"
 )
 
 func FuturesDemo(config *RunConfig) {
@@ -24,7 +23,7 @@ func FuturesDemo(config *RunConfig) {
 
 	// update position leverage
 	leverage := "3"
-	_, _, err := client.FuturesApi.UpdatePositionLeverage(ctx, settle, contract, leverage)
+	_, _, err := client.FuturesApi.UpdatePositionLeverage(ctx, settle, contract, leverage, nil)
 	if err != nil {
 		panicGateError(err)
 	}
@@ -66,8 +65,11 @@ func FuturesDemo(config *RunConfig) {
 
 	// retrieve last price to calculate margin needed
 	tickers, _, err := client.FuturesApi.ListFuturesTickers(ctx, settle, &gateapi.ListFuturesTickersOpts{
-		Contract: optional.NewString(contract),
+		Contract: gateapi.NewOptional(contract),
 	})
+	if err != nil {
+		panicGateError(err)
+	}
 	lastPrice := tickers[0].Last
 	logger.Printf("last price of contract %s: %s", contract, lastPrice)
 
@@ -103,7 +105,7 @@ func FuturesDemo(config *RunConfig) {
 			To:       "futures",
 			Amount:   margin.String(),
 		}
-		_, err := client.WalletApi.Transfer(ctx, transfer)
+		_, _, err := client.WalletApi.Transfer(ctx, transfer)
 		if err != nil {
 			panicGateError(err)
 		}
@@ -137,8 +139,8 @@ func FuturesDemo(config *RunConfig) {
 	} else {
 		time.Sleep(time.Millisecond * 200)
 		orderTrades, _, err := client.FuturesApi.GetMyTrades(ctx, settle, &gateapi.GetMyTradesOpts{
-			Contract: optional.NewString(contract),
-			Order:    optional.NewInt64(orderResponse.Id),
+			Contract: gateapi.NewOptional(contract),
+			Order:    gateapi.NewOptional(orderResponse.Id),
 		})
 		if err != nil {
 			panicGateError(err)

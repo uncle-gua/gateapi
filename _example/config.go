@@ -17,7 +17,6 @@ func NewRunConfig(apiKey string, apiSecret string, hostUsed *string) (*RunConfig
 		ApiKey:     apiKey,
 		ApiSecret:  apiSecret,
 		UseTestNet: false,
-		BaseUrl:    *hostUsed,
 	}
 	if hostUsed == nil || *hostUsed == "" {
 		config.BaseUrl = "https://api.gateio.ws/api/v4"

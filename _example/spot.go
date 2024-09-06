@@ -3,9 +3,8 @@ package main
 import (
 	"context"
 
-	"github.com/antihax/optional"
-	"github.com/gateio/gateapi-go/v5"
 	"github.com/shopspring/decimal"
+	"github.com/uncle-gua/gateapi"
 )
 
 func SpotDemo(config *RunConfig) {
@@ -26,7 +25,11 @@ func SpotDemo(config *RunConfig) {
 	logger.Printf("testing against currency pair: %s\n", cp.Id)
 	minAmount := cp.MinBaseAmount
 
-	tickers, _, err := client.SpotApi.ListTickers(ctx, &gateapi.ListTickersOpts{CurrencyPair: optional.NewString(cp.Id)})
+	tickers, _, err := client.SpotApi.ListTickers(ctx,
+		&gateapi.ListTickersOpts{
+			CurrencyPair: gateapi.NewOptional(cp.Id),
+		},
+	)
 	if err != nil {
 		panicGateError(err)
 	}
@@ -36,7 +39,11 @@ func SpotDemo(config *RunConfig) {
 	// `go get github.com/shopspring/decimal`
 	orderAmount := decimal.RequireFromString(minAmount).Mul(decimal.NewFromInt32(2))
 
-	balance, _, err := client.SpotApi.ListSpotAccounts(ctx, &gateapi.ListSpotAccountsOpts{Currency: optional.NewString(currency)})
+	balance, _, err := client.SpotApi.ListSpotAccounts(ctx,
+		&gateapi.ListSpotAccountsOpts{
+			Currency: gateapi.NewOptional(currency),
+		},
+	)
 	if err != nil {
 		panicGateError(err)
 	}
@@ -62,12 +69,12 @@ func SpotDemo(config *RunConfig) {
 	}
 	logger.Printf("order created with ID: %s, status: %s\n", createdOrder.Id, createdOrder.Status)
 	if createdOrder.Status == "open" {
-		order, _, err := client.SpotApi.GetOrder(ctx, createdOrder.Id, createdOrder.CurrencyPair)
+		order, _, err := client.SpotApi.GetOrder(ctx, createdOrder.Id, createdOrder.CurrencyPair, nil)
 		if err != nil {
 			panicGateError(err)
 		}
 		logger.Printf("order %s filled: %s, left: %s\n", order.Id, order.FilledTotal, order.Left)
-		result, _, err := client.SpotApi.CancelOrder(ctx, createdOrder.Id, createdOrder.CurrencyPair)
+		result, _, err := client.SpotApi.CancelOrder(ctx, createdOrder.Id, createdOrder.CurrencyPair, nil)
 		if err != nil {
 			panicGateError(err)
 		}
@@ -76,8 +83,12 @@ func SpotDemo(config *RunConfig) {
 		}
 	} else {
 		// order finished
-		trades, _, err := client.SpotApi.ListMyTrades(ctx, createdOrder.CurrencyPair,
-			&gateapi.ListMyTradesOpts{OrderId: optional.NewString(createdOrder.Id)})
+		trades, _, err := client.SpotApi.ListMyTrades(ctx,
+			&gateapi.ListMyTradesOpts{
+				CurrencyPair: gateapi.NewOptional(createdOrder.CurrencyPair),
+				OrderId:      gateapi.NewOptional(createdOrder.Id),
+			},
+		)
 		if err != nil {
 			panicGateError(err)
 		}

@@ -5,9 +5,8 @@ import (
 	"math/rand"
 	"strings"
 
-	"github.com/antihax/optional"
-	"github.com/gateio/gateapi-go/v5"
 	"github.com/shopspring/decimal"
+	"github.com/uncle-gua/gateapi"
 )
 
 func MarginDemo(config *RunConfig) {
@@ -22,7 +21,7 @@ func MarginDemo(config *RunConfig) {
 	})
 
 	tickers, _, err := client.SpotApi.ListTickers(ctx, &gateapi.ListTickersOpts{
-		CurrencyPair: optional.NewString(currencyPair),
+		CurrencyPair: gateapi.NewOptional(currencyPair),
 	})
 	if err != nil {
 		panicGateError(err)
@@ -55,7 +54,7 @@ func MarginDemo(config *RunConfig) {
 
 	// example to lend
 	fundingAccounts, _, err := client.MarginApi.ListFundingAccounts(ctx, &gateapi.ListFundingAccountsOpts{
-		Currency: optional.NewString(currency),
+		Currency: gateapi.NewOptional(currency),
 	})
 	if err != nil {
 		panicGateError(err)
@@ -100,7 +99,7 @@ func MarginDemo(config *RunConfig) {
 
 	margin := loanAmount.DivRound(decimal.NewFromInt32(pair.Leverage-1), 8)
 	accounts, _, err := client.MarginApi.ListMarginAccounts(ctx, &gateapi.ListMarginAccountsOpts{
-		CurrencyPair: optional.NewString(currencyPair),
+		CurrencyPair: gateapi.NewOptional(currencyPair),
 	})
 	if err != nil {
 		panicGateError(err)
@@ -116,7 +115,7 @@ func MarginDemo(config *RunConfig) {
 			Amount:       margin.Sub(available).Round(8).String(),
 			CurrencyPair: currencyPair,
 		}
-		_, err := client.WalletApi.Transfer(ctx, transfer)
+		_, _, err := client.WalletApi.Transfer(ctx, transfer)
 		if err != nil {
 			panicGateError(err)
 		}
